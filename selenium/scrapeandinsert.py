@@ -8,7 +8,6 @@ from database import db
 from database import Courses
 from readCourseTimeTables import scrapeNtnuCourseWebsites
 from readCourseTimeTables import readfile
-from createEvent import create_event
 import time
 
 #import time to slow selenium down
@@ -80,7 +79,8 @@ def main():
         try:        
             scrapeNtnuCourseWebsites(findCourseCode(course))
             tableToInsert=readfile()
-            tableToInsert = tableToInsert[0]
+            print(tableToInsert)
+	    tableToInsert = tableToInsert[0]
             print tableToInsert
             insertIntoDatabase("01",course,tableToInsert[0],tableToInsert[1],tableToInsert[2],tableToInsert[3],tableToInsert[4],tableToInsert[5],tableToInsert[6])
             break

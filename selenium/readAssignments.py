@@ -128,6 +128,7 @@ def prepAllDeiveriesForDatabase(totalDeliveryList):
 
 def make():
     rawList = scrapeItslearning()
+    print(rawList)
     readyForDataBase = prepAllDeiveriesForDatabase(rawList)
     return readyForDataBase
 print(make())

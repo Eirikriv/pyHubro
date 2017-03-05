@@ -44,7 +44,7 @@ def readfile():
         returnArray.append("None")
         mainReturnArray.append(returnArray)
     return mainReturnArray
-
+print(readfile())
 #All events will be saved in the following way: 
 #[starttime,endtime,startdate,enddate,description,where,attachments]
 #saved within a list on the form:
