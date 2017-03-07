@@ -6,6 +6,10 @@ python:
 
 before_install:
   - cd tests 
+install:
+  pip install pyvirtualdisplay;
+  pip install selenium;
+  pip install SQLAlchemy
 
 
 
