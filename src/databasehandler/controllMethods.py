@@ -38,13 +38,11 @@ def controllScannForLecturesandInsert(courseCode):
 #controllScannForLecturesandInsert("TDT4140")
 
 def controllScannForAssignmentsAndInsert():
-	#prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
+	formScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
 	engine = create_engine(URI)
 	connection = engine.connect()
-	fromScrape = [[u' Assignment 6', u' TI\xd84317 EMPIRISK FINANS', u'2017-03-10', u'12:00:00'], [u' Assignment 8', u' TI\xd84140 PROSJEKTFINANS', u'2017-03-13', u'23:59:00'], [u' Assignment 2.1', u' TI\xd84317 EMPIRISK FINANS', u'2017-03-20', u'23:59:00'], [u' Assignment 3', u' TDT4300 DATAVAREH/DATAGRUVED', u'2017-03-24', u'08:00:00']]
 	counter = 0
 	errorCounter = 0
-	#testList = [u' Assignment 6', u' TI\xd84317 EMPIRISK FINANS', u'2017-03-10', u'12:00:00']
 	for assigment in fromScrape:
 		courseCode = assigment[1].split()[0]
 		if(getValueFromCourseTable(engine, connection, courseCode)):
@@ -68,4 +66,4 @@ def controllScannForAssignmentsAndInsert():
 		else:
 			errorCounter += 1 
 	print "successfully inserted: " + str(counter) + " of: " + str(errorCounter+counter) +  " entries" 
-controllScannForAssignmentsAndInsert()	
+#controllScannForAssignmentsAndInsert()	
