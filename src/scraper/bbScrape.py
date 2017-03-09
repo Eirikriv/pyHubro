@@ -3,6 +3,7 @@ from scrapingSiteCredentials import *
 import time
 from pyvirtualdisplay import Display
 import traceback
+from selenium.webdriver.common.keys import Keys
 def scrapeBlackBoard():
     try:
         display = Display(visible=0, size=(800, 600))
@@ -51,7 +52,9 @@ def scrapeBlackBoard():
             time.sleep(2)
             courses = driver.find_elements_by_class_name("h-va-baseline")
             time.sleep(4)
-	    driver.find_element_by_xpath('//*[@title="\xc3\x98vinger"]').click()
+	    elem=driver.find_element_by_xpath('//*[@title="Forelesninger"]')
+	    elem.send_keys(Keys.TAB)
+	    elem.click()
             excersises = driver.find_element_by_id("content_listContainer")
             singleExercises = excersises.find_elements_by_tag_name("li")
             for n in range(len(singleExercises)):

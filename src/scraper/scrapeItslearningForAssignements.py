@@ -61,6 +61,8 @@ def loginAndGetAllCurrentAssignements(sleepTimer):
             courses = driver.find_elements_by_class_name("h-va-baseline")
             infoList.append(courses[n].text)
             courses[n].click()
+	    sleep(sleepTimer)
+            courseTitle=driver.find_element_by_class_name("treemenu-title")
             sleep(sleepTimer)
             courseTitle=driver.find_element_by_class_name("treemenu-title")
             infoList.append(courseTitle.text)
@@ -77,5 +79,6 @@ def loginAndGetAllCurrentAssignements(sleepTimer):
     driver.quit()
     display.stop()
     return maininfoList
+
 
 
