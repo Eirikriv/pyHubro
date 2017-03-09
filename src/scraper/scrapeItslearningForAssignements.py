@@ -78,4 +78,4 @@ def loginAndGetAllCurrentAssignements(sleepTimer):
     display.stop()
     return maininfoList
 
-print(prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6)))
+

@@ -68,18 +68,18 @@ def getEntryFromCourseTable(engine, connection,stringCourseId):
 	for row in connection.execute(selectCourse):
 		return row
 #print(getEntryFromCourseTable("0001"))
-def insertAssignmnentIntoDatabase(stringAssignmnentID,stringAssignmnentDate,stringAssignmnentTime):
-	engine = create_engine(URI)
-	connection = engine.connect()
+def insertAssignmentIntoDatabase(engine, connection, stringAssigmentID,stringAssignmentDate,stringAssignmentTime, stringAssignmentDescription):
+	engine = engine
+	connection = connection
 	metadata = MetaData()
 	assignmnent = Table('assignment', metadata, autoload=True , autoload_with=engine)
 	#print(metadata.tables.keys())
 	ins = assignmnent.insert()
-	new_assignmnent = ins.values(assignmentID=stringAssignmnentID,assignmnentDate=stringAssignmnentDate,assignmnentTime=stringAssignmnentTime)
+	new_assignmnent = ins.values(assignmentID=stringAssigmentID,assignmnentDate=stringAssignmentDate,assignmnentTime=stringAssignmentTime,description=stringAssignmentDescription)
 	connection.execute(new_assignmnent)
 #insertAssignmnentIntoDatabase("0001","2017-01-01","23:59:00")
 
-def getEntryFromAssignmnentTable(stringAssignmnentID):
+def getEntryFromAssigmnentTable(stringAssignmentID):
 	engine = create_engine(URI)
 	connection = engine.connect()
 	metadata = MetaData()
@@ -88,6 +88,17 @@ def getEntryFromAssignmnentTable(stringAssignmnentID):
 	for row in connection.execute(selectAssignmnent):
 		return row
 #print(getEntryFromAssignmnentTable("0001"))
+
+def getLastEntryFromAssignmentTable(engine, connection):
+	engine = engine
+	connection = connection
+	metadata = MetaData()
+	assignmnent = Table('assignment', metadata, autoload=True , autoload_with=engine)
+	selectAssignment=select([assignmnent])
+	result = connection.execute(selectAssignment)
+	result =list(result)
+	return result[-1]
+
 def insertLecturesIntoDatabase(engine, connection, stringLectureID,stringLectureDate,stringLectureStartTime,stringLectureEndTime,stringLectureDescription,stringLectureLocation):
 	engine = engine
 	connection = connection
@@ -148,9 +159,9 @@ def getEntryFromLecture_courseTable(stringLectureID):
 	for row in connection.execute(selectLecture):
 		return row
 
-def insertAssignment_courseIntoDatabase(stringAssignmentID,stringCourseID):
-	engine = create_engine(URI)
-	connection = engine.connect()
+def insertAssignment_courseIntoDatabase(engine, connection, stringAssignmentID,stringCourseID):
+	engine = engine
+	connection = connection
 	metadata = MetaData()
 	assignment_course = Table('assignment_course', metadata, autoload=True , autoload_with=engine)
 	#print(metadata.tables.keys())

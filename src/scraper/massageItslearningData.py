@@ -87,3 +87,4 @@ def prepAllDeiveriesForDatabase(totalDeliveryList): #prepares for all assingment
     for delivery in totalDeliveryList:
         returnList.append(prepDeliveriesForDatabase(delivery))
     return returnList
+
