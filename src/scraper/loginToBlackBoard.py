@@ -5,9 +5,9 @@ from pyvirtualdisplay import Display
 import traceback
 def scrapeBlackBoard():
 	try:
-		#display = Display(visible=0, size=(800, 600))
-        #display.start()
-		driver=webdriver.Chrome()
+		display = Display(visible=0, size=(800, 600))
+        display.start()
+		driver=webdriver.Firefox()
 
 		driver.get('http://www.instabart.no/') 
 
@@ -57,8 +57,8 @@ def scrapeBlackBoard():
 				assignmentsForACourse=[]
 				assignmentsForACourse.append(courseDescription +"| " + singleExercises[n].text)
 				allDeliveriesList.append(assignmentsForACourse)
-		#driver.quit()
-		#display.stop()
+		driver.quit()
+		display.stop()
 		return allDeliveriesList
 	except:
 		print "did not find any assignments for you on blackboard"

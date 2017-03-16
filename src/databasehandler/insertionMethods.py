@@ -27,15 +27,6 @@ def insertCourseIntoDatabase(stringCourseID,stringCourseName):
 		print traceback.print_exc()
 	return returnValue
 
-def insertAnAssignmentIntoDatabase(stringAssignmnentID,stringAssignmnentDate,stringAssignmnentTime):
-	returnValue =False
-	try:
-		insertAssignmnentIntoDatabase(stringAssignmnentID,stringAssignmnentDate,stringAssignmnentTime)
-		returnValue=True
-	except:
-		print traceback.print_exc()
-	return returnValue
-
 def insertLectureIntoDatabase(engine, connection, stringLectureID,stringLectureDate,stringLectureStartTime,stringLectureEndTime,stringDescription,stringWhere):
 	returnValue = False
 	try:

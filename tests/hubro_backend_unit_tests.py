@@ -1,6 +1,6 @@
 
 import sys
-
+from connectHerokuMYSQL import *
 sys.path.append("../src/scraper")
 sys.path.append("../src/databasehandler")
 #from insertionMethods import *
@@ -9,6 +9,8 @@ from massageItslearningData import *
 #from scrapeForCoursesItslearning import *
 #from clearDBConnect import *
 import unittest
+engine = create_engine(URI)
+connection = engine.connect()
 
 class massageItslearningDataTester(unittest.TestCase):
     def test_monthConverter_all_months_correct_number(self):
@@ -106,14 +108,51 @@ class massageItslearningDataTester(unittest.TestCase):
     #     lectureLocation="R1"
     #     insertLectureIntoDatabase(lectureID,lectureDate,lectureStartTime,lectureEndTime,lectureDescription,lectureLocation)
     #     self.assertEqual(getEntryFromLectureTable(lectureID),(lectureID, lectureDate, lectureDescription, lectureLocation, lectureStartTime,lectureEndTime))
-    # def test_removeAtgmailcomFromString_correct_input(self):
-    #     userInput="eirik.rivedal@gmail.com"
-    #     expectedOutput = "eirik.rivedal"
-        
+    def test_removeAtgmailcomFromString_correct_input(self):
+         userInput="eirik.rivedal@gmail.com"
+         expectedOutput = "eirik.rivedal"
+         self.assertEqual(removeAtgmailcomFromString(userInput),expectedOutput)
+    
+    def test_insertNewUserIntoDatabase_correctInput(self):
+        correctReturnValue= False
+        stringUniqueGmail = "eirik.rivedal"
+        stringUserName = "Eirik Rivedal"
+        self.assertEqual(insertNewUserIntoDatabase(stringUniqueGmail, stringUserName),correctReturnValue)
 
+    def test_insertCourseIntoDatabase_correctInput(self):
+        correctReturnValue= False
+        stringCourseID = "TDT4140"
+        stringCourseName = "TDT4140"
+        self.assertEqual(insertCourseIntoDatabase(stringCourseID, stringCourseName),correctReturnValue)
+    
+    def test_insertAnAssignmentIntoDatabase_correctInput(self):
+        correctReturnValue= False
+        stringAssignmnentID = "TDT4140"
+        stringAssignmnentDate = "2017-03-22"
+        stringAssignmnentTime = "23:59:00" 
+        stringAssignmentDescription = "Sprint Delivery 3 PU"
+        self.assertEqual(insertAnAssignmentIntoDatabase(engine,connection,stringAssignmnentID, stringAssignmnentDate,stringAssignmnentTime,stringAssignmentDescription),correctReturnValue)        
 
+    def test_insertLectureIntoDatabase_correctInput(self):
+        correctReturnValue= False
+        stringLectureID = "TDT4140"
+        stringLectureDate = "2017-03-22"
+        stringLectureStartTime = "08:15:00" 
+        stringLectureEndTime = "10:00:00"
+        stringDescription ="PU lecture"
+        stringWhere  = "R1"
+        self.assertEqual(insertLectureIntoDatabase(engine,connection,stringLectureID, stringLectureDate,stringLectureStartTime,stringLectureEndTime,stringDescription,stringWhere),correctReturnValue)        
+    
+    def test_insertUserCourseIntoDatabase_correctInput(self):
+        correctReturnValue= False
+        stringUniqueGmail = "eirik.rivedal"
+        course = "TDT4140"
+        self.assertEqual(insertUserCourseIntoDatabase(engine,connection,stringUniqueGmail, course),correctReturnValue)     
 
-
-
+    def test_getValueFromCourseTable_correctInput(self):
+        correctReturnValue= False
+        stringCourseID = "TDT4140"
+        self.assertEqual(getValueFromCourseTable(engine,connection,stringCourseID),correctReturnValue)     
+   
 if __name__ == '__main__':
     unittest.main()
