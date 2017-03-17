@@ -97,10 +97,8 @@ def getDayEvents(date, daysBack, earliestStart, latestEnd): #date on form YYYY-D
     service = discovery.build('calendar', 'v3', http=http)
     dateStart = ofsetDateByANumberOfDays(date[0:11],(daysBack-1))
     dateStart = dateStart + "T" + "00:00:00Z"
-    print(dateStart)
     dateEnd = ofsetDateByANumberOfDays(date,-1)
     dateEnd = dateEnd + "T" + "23:59:00Z"
-    print(dateStart,dateEnd)
     eventsResult = service.events().list(
         calendarId='primary', timeMin=dateStart, timeMax=dateEnd,maxResults=300, singleEvents=True,
         orderBy='startTime').execute()
@@ -108,13 +106,11 @@ def getDayEvents(date, daysBack, earliestStart, latestEnd): #date on form YYYY-D
     if not events:
         print('No upcoming events found.')
     listeMedEvents=[]
-    listeMedEvents.append(dateStart[0:10] + "T" + earliestStart)
     for event in events:
         start = event['start'].get('dateTime', event['start'].get('date')) #Automaticly adds a space in between the fields
         end = event['end'].get('dateTime', event['end'].get('date'))
         appendString = start[0:19] +'EB' + end[0:19]
         listeMedEvents.append(appendString)
-    listeMedEvents.append(dateEnd[0:10] + "T" +latestEnd)
     return listeMedEvents
 
 print(getDayEvents("2017-03-16",-8,"08:00:00","19:00:00"))
