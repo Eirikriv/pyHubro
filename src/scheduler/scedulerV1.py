@@ -91,11 +91,11 @@ def addIntervallToTime(time,intervall):
 
 #print()checkIfEventFitsBetweenTwo('2017-03-16T09:30:00E2017-03-16T11:00:00','2017-03-16T14:30:00E2017-03-16T16:00:00',"02:00:00","00:05:00"))
 
-def getDayEvents(date, daysAhead, earliestStart, latestEnd): #date on form YYYY-DD-MM
+def getDayEvents(date, daysBack, earliestStart, latestEnd): #date on form YYYY-DD-MM
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('calendar', 'v3', http=http)
-    dateStart = ofsetDateByANumberOfDays(date[0:11],(daysAhead-1))
+    dateStart = ofsetDateByANumberOfDays(date[0:11],(daysBack-1))
     dateStart = dateStart + "T" + "00:00:00Z"
     print(dateStart)
     dateEnd = ofsetDateByANumberOfDays(date,-1)
@@ -117,7 +117,7 @@ def getDayEvents(date, daysAhead, earliestStart, latestEnd): #date on form YYYY-
     listeMedEvents.append(dateEnd[0:10] + "T" +latestEnd)
     return listeMedEvents
 
-print(getDayEvents("2017-03-16",8,"08:00:00","19:00:00"))
+print(getDayEvents("2017-03-16",-8,"08:00:00","19:00:00"))
 
 #events on the form: [title,startdate,endate,starttime,endtime,duration,description,place]
 def createAndExecuteEvent(tittel,stardato,sluttdato,starttid,sluttid,varighet,typE,beskrivelse,sted):
@@ -130,7 +130,6 @@ def createAndExecuteEvent(tittel,stardato,sluttdato,starttid,sluttid,varighet,ty
     sluttdato=sluttdato
     starttid=starttid
     sluttid=sluttid
-    print(starttid,sluttid)
     if beskrivelse==None:
     	beskrivelse=""
     if sted==None:
