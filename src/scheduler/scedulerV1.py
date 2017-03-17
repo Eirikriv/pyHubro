@@ -91,14 +91,17 @@ def addIntervallToTime(time,intervall):
 
 #print()checkIfEventFitsBetweenTwo('2017-03-16T09:30:00E2017-03-16T11:00:00','2017-03-16T14:30:00E2017-03-16T16:00:00',"02:00:00","00:05:00"))
 
-def getDayEvents(date, daysBack, earliestStart, latestEnd): #date on form YYYY-DD-MM
+def getDayEvents(date, time ,daysBack): #date on form YYYY-DD-MM
     credentials = get_credentials()
+    daysBack = int(daysBack)
+    daysBack =  -daysBack-1
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('calendar', 'v3', http=http)
-    dateStart = ofsetDateByANumberOfDays(date[0:11],(daysBack-1))
+    dateStart = ofsetDateByANumberOfDays(date,(daysBack))
     dateStart = dateStart + "T" + "00:00:00Z"
     dateEnd = ofsetDateByANumberOfDays(date,-1)
-    dateEnd = dateEnd + "T" + "23:59:00Z"
+    dateEnd = dateEnd + "T" + time +"Z"
+    print(dateStart,dateEnd)
     eventsResult = service.events().list(
         calendarId='primary', timeMin=dateStart, timeMax=dateEnd,maxResults=300, singleEvents=True,
         orderBy='startTime').execute()
@@ -113,19 +116,12 @@ def getDayEvents(date, daysBack, earliestStart, latestEnd): #date on form YYYY-D
         listeMedEvents.append(appendString)
     return listeMedEvents
 
-print(getDayEvents("2017-03-16",-8,"08:00:00","19:00:00"))
 
 #events on the form: [title,startdate,endate,starttime,endtime,duration,description,place]
-def createAndExecuteEvent(tittel,stardato,sluttdato,starttid,sluttid,varighet,typE,beskrivelse,sted):
+def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted):
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('calendar', 'v3', http=http)
-    beskrivelse=beskrivelse
-    sted=sted
-    startdato=stardato
-    sluttdato=sluttdato
-    starttid=starttid
-    sluttid=sluttid
     if beskrivelse==None:
     	beskrivelse=""
     if sted==None:
@@ -135,11 +131,11 @@ def createAndExecuteEvent(tittel,stardato,sluttdato,starttid,sluttid,varighet,ty
       'location': sted,
       'description': beskrivelse,
       'start': {
-        'dateTime': stardato+starttid,
+        'dateTime': startdato+"T"+starttid,
         'timeZone': 'Europe/Oslo',
       },
       'end': {
-        'dateTime': sluttdato+sluttid,
+        'dateTime': sluttdato+"T"+sluttid,
         'timeZone': 'Europe/Oslo',
       },
       'reminders': {
@@ -147,6 +143,11 @@ def createAndExecuteEvent(tittel,stardato,sluttdato,starttid,sluttid,varighet,ty
       },
     }
     event = service.events().insert(calendarId='primary', body=event).execute() #executes the current event
+
+def demo(date,time,daysBack,tittel,eventstardato,eventsluttdato,eventstarttid,eventsluttid,beskrivelse,sted):
+  print(getDayEvents(date,time,daysBack))
+  createAndExecuteEvent(tittel,eventstardato,eventsluttdato,eventstarttid,eventsluttid,beskrivelse,sted)
+demo("2017-03-17","23:59:00","2","HubroTest","2017-03-17","2017-03-17","16:15:00","17:00:00","Write a paragraph","Your favorite studyplace") 
 
 
 #events on the form: [title,startdate,endate,starttime,endtime,duration,description,place]
