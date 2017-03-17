@@ -1,16 +1,15 @@
 
 import sys
-from connectHerokuMYSQL import *
 sys.path.append("../src/scraper")
 sys.path.append("../src/databasehandler")
+sys.path.append("../src/scheduler")
 #from insertionMethods import *
 from massageItslearningData import *	
+from scedulerV1 import *
 #from readItslearningAssignments import *
 #from scrapeForCoursesItslearning import *
 #from clearDBConnect import *
 import unittest
-engine = create_engine(URI)
-connection = engine.connect()
 
 class massageItslearningDataTester(unittest.TestCase):
     def test_monthConverter_all_months_correct_number(self):
@@ -52,6 +51,12 @@ class massageItslearningDataTester(unittest.TestCase):
         scrapeList =[['Assignment 2', 'TDT4300 DATAVAREH/DATAGRUVED V\xc5R 2017', 'Deadline: 10. mars 2017 08:00'], ['Assignment 2: Demonstrated learning of Core 1', 'TDT4140 PROGRAMVAREUTVIKL V\xc5R 2017', 'Deadline: 10. mars 2017 23:55'],['fsvsdv', 'zxce', 'D12fv']]
         correctList = [[' Assignment 2', ' TDT4300 DATAVAREH/DATAGRUVED', '2017-03-10', '08:00:00'], [' Assignment 2:', ' TDT4140 PROGRAMVAREUTVIKL', '2017-03-10', '23:55:00'],['', '', '00-00-00', '00:00:00']]
         self.assertEqual(prepAllDeiveriesForDatabase(scrapeList),correctList)
+    
+    def test_ofsetDateByANumberOfDays(self):
+        dates = ["20190204",3,"20170314",-3,"20170314",1,"20170314",-14,"20170314",19]
+        correct_dates = ["2019-02-07","2017-03-11","2017-03-15","2017-02-28","2017-04-02"]
+        self.assertEqual(ofsetDateByANumberOfDays("2017-03-16",-1),"2017-03-15")
+
     # def test_getUsername(self):
 #     #     correctUname="eirikriv"
 #     #     username = getUsername()
@@ -108,51 +113,51 @@ class massageItslearningDataTester(unittest.TestCase):
     #     lectureLocation="R1"
     #     insertLectureIntoDatabase(lectureID,lectureDate,lectureStartTime,lectureEndTime,lectureDescription,lectureLocation)
     #     self.assertEqual(getEntryFromLectureTable(lectureID),(lectureID, lectureDate, lectureDescription, lectureLocation, lectureStartTime,lectureEndTime))
-    def test_removeAtgmailcomFromString_correct_input(self):
-         userInput="eirik.rivedal@gmail.com"
-         expectedOutput = "eirik.rivedal"
-         self.assertEqual(removeAtgmailcomFromString(userInput),expectedOutput)
+    # def test_removeAtgmailcomFromString_correct_input(self):
+    #      userInput="eirik.rivedal@gmail.com"
+    #      expectedOutput = "eirik.rivedal"
+    #      self.assertEqual(removeAtgmailcomFromString(userInput),expectedOutput)
     
-    def test_insertNewUserIntoDatabase_correctInput(self):
-        correctReturnValue= False
-        stringUniqueGmail = "eirik.rivedal"
-        stringUserName = "Eirik Rivedal"
-        self.assertEqual(insertNewUserIntoDatabase(stringUniqueGmail, stringUserName),correctReturnValue)
+    # def test_insertNewUserIntoDatabase_correctInput(self):
+    #     correctReturnValue= False
+    #     stringUniqueGmail = "eirik.rivedal"
+    #     stringUserName = "Eirik Rivedal"
+    #     self.assertEqual(insertNewUserIntoDatabase(stringUniqueGmail, stringUserName),correctReturnValue)
 
-    def test_insertCourseIntoDatabase_correctInput(self):
-        correctReturnValue= False
-        stringCourseID = "TDT4140"
-        stringCourseName = "TDT4140"
-        self.assertEqual(insertCourseIntoDatabase(stringCourseID, stringCourseName),correctReturnValue)
+    # def test_insertCourseIntoDatabase_correctInput(self):
+    #     correctReturnValue= False
+    #     stringCourseID = "TDT4140"
+    #     stringCourseName = "TDT4140"
+    #     self.assertEqual(insertCourseIntoDatabase(stringCourseID, stringCourseName),correctReturnValue)
     
-    def test_insertAnAssignmentIntoDatabase_correctInput(self):
-        correctReturnValue= False
-        stringAssignmnentID = "TDT4140"
-        stringAssignmnentDate = "2017-03-22"
-        stringAssignmnentTime = "23:59:00" 
-        stringAssignmentDescription = "Sprint Delivery 3 PU"
-        self.assertEqual(insertAnAssignmentIntoDatabase(engine,connection,stringAssignmnentID, stringAssignmnentDate,stringAssignmnentTime,stringAssignmentDescription),correctReturnValue)        
+    # def test_insertAnAssignmentIntoDatabase_correctInput(self):
+    #     correctReturnValue= False
+    #     stringAssignmnentID = "TDT4140"
+    #     stringAssignmnentDate = "2017-03-22"
+    #     stringAssignmnentTime = "23:59:00" 
+    #     stringAssignmentDescription = "Sprint Delivery 3 PU"
+    #     self.assertEqual(insertAnAssignmentIntoDatabase(engine,connection,stringAssignmnentID, stringAssignmnentDate,stringAssignmnentTime,stringAssignmentDescription),correctReturnValue)        
 
-    def test_insertLectureIntoDatabase_correctInput(self):
-        correctReturnValue= False
-        stringLectureID = "TDT4140"
-        stringLectureDate = "2017-03-22"
-        stringLectureStartTime = "08:15:00" 
-        stringLectureEndTime = "10:00:00"
-        stringDescription ="PU lecture"
-        stringWhere  = "R1"
-        self.assertEqual(insertLectureIntoDatabase(engine,connection,stringLectureID, stringLectureDate,stringLectureStartTime,stringLectureEndTime,stringDescription,stringWhere),correctReturnValue)        
+    # def test_insertLectureIntoDatabase_correctInput(self):
+    #     correctReturnValue= False
+    #     stringLectureID = "TDT4140"
+    #     stringLectureDate = "2017-03-22"
+    #     stringLectureStartTime = "08:15:00" 
+    #     stringLectureEndTime = "10:00:00"
+    #     stringDescription ="PU lecture"
+    #     stringWhere  = "R1"
+    #     self.assertEqual(insertLectureIntoDatabase(engine,connection,stringLectureID, stringLectureDate,stringLectureStartTime,stringLectureEndTime,stringDescription,stringWhere),correctReturnValue)        
     
-    def test_insertUserCourseIntoDatabase_correctInput(self):
-        correctReturnValue= False
-        stringUniqueGmail = "eirik.rivedal"
-        course = "TDT4140"
-        self.assertEqual(insertUserCourseIntoDatabase(engine,connection,stringUniqueGmail, course),correctReturnValue)     
+    # def test_insertUserCourseIntoDatabase_correctInput(self):
+    #     correctReturnValue= False
+    #     stringUniqueGmail = "eirik.rivedal"
+    #     course = "TDT4140"
+    #     self.assertEqual(insertUserCourseIntoDatabase(engine,connection,stringUniqueGmail, course),correctReturnValue)     
 
-    def test_getValueFromCourseTable_correctInput(self):
-        correctReturnValue= False
-        stringCourseID = "TDT4140"
-        self.assertEqual(getValueFromCourseTable(engine,connection,stringCourseID),correctReturnValue)     
+    # def test_getValueFromCourseTable_correctInput(self):
+    #     correctReturnValue= False
+    #     stringCourseID = "TDT4140"
+    #     self.assertEqual(getValueFromCourseTable(engine,connection,stringCourseID),correctReturnValue)     
    
 if __name__ == '__main__':
     unittest.main()
