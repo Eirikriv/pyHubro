@@ -17,11 +17,11 @@ def controllScannForLecturesandInsert(courseCode):
 		insertCourseIntoDatabase(courseCode, courseCode)
 	for types in lectureTimes:
 		for events in types:
-			try: 
-				lastEntry = getLastEntryFromLectureTable(engine, connection)
-				lectureID = lastEntry[0]
-				lectureID = str(int(lectureID)+1)
-				lectureID = (6-len(lectureID))*"0" + lectureID
+			lastEntry = getLastEntryFromLectureTable(engine, connection)
+			lectureID = lastEntry[0]
+			lectureID = str(int(lectureID)+1)
+			lectureID = (6-len(lectureID))*"0" + lectureID
+			print lectureID
 			except:
 				lectureID = "000001"
 			date = events[1].split("T")[0]
@@ -35,7 +35,7 @@ def controllScannForLecturesandInsert(courseCode):
 			else:
 				errorCounter += 1 
 	print "successfully inserted: " + str(counter) + " of: " + str(errorCounter+counter) +  " entries" 
-#controllScannForLecturesandInsert("TDT4140")
+controllScannForLecturesandInsert("TDT4140")
 
 def controllScannForAssignmentsAndInsert():
 	formScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))

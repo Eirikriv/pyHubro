@@ -75,7 +75,7 @@ def insertAssignmentIntoDatabase(engine, connection, stringAssigmentID,stringAss
 	assignmnent = Table('assignment', metadata, autoload=True , autoload_with=engine)
 	#print(metadata.tables.keys())
 	ins = assignmnent.insert()
-	new_assignmnent = ins.values(assignmentID=stringAssigmentID,assignmnentDate=stringAssignmentDate,assignmnentTime=stringAssignmentTime,description=stringAssignmentDescription)
+	new_assignmnent = ins.values(assignmentID=stringAssigmentID,assignmnentDate=stringAssignmentDate,assignmnentTime=stringAssignmentTime,assignmentDescription=stringAssignmentDescription)
 	connection.execute(new_assignmnent)
 #insertAssignmnentIntoDatabase("0001","2017-01-01","23:59:00")
 
