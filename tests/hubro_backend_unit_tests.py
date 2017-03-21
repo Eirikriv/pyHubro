@@ -51,12 +51,6 @@ class massageItslearningDataTester(unittest.TestCase):
         scrapeList =[['Assignment 2', 'TDT4300 DATAVAREH/DATAGRUVED V\xc5R 2017', 'Deadline: 10. mars 2017 08:00'], ['Assignment 2: Demonstrated learning of Core 1', 'TDT4140 PROGRAMVAREUTVIKL V\xc5R 2017', 'Deadline: 10. mars 2017 23:55'],['fsvsdv', 'zxce', 'D12fv']]
         correctList = [[' Assignment 2', ' TDT4300 DATAVAREH/DATAGRUVED', '2017-03-10', '08:00:00'], [' Assignment 2:', ' TDT4140 PROGRAMVAREUTVIKL', '2017-03-10', '23:55:00'],['', '', '00-00-00', '00:00:00']]
         self.assertEqual(prepAllDeiveriesForDatabase(scrapeList),correctList)
-    
-    def test_ofsetDateByANumberOfDays(self):
-        dates = ["20190204",3,"20170314",-3,"20170314",1,"20170314",-14,"20170314",19]
-        correct_dates = ["2019-02-07","2017-03-11","2017-03-15","2017-02-28","2017-04-02"]
-        self.assertEqual(ofsetDateByANumberOfDays("2017-03-16",-1),"2017-03-15")
-
     # def test_getUsername(self):
 #     #     correctUname="eirikriv"
 #     #     username = getUsername()
