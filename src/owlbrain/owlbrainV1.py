@@ -10,27 +10,33 @@
 
 # PSUDO CODE
 #
-# input <- kalender fra og med frist til og med 11 dager før frist
-# input <- øktstart og lengde
+# input <- kalender fra og med frist til og med 11 dager for frist
+# input <- oktstart og lengde
 #
-# Dag = 6         #Prior er seks dager før frist
-# inverter = 1
-# counter = 1
-#
-# Create a bitstring with 12*4 zero-entries #length of worikng day should be modifiable
+currentDaySearch = 6         #Prior er seks dager for frist
+currentDaySearchCounter = 1
+currentDaySearchInverter = 1
+
+listRepresentingQuartersInADay = [0] * 24 * 4         #bitstring with 24*4 zero-entries, one for each quarter in a day
+
+listRepresentingQuartersInADay[:8 * 4] = [1] * (8 * 4)        #won't work before 8am
+listRepresentingQuartersInADay[8 * 4:] = [1] * (8 * 4)        #won't work after 8am
+
+
+
 # Sort all busy events on this day with regards to start time, stored in linked list or equivalent
-# Traverse through iist
+# Traverse through list
 #     look at start time and end time and turn all allfected bits (if not allready turned on)
 #         Plus one quarter if the event lasts for 4 quarters or more
 #
 #     Remaining_work_length = Initial_work_length
 #
-# Gå gjennom bitstrengen fra start og finn første ledige økt lengre enn 1 time
+# Gaa gjennom bitstrengen fra start og finn forste ledige okt lengre enn 1 time
 #     Hvis den finnes
-#         Lag en arbeidsøkt i den ledige tiden, maks så mange timer som gjenstår
+#         Lag en arbeidsokt i den ledige tiden, maks saa mange timer som gjenstaar
 #     Hvis den ikke finnes
 #         Dag = Dag + inverter*counter
 #         counter++
 #         inverter = -inverter
-#         Gå til Dag
+#         Gaa til Dag
 
