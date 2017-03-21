@@ -5,7 +5,7 @@ sys.path.append("../src/databasehandler")
 sys.path.append("../src/scheduler")
 #from insertionMethods import *
 from massageItslearningData import *	
-from scedulerV1 import *
+
 #from readItslearningAssignments import *
 #from scrapeForCoursesItslearning import *
 #from clearDBConnect import *

@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, MetaData,Table, select
 import os
 from databaseConnectDetails import *
-
+from sqlalchemy.orm import sessionmaker
 
 username = unameHeroku
 password = passwordHeroku
@@ -180,7 +180,14 @@ def getEntryFromAssignment_courseTable(stringAssignmentID):
 		return row
 #print(getEntryFromAssignment_courseTable("0001"))
 
-
-
+def getAllEntriesFromStudentTable():
+	engine = create_engine(URI)
+	connection = engine.connect()
+	Session = sessionmaker()
+	Session.configure(bind=engine)
+	metadata = MetaData()
+	Session = Session()
+	student = Table('student', metadata, autoload=True , autoload_with=engine)
+	return list(Session.query(student).all())
 
 
