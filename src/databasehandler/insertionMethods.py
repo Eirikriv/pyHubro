@@ -8,11 +8,11 @@ def removeAtgmailcomFromString(gmail):
 	else:
 		return gmail
 
-def insertNewUserIntoDatabase(stringUniqueGmail,stringUserName):
+def insertNewStudentIntoDatabase(stringUniqueGmail,stringStudentName):
 	returnValue =False
 	gmailWithoutLastPart = removeAtgmailcomFromString(stringUniqueGmail)
 	try:
-		insertUserIntoDatabase(gmailWithoutLastPart,stringUserName)
+		insertStudentIntoDatabase(gmailWithoutLastPart,stringStudentName)
 		returnValue = True
 	except:
 		print traceback.print_exc()
@@ -36,10 +36,10 @@ def insertLectureIntoDatabase(engine, connection, stringLectureID,stringLectureD
 		print traceback.print_exc()
 	return returnValue
 
-def insertUserCourseIntoDatabase(stringUniqueGmail,course): #Requires a pure list of courses atm
+def insertStudentCourseIntoDatabase(stringUniqueGmail,course): #Requires a pure list of courses atm
 	returnValue = False
 	try:
-		insertUser_courseIntoDatabase(stringUniqueGmail,course)
+		insertStudent_courseIntoDatabase(stringUniqueGmail,course)
 		returnValue=True
 	except:
 		print traceback.print_exc()
