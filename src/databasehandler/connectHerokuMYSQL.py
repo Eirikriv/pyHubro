@@ -84,7 +84,7 @@ def getEntryFromAssigmnentTable(engine, connection,stringAssignmentID):
 	connection = connection
 	metadata = MetaData()
 	assignmnent = Table('assignment', metadata, autoload=True , autoload_with=engine)
-	selectAssignmnent = select([assignmnent]).where(assignmnent.c.assignmentID == stringAssignmnentID)
+	selectAssignmnent = select([assignmnent]).where(assignmnent.c.assignmentID == stringAssignmentID)
 	for row in connection.execute(selectAssignmnent):
 		return row
 #print(getEntryFromAssignmnentTable("0001"))
@@ -136,9 +136,7 @@ def getEntriesFromLectureTable(engine, connection,stringLectureID):
 	lecture = Table('lecture', metadata, autoload=True , autoload_with=engine)
 	selectLecture = select([lecture]).where(lecture.c.lectureID == stringLectureID)
 	returnList=[]
-	for row in connection.execute(selectLecture):
-		returnList.append(row)
-	return returnList
+	return list(connection.execute(selectLecture))
 
 def insertLecture_courseIntoDatabase(engine, connection,stringLectureID,stringCourseID):
 	engine = engine

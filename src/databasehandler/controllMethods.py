@@ -1,6 +1,6 @@
 import sys
 sys.path.append("../scraper")
-sys.path.append("../databasehandler")
+sys.path.append("../scheduler")
 from calendarMethods import *
 from insertionMethods import *
 from scrapeForCourseLectureTimes import *
@@ -15,7 +15,7 @@ def controllScannForLecturesandInsert(courseCode):
 	errorCounter = 0
 	engine = create_engine(URI)
 	connection = engine.connect()
-	if(getValueFromCourseTable(engine, connection, courseCode)):
+	if(not getValueFromCourseTable(engine, connection, courseCode)):
 		insertCourseIntoDatabase(engine, connection,courseCode, courseCode)
 	for types in lectureTimes:
 		for events in types:
@@ -37,7 +37,7 @@ def controllScannForLecturesandInsert(courseCode):
 			else:
 				errorCounter += 1 
 	print "successfully inserted: " + str(counter) + " of: " + str(errorCounter+counter) +  " entries" 
-controllScannForLecturesandInsert("TDT4140")
+#controllScannForLecturesandInsert("TDT4140")
 
 def controllScannForAssignmentsAndInsert():
 	formScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
@@ -71,35 +71,55 @@ def controllScannForAssignmentsAndInsert():
 #controllScannForAssignmentsAndInsert()	
 
 
-def getLecturesAndInsertIntoDatabase(stuentID):
+def getLecturesAndInsertIntoCalendar(stringStudentId):
 	engine = create_engine(URI)
 	connection = engine.connect()
-	courseIDs = getEntriesFromStudent_courseTable(engine, connection,stringStudentId)[1]
+	courseIDs = getEntriesFromStudent_courseTable(engine, connection,stringStudentId)
+	eventColor = "3"
   	for entries in courseIDs:
-  		lectureID = getLectureIDsFromLecture_courseTable(engine,connection,entries)[]
-  		lectureDetails = getEntryFromLecture_courseTable(engine, connection,lectureID)
-  		tittel = lectureDetails[2]
-  		startdato = lectureDetails[1]
-  		sluttdato = lectureDetails[1]
-  		starttid = lectureDetails[4]
-  		sluttid = lectureDetails[5]
-  		beskrivelse = lectureDetails[2]
-  		sted = lectureDetails[3]
-  		insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted)
+  		lectureID = getLectureIDsFromLecture_courseTable(engine,connection,entries[1])
+  		for lec in lectureID:
+  			lectureDetails = getEntriesFromLectureTable(engine, connection,lec[0])
+  			print lectureDetails[0][1]
+  			tittel = lectureDetails[0][2]
+  			startdato = lectureDetails[0][1]
+  			sluttdato = lectureDetails[0][1]
+  			starttid = lectureDetails[0][4]
+  			sluttid = lectureDetails[0][5]
+  			beskrivelse = lectureDetails[0][2]
+  			sted = lectureDetails[0][3]
+  			insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor)
+#getLecturesAndInsertIntoCalendar("000001")
 
-def getassignmentDeadLineAndInsertIntoDatabase(studentID):
+def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
 	engine = create_engine(URI)
 	connection = engine.connect()
+	eventColor = "4"
+	assignmentDetailList = []
 	assignmentIDs = getEntriesFromAssignmentStudentAllAssforStud(engine, connection,stringStudentID)
-	for entries in assigmentIDs:
-		assignmentDetails = getEntryFromAssigmnentTable(engine, connection,entries)
+	print assignmentIDs
+	for entries in assignmentIDs:
+		tempList = []
+		assignmentDetails = getEntryFromAssigmnentTable(engine, connection,entries[1])
+		print assignmentDetails
+		assignmentDetailList.append(assignmentDetails)
 		tittel = assignmentDetails[3]
   		startdato = assignmentDetails[1]
   		sluttdato = assignmentDetails[1]
   		starttid = assignmentDetails[2]
-  		sluttid = str(assignmentDetails[2])[0:3] + ":05:00"
+  		sluttid = str(assignmentDetails[2])[0:3] + "05:00"
   		beskrivelse = assignmentDetails[3]
-  		sted = "Readingroom"		
-
+  		sted = "Studyplace"
+  		time.sleep(2)		
+  		insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor)
+#getassignmentDeadLineAndInsertIntoDatabase("000001")
+  	#for dl in assignmentDetailList:
+  		#eventsPriorToDeadline = getEventsDaysBack(dl[1],dl[2],5)
+  		#run hubroSchedulerHere
+  		#declare vars and insert events
+def main(stringStudentID):
+	getLecturesAndInsertIntoCalendar(stringStudentId)
+	getassignmentDeadLineAndInsertIntoDatabase(stringStudentID)
+main("000001")
 
 
