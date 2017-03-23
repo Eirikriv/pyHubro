@@ -118,7 +118,7 @@ def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
   		#run hubroSchedulerHere
   		#declare vars and insert events
 def main(stringStudentID):
-	getLecturesAndInsertIntoCalendar(stringStudentId)
+	getLecturesAndInsertIntoCalendar(stringStudentID)
 	getassignmentDeadLineAndInsertIntoDatabase(stringStudentID)
 main("000001")
 
