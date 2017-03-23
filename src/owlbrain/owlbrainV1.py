@@ -2,7 +2,7 @@
 import unicodedata
 from datetime import datetime, timedelta
 
-def OwlbrainSheduler(assignmentDeadline, initialHoursSet, calendarEvents):
+def OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents):
 
     remainingWorkLengthInQuarters = initialHoursSet * 4
     calendarEvents = [unicodedata.normalize('NFKD', x).encode('ascii', 'ignore') for x in calendarEvents]

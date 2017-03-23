@@ -1,4 +1,3 @@
-
 import sys
 sys.path.append("../src/owlbrain")
 from owlbrainV1 import *
@@ -6,8 +5,9 @@ from owlbrainV1 import *
 from unittest import TestCase
 from datetime import datetime
 
-class OwlbrainSchdulerTester(TestCase):
-    def test_owlbrain_simple_input(self):
+
+class TestOwlbrainScheduler(TestCase):
+    def test_OwlbrainScheduler(self):
         assignmentDeadline = datetime.strptime('2017-03-16 23:59:59', '%Y-%m-%d %H:%M:%S')
         initialHoursSet = 3
         calendarEvents = [u'2017-03-14T08:15:00EB2017-03-14T10:00:00', u'2017-03-14T10:00:00EB2017-03-14T14:00:00',
@@ -18,6 +18,3 @@ class OwlbrainSchdulerTester(TestCase):
 
         correctOutput = [['15:00:00', '16:15:00', '2017-03-14'], ['18:00:00', '19:45:00', '2017-03-14']]
         self.assertEqual(OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents), correctOutput)
-
-if __name__ == '__main__':
-    unittest.main()
