@@ -57,7 +57,7 @@ def insertLectureCourseIntoDatabase(engine, connection, stringLectureID,stringCo
 def getValueFromCourseTable(engine, connection, stringCourseID):
 	returnValue = False
 	try:
-		getEntryFromCourseTable(engine, connection, stringCourseID)
+		getEntriesFromCourseTable(engine, connection, stringCourseID)
 		returnValue = True
 	except:
 		print traceback.print_exc()
