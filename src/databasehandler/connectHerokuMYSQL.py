@@ -180,6 +180,15 @@ def getEntryFromAssignment_courseTable(engine, connection,stringAssignmentID):
 		return row
 #print(getEntryFromAssignment_courseTable("0001"))
 
+def getEntriesFromAssignment_courseTableReturnAssignments(engine, connection,stringCourseID):
+	engine = engine
+	connection = connection
+	metadata = MetaData()
+	assignment_course = Table('assignment_course', metadata, autoload=True , autoload_with=engine)
+	selectLecture_course = select([assignment_course]).where(assignment_course.c.courseID == stringCourseID)
+	return list(connection.execute(selectLecture_course))
+		
+
 def getAllEntriesFromStudentTable(engine, connection):
 	engine = engine
 	connection = connection
