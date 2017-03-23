@@ -1,13 +1,16 @@
 
-#from __future__ import absolute_import
 import sys
 
 sys.path.append("../src/scraper")
 sys.path.append("../src/databasehandler")
-from massageItslearningData import *	
-#from readItslearningAssignments import *
-from scrapeForCoursesItslearning import *
-from clearDBConnect import *
+sys.path.append("../src/scheduler")
+# from insertionMethods import *
+
+from massageItslearningData import *
+# from readItslearningAssignments import *
+# from scrapeForCoursesItslearning import *
+# from clearDBConnect import *
+
 import unittest
 
 class massageItslearningDataTester(unittest.TestCase):
@@ -71,6 +74,26 @@ class massageItslearningDataTester(unittest.TestCase):
         correctOutput = ['2017-01-09T08:15:00', '2017-01-09T10:00:00', '\xc3\x98ving', 'R1']
         self.assertEqual(readCourseFileReturnAllLectureExersiseEvents(testInput,"2017"),correctOutput)
 
+#     #     correctUname="eirikriv"
+#     #     username = getUsername()
+#     #     self.assertEqual(username,correctUname)
+#     # def test_getUsername(self):
+#     #     correctPass="12345"
+#     #     password = getUserPassword()
+#     #     self.assertEqual(password,correctPass)
+#     def test_convertweekAndDayToDate_sample_dates_correct(self):
+#         days = ["Mandag","Tirsdag","Onsdag","Torsdag","Fredag"]
+#         weeks = ["01","20","51","50","24"]
+#         year = ["2012","2016","2016","2017","2018"]
+#         correctOutput = ["2012-01-02","2016-05-17", "2016-12-21","2017-12-14","2018-06-15"]
+#         for n in range(len(days)):
+#             self.assertEqual(convertweekAndDayToDate(days[n],weeks[n],year[n]), correctOutput[n])
+    
+#     def test_readCourseFileReturnAllLectureExersiseEvents_sample_scrapes_correct(self):
+#         testInput=['Mandag 08:15 - 10:00 2-14,17 \xc3\x98ving BIT, MLREAL, MTDT, MTING, MTI\xc3\x98T, MTTK R1', 'Tirsdag 16:15 - 18:00 2-14,17 Forelesning BIT, MLREAL, MTDT, MTING, MTI\xc3\x98T, MTTK R1', 'Fredag 14:15 - 16:00 2-14,16 Forelesning BIT, MLREAL, MTDT, MTING, MTI\xc3\x98T, MTTK R1']
+#         correctOutput = ['2017-01-09T08:15:00', '2017-01-09T10:00:00', '\xc3\x98ving', 'R1']
+#         self.assertEqual(readCourseFileReturnAllLectureExersiseEvents(testInput,"2017"),correctOutput)
+
     #def test_scrapeNtnuCourseWebsites_correct(self):
      #   correctOutput=['Mandag 08:15 - 10:00 2-14,17 \xc3\x98ving BIT, MLREAL, MTDT, MTING, MTI\xc3\x98T, MTTK R1', 'Tirsdag 16:15 - 18:00 2-14,17 Forelesning BIT, MLREAL, MTDT, MTING, MTI\xc3\x98T, MTTK R1', 'Fredag 14:15 - 16:00 2-14,16 Forelesning BIT, MLREAL, MTDT, MTING, MTI\xc3\x98T, MTTK R1']
       #  self.assertEqual(scrapeNtnuCourseWebsites("TDT4140"),correctOutput)
@@ -108,10 +131,51 @@ class massageItslearningDataTester(unittest.TestCase):
     #     self.assertEqual(getEntryFromLectureTable(lectureID),(lectureID, lectureDate, lectureDescription, lectureLocation, lectureStartTime,lectureEndTime))
 
 
+    # def test_removeAtgmailcomFromString_correct_input(self):
+    #      userInput="eirik.rivedal@gmail.com"
+    #      expectedOutput = "eirik.rivedal"
+    #      self.assertEqual(removeAtgmailcomFromString(userInput),expectedOutput)
+    
+    # def test_insertNewUserIntoDatabase_correctInput(self):
+    #     correctReturnValue= False
+    #     stringUniqueGmail = "eirik.rivedal"
+    #     stringUserName = "Eirik Rivedal"
+    #     self.assertEqual(insertNewUserIntoDatabase(stringUniqueGmail, stringUserName),correctReturnValue)
 
+    # def test_insertCourseIntoDatabase_correctInput(self):
+    #     correctReturnValue= False
+    #     stringCourseID = "TDT4140"
+    #     stringCourseName = "TDT4140"
+    #     self.assertEqual(insertCourseIntoDatabase(stringCourseID, stringCourseName),correctReturnValue)
+    
+    # def test_insertAnAssignmentIntoDatabase_correctInput(self):
+    #     correctReturnValue= False
+    #     stringAssignmnentID = "TDT4140"
+    #     stringAssignmnentDate = "2017-03-22"
+    #     stringAssignmnentTime = "23:59:00" 
+    #     stringAssignmentDescription = "Sprint Delivery 3 PU"
+    #     self.assertEqual(insertAnAssignmentIntoDatabase(engine,connection,stringAssignmnentID, stringAssignmnentDate,stringAssignmnentTime,stringAssignmentDescription),correctReturnValue)        
 
+    # def test_insertLectureIntoDatabase_correctInput(self):
+    #     correctReturnValue= False
+    #     stringLectureID = "TDT4140"
+    #     stringLectureDate = "2017-03-22"
+    #     stringLectureStartTime = "08:15:00" 
+    #     stringLectureEndTime = "10:00:00"
+    #     stringDescription ="PU lecture"
+    #     stringWhere  = "R1"
+    #     self.assertEqual(insertLectureIntoDatabase(engine,connection,stringLectureID, stringLectureDate,stringLectureStartTime,stringLectureEndTime,stringDescription,stringWhere),correctReturnValue)        
+    
+    # def test_insertUserCourseIntoDatabase_correctInput(self):
+    #     correctReturnValue= False
+    #     stringUniqueGmail = "eirik.rivedal"
+    #     course = "TDT4140"
+    #     self.assertEqual(insertUserCourseIntoDatabase(engine,connection,stringUniqueGmail, course),correctReturnValue)     
 
-
-
+    # def test_getValueFromCourseTable_correctInput(self):
+    #     correctReturnValue= False
+    #     stringCourseID = "TDT4140"
+    #     self.assertEqual(getValueFromCourseTable(engine,connection,stringCourseID),correctReturnValue)     
+   
 if __name__ == '__main__':
     unittest.main()

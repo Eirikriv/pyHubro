@@ -9,7 +9,7 @@ before_install:
 install:
   pip install pyvirtualdisplay;
   pip install selenium;
-  pip install SQLAlchemy
+  pip install SQLAlchemy;
 
 
 

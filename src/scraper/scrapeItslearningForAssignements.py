@@ -4,6 +4,7 @@ from selenium import webdriver
 from getpass import getpass
 from scrapingSiteCredentials import *
 import traceback
+from massageItslearningData import *
 def getUsername(): #get NTNU Feide username from user
     u_username=unameItslearning
     return u_username
@@ -16,8 +17,8 @@ def sleep(sleepTimer): #sleep selenium so pages can load before next action is t
     time.sleep(sleepTimer)
     return 
 
-def loginAndGoToItslearningMainPage(sleepTimer):
-    display = Display(visible=0, size=(800, 600))
+def loginAndGetAllCurrentAssignements(sleepTimer):
+    display = Display(visible=0, size=(1200, 1000))
     display.start()
     driver=webdriver.Firefox()
     driver.get('http://www.instabart.no/') 
@@ -62,6 +63,8 @@ def loginAndGoToItslearningMainPage(sleepTimer):
             courses[n].click()
 	    sleep(sleepTimer)
             courseTitle=driver.find_element_by_class_name("treemenu-title")
+            sleep(sleepTimer)
+            courseTitle=driver.find_element_by_class_name("treemenu-title")
             infoList.append(courseTitle.text)
             sleep(sleepTimer)
             driver.switch_to.frame(driver.find_element_by_name("mainmenu"))
@@ -76,4 +79,6 @@ def loginAndGoToItslearningMainPage(sleepTimer):
     driver.quit()
     display.stop()
     return maininfoList
-print(loginAndGoToItslearningMainPage(4))
+
+
+

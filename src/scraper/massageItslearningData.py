@@ -84,6 +84,7 @@ def prepDeliveriesForDatabase(rawScrapeFromIts): #converts to applicable databas
 
 def prepAllDeiveriesForDatabase(totalDeliveryList): #prepares for all assingments found on itslearning
     returnList = []
-    for deliveries in totalDeliveryList:
-        returnList.append(prepDeliveriesForDatabase(deliveries))
+    for delivery in totalDeliveryList:
+        returnList.append(prepDeliveriesForDatabase(delivery))
     return returnList
+
