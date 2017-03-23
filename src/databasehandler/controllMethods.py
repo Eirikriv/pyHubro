@@ -7,7 +7,7 @@ from scrapeForCourseLectureTimes import *
 import traceback
 from databaseConnectDetails import *
 from scrapeItslearningForAssignements import *
-
+import time
 def controllScannForLecturesandInsert(courseCode):
 	lectures , courseCode = scrapeNtnuCourseWebsites("TDT4140")
 	lectureTimes = readCourseReturnAllLectureExersiseEvents(lectures, courseCode, "2017")
@@ -89,6 +89,7 @@ def getLecturesAndInsertIntoCalendar(stringStudentId):
   			beskrivelse = lectureDetails[0][2]
   			sted = lectureDetails[0][3]
   			insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor)
+  			time.sleep(2)
 #getLecturesAndInsertIntoCalendar("000001")
 
 def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
@@ -109,16 +110,16 @@ def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
   		starttid = assignmentDetails[2]
   		sluttid = str(assignmentDetails[2])[0:3] + "05:00"
   		beskrivelse = assignmentDetails[3]
-  		sted = "Studyplace"
-  		time.sleep(2)		
+  		sted = "Studyplace"	
   		insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor)
+  		time.sleep(2)
 #getassignmentDeadLineAndInsertIntoDatabase("000001")
   	#for dl in assignmentDetailList:
   		#eventsPriorToDeadline = getEventsDaysBack(dl[1],dl[2],5)
   		#run hubroSchedulerHere
   		#declare vars and insert events
 def main(stringStudentID):
-	getLecturesAndInsertIntoCalendar(stringStudentId)
+	getLecturesAndInsertIntoCalendar(stringStudentID)
 	getassignmentDeadLineAndInsertIntoDatabase(stringStudentID)
 main("000001")
 
