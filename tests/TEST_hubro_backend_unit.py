@@ -1,14 +1,16 @@
 
 import sys
+
 sys.path.append("../src/scraper")
 sys.path.append("../src/databasehandler")
 sys.path.append("../src/scheduler")
-#from insertionMethods import *
-from massageItslearningData import *	
+# from insertionMethods import *
 
-#from readItslearningAssignments import *
-#from scrapeForCoursesItslearning import *
-#from clearDBConnect import *
+from massageItslearningData import *
+# from readItslearningAssignments import *
+# from scrapeForCoursesItslearning import *
+# from clearDBConnect import *
+
 import unittest
 
 class massageItslearningDataTester(unittest.TestCase):
@@ -23,18 +25,18 @@ class massageItslearningDataTester(unittest.TestCase):
         incorretcMonths=["jan", "feb" ,"January","Janu"]
         for incorretcMonth in incorretcMonths:
             self.assertEqual(monthConverter(incorretcMonth),"00")
-    
-    def test_getDateOnRightFormat_sample_days_correct(self): 
+
+    def test_getDateOnRightFormat_sample_days_correct(self):
         days = ["01","31","15",".7",".3","12.","03"]
         correctDays=["01","31","15","07","03","12","03"]
-    	for n in range(len(days)-1):
-    		self.assertEqual(getDateOnRightFormat(days[n]),correctDays[n])
+        for n in range(len(days)-1):
+            self.assertEqual(getDateOnRightFormat(days[n]),correctDays[n])
 
     def test_getDateOnRightFormat_sample_days_incorrect_flagg(self):
-    	month = ["0112","3121","1415",".417",".13f",1,"abba","02","12"]
-    	correcktMonth=["00","00","00","00","00","00","00","02","12"]
-    	for n in range(len(month)-1):
-    		self.assertEqual(getDateOnRightFormat(month[n]),correcktMonth[n])
+        month = ["0112","3121","1415",".417",".13f",1,"abba","02","12"]
+        correcktMonth=["00","00","00","00","00","00","00","02","12"]
+        for n in range(len(month)-1):
+            self.assertEqual(getDateOnRightFormat(month[n]),correcktMonth[n])
     def test_isNumber(self):
         inList= ["1","s","+","@",",","3"]
         correctList=[True,False,False,False,False,True]
@@ -52,6 +54,14 @@ class massageItslearningDataTester(unittest.TestCase):
         correctList = [[' Assignment 2', ' TDT4300 DATAVAREH/DATAGRUVED', '2017-03-10', '08:00:00'], [' Assignment 2:', ' TDT4140 PROGRAMVAREUTVIKL', '2017-03-10', '23:55:00'],['', '', '00-00-00', '00:00:00']]
         self.assertEqual(prepAllDeiveriesForDatabase(scrapeList),correctList)
     # def test_getUsername(self):
+    #     correctUname="eirikriv"
+    #     username = getUsername()
+    #     self.assertEqual(username,correctUname)
+    # def test_getUsername(self):
+    #     correctPass="12345"
+    #     password = getUserPassword()
+    #     self.assertEqual(password,correctPass)
+
 #     #     correctUname="eirikriv"
 #     #     username = getUsername()
 #     #     self.assertEqual(username,correctUname)
@@ -75,9 +85,9 @@ class massageItslearningDataTester(unittest.TestCase):
     #def test_scrapeNtnuCourseWebsites_correct(self):
      #   correctOutput=['Mandag 08:15 - 10:00 2-14,17 \xc3\x98ving BIT, MLREAL, MTDT, MTING, MTI\xc3\x98T, MTTK R1', 'Tirsdag 16:15 - 18:00 2-14,17 Forelesning BIT, MLREAL, MTDT, MTING, MTI\xc3\x98T, MTTK R1', 'Fredag 14:15 - 16:00 2-14,16 Forelesning BIT, MLREAL, MTDT, MTING, MTI\xc3\x98T, MTTK R1']
       #  self.assertEqual(scrapeNtnuCourseWebsites("TDT4140"),correctOutput)
-    
+
     #def test_scrapeNtnuCourseWebsites_incorrect(self):
-     #   
+     #
       #  self.assertEqual(scrapeNtnuCourseWebsites("TD4140"),"")
     # def test_insertUserIntoDatabase_correctInsert(self):
     #     userName="Eirik Rivedal"
@@ -90,14 +100,14 @@ class massageItslearningDataTester(unittest.TestCase):
     #     courseName= "TDT4140"
     #     insertCourseIntoDatabase(courseID,courseName)
     #     self.assertEqual(getEntryFromCourseTable(courseID),(courseID, courseName))
-    
+
     # def test_insertAssignmentIntoDatabase_correctInsert(self):
     #     assignmentID="0008"
     #     assignmnentDate= "2017-12-20"
     #     assignmnentTime= "23:59:00"
     #     insertAssignmnentIntoDatabase(assignmentID,assignmnentDate,assignmnentTime)
     #     self.assertEqual(getEntryFromAssignmnentTable(assignmentID),(assignmentID, assignmnentDate,assignmnentTime))
-    
+
     # def test_insertLectureIntoDatabase_correctInsert(self):
     #     lectureID="0008"
     #     lectureDate= "2017-12-20"
@@ -107,6 +117,8 @@ class massageItslearningDataTester(unittest.TestCase):
     #     lectureLocation="R1"
     #     insertLectureIntoDatabase(lectureID,lectureDate,lectureStartTime,lectureEndTime,lectureDescription,lectureLocation)
     #     self.assertEqual(getEntryFromLectureTable(lectureID),(lectureID, lectureDate, lectureDescription, lectureLocation, lectureStartTime,lectureEndTime))
+
+
     # def test_removeAtgmailcomFromString_correct_input(self):
     #      userInput="eirik.rivedal@gmail.com"
     #      expectedOutput = "eirik.rivedal"
