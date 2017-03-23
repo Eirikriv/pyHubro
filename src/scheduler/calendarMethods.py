@@ -102,8 +102,13 @@ def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivels
       },
     }
     event = service.events().insert(calendarId='primary', body=event).execute() #executes the current event
+#refreshToken = getAllUserReffreshTokens()[0][1]
+#print(refreshToken)
+#credentials = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
+#print(getDayEvents("2017-03-17","23:59:00","2",credentials))
 
-refreshToken = getAllUserReffreshTokens()[0][1]
-print(refreshToken)
-credentials = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
-print(getDayEvents("2017-03-17","23:59:00","2",credentials))
+def insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted):
+  refreshToken = "insert"
+  http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
+  createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,http)
+  return True

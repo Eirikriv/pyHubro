@@ -159,6 +159,14 @@ def getEntryFromLecture_courseTable(engine, connection,stringLectureID):
 	for row in connection.execute(selectLecture):
 		return row
 
+def getLectureIDsFromLecture_courseTable(engine, connection,stringCourseID):
+	engine = engine
+	connection = connection
+	metadata = MetaData()
+	lecture_course = Table('lecture_course', metadata, autoload=True , autoload_with=engine)
+	selectLecture = select([lecture_course]).where(lecture_course.c.courseID == stringCourseID)
+	return list(connection.execute(selectLecture))	
+
 def insertAssignment_courseIntoDatabase(engine, connection, stringAssignmentID,stringCourseID):
 	engine = engine
 	connection = connection
@@ -188,6 +196,13 @@ def getEntriesFromAssignment_courseTableReturnAssignments(engine, connection,str
 	selectLecture_course = select([assignment_course]).where(assignment_course.c.courseID == stringCourseID)
 	return list(connection.execute(selectLecture_course))
 		
+def getEntriesFromAssignmentStudentAllAssforStud(engine, connection,stringStudentID):
+	engine = engine
+	connection = connection
+	metadata = MetaData()
+	assignment_course = Table('student_assignment', metadata, autoload=True , autoload_with=engine)
+	selectLecture_course = select([assignment_course]).where(assignment_course.c.studentID == stringStudentID)
+	return list(connection.execute(selectLecture_course))
 
 def getAllEntriesFromStudentTable(engine, connection):
 	engine = engine

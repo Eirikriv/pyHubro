@@ -18,10 +18,10 @@ def insertNewStudentIntoDatabase(stringUniqueGmail,stringStudentName):
 		print traceback.print_exc()
 	return returnValue
 
-def insertCourseIntoDatabase(stringCourseID,stringCourseName):
+def insertCourseIntoDatabase(engine, connection,stringCourseID,stringCourseName):
 	returnValue =False
 	try:
-		insertACourseIntoDatabase(stringCourseID,stringCourseName)
+		insertACourseIntoDatabase(engine, connection, stringCourseID,stringCourseName)
 		returnValue = True
 	except:
 		print traceback.print_exc()

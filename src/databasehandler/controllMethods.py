@@ -1,5 +1,7 @@
 import sys
 sys.path.append("../scraper")
+sys.path.append("../databasehandler")
+from calendarMethods import *
 from insertionMethods import *
 from scrapeForCourseLectureTimes import *
 import traceback
@@ -69,10 +71,35 @@ def controllScannForAssignmentsAndInsert():
 #controllScannForAssignmentsAndInsert()	
 
 
+def getLecturesAndInsertIntoDatabase(stuentID):
+	engine = create_engine(URI)
+	connection = engine.connect()
+	courseIDs = getEntriesFromStudent_courseTable(engine, connection,stringStudentId)[1]
+  	for entries in courseIDs:
+  		lectureID = getLectureIDsFromLecture_courseTable(engine,connection,entries)[]
+  		lectureDetails = getEntryFromLecture_courseTable(engine, connection,lectureID)
+  		tittel = lectureDetails[2]
+  		startdato = lectureDetails[1]
+  		sluttdato = lectureDetails[1]
+  		starttid = lectureDetails[4]
+  		sluttid = lectureDetails[5]
+  		beskrivelse = lectureDetails[2]
+  		sted = lectureDetails[3]
+  		insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted)
 
-
-
-
+def getassignmentDeadLineAndInsertIntoDatabase(studentID):
+	engine = create_engine(URI)
+	connection = engine.connect()
+	assignmentIDs = getEntriesFromAssignmentStudentAllAssforStud(engine, connection,stringStudentID)
+	for entries in assigmentIDs:
+		assignmentDetails = getEntryFromAssigmnentTable(engine, connection,entries)
+		tittel = assignmentDetails[3]
+  		startdato = assignmentDetails[1]
+  		sluttdato = assignmentDetails[1]
+  		starttid = assignmentDetails[2]
+  		sluttid = str(assignmentDetails[2])[0:3] + ":05:00"
+  		beskrivelse = assignmentDetails[3]
+  		sted = "Readingroom"		
 
 
 
