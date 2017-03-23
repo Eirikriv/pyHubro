@@ -3,13 +3,15 @@
   <component name="AutoTestManager">
     <enabled-run-configurations>
       <run-configuration type="tests" name="Unittests in TEST_owlbrainV1" />
+      <run-configuration type="tests" name="Unittests in TEST_hubro_backend_unit (1)" />
+      <run-configuration type="tests" name="Unittests in TEST_owlbrainScheduler" />
     </enabled-run-configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f498c979-048e-48e0-b43b-722beafdcfe5" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/TEST_owlbrainV1.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/owlbrain/owlbrainV1.py" afterPath="$PROJECT_DIR$/src/owlbrain/owlbrainV1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TEST_owlbrainV1.py" afterPath="$PROJECT_DIR$/tests/TEST_owlbrainV1.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="$PROJECT_DIR$/.travis.yml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,8 +22,13 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/pyHubro$owlbrainV1.coverage" NAME="owlbrainV1 Coverage Results" MODIFIED="1490300814906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/owlbrain" />
-    <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_owlbrainV1.coverage" NAME="Unittests in TEST_owlbrainV1 Coverage Results" MODIFIED="1490301872036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_owlbrainSheduler.coverage" NAME="Unittests in TEST_owlbrainScheduler Coverage Results" MODIFIED="1490303939578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_owlbrainV1.coverage" NAME="Unittests in TEST_owlbrainV1 Coverage Results" MODIFIED="1490304068716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_hubro_backend_unit__1_.coverage" NAME="Unittests in TEST_hubro_backend_unit (1) Coverage Results" MODIFIED="1490304073117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_owlbrainScheduler__1_.coverage" NAME="Unittests in TEST_owlbrainScheduler (1) Coverage Results" MODIFIED="1490304070882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_hubro_backend_unit_tests.coverage" NAME="Unittests in hubro_backend_unit_tests Coverage Results" MODIFIED="1490300808682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_tests.coverage" NAME="Unittests in tests Coverage Results" MODIFIED="1490304064406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_tests__1_.coverage" NAME="Unittests in tests (1) Coverage Results" MODIFIED="1490303516327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -40,11 +47,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="owlbrainV1.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="owlbrainV1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/owlbrain/owlbrainV1.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="88">
-              <caret line="46" column="40" lean-forward="false" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+              <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
               <folding>
                 <element signature="e#1#19#0" expanded="true" />
               </folding>
@@ -52,56 +59,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TEST_owlbrainV1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/TEST_owlbrainV1.py">
+      <file leaf-file-name="TEST_owlbrainScheduler.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/TEST_owlbrainScheduler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" column="15" lean-forward="true" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+            <state relative-caret-position="120">
+              <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hubro_backend_unit_tests.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/hubro_backend_unit_tests.py">
+      <file leaf-file-name="TEST_hubro_backend_unit.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/TEST_hubro_backend_unit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="10" />
+            <state relative-caret-position="362">
+              <caret line="168" column="19" lean-forward="true" selection-start-line="168" selection-start-column="19" selection-end-line="168" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calendarMethods.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/scheduler/calendarMethods.py">
+      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="schedulerHelperMethods.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/scheduler/schedulerHelperMethods.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="352">
+              <caret line="16" column="36" lean-forward="false" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scrapeForCoursesItslearning.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/scraper/scrapeForCoursesItslearning.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#36#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -122,8 +105,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/tests/hubro_backend_unit_tests.py" />
-        <option value="$PROJECT_DIR$/tests/TEST_owlbrainV1.py" />
+        <option value="$PROJECT_DIR$/tests/TEST_owlbrainSheduler.py" />
         <option value="$PROJECT_DIR$/src/owlbrain/owlbrainV1.py" />
+        <option value="$PROJECT_DIR$/tests/TEST_owlbrainScheduler.py" />
+        <option value="$PROJECT_DIR$/tests/TEST_owlbrainV1.py" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
   </component>
@@ -260,49 +246,9 @@
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="F:\Programfiler\Nodejs\node.exe" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in TEST_owlbrainV1">
-    <configuration default="false" name="Unittests in hubro_backend_unit_tests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="pyHubro" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/hubro_backend_unit_tests.py" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="owlbrainV1" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/owlbrain" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="pyHubro" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/owlbrain/owlbrainV1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittests in TEST_hubro_backend_unit (1)">
     <configuration default="false" name="Unittests in TEST_owlbrainV1" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -319,6 +265,98 @@
       <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in TEST_hubro_backend_unit (1)" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pyHubro" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/TEST_hubro_backend_unit.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in TEST_owlbrainScheduler" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pyHubro" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="F:\WorkDirs\GitHub\pyHubro\tests\TEST_owlbrainScheduler.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in TEST_owlbrainScheduler (1)" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pyHubro" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/TEST_owlbrainScheduler.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in tests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pyHubro" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="$PROJECT_DIR$/tests" />
+      <option name="TEST_TYPE" value="TEST_FOLDER" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
       <option name="PUREUNITTEST" value="true" />
@@ -558,17 +596,21 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <list size="4">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Python.pyHubro" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in hubro_backend_unit_tests" />
-      <item index="2" class="java.lang.String" itemvalue="Python.owlbrainV1" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_owlbrainV1" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_owlbrainV1" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_hubro_backend_unit (1)" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_owlbrainScheduler" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_owlbrainScheduler (1)" />
+      <item index="5" class="java.lang.String" itemvalue="Python tests.Unittests in tests" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_owlbrainV1" />
-        <item index="1" class="java.lang.String" itemvalue="Python.owlbrainV1" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in hubro_backend_unit_tests" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_hubro_backend_unit (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_owlbrainScheduler (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_owlbrainV1" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in tests" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_owlbrainScheduler" />
       </list>
     </recent_temporary>
   </component>
@@ -607,39 +649,74 @@
       <option name="project" value="LOCAL" />
       <updated>1490300794159</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Tidy owlbrainV1&#10;First unit test of owlbrain">
+      <created>1490301949890</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1490301949890</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added TEST_owlbrainV1 to travis tests&#10;Renamed other unit tests for better naming convention">
+      <created>1490302182017</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1490302182017</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added TEST_owlbrainV1 to travis tests&#10;Renamed other unit tests for better naming convention">
+      <created>1490302461680</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1490302461680</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix in travis.yml">
+      <created>1490302877154</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1490302877154</updated>
+    </task>
+    <task id="LOCAL-00008" summary="added new version of unit test-file for owlbrain">
+      <created>1490304151133</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1490304151133</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 21h 41m 56s.xml">
+    <history-entry file="Unittests_in_TEST_hubro_backend_unit_(1) - 2017.03.23 at 22h 21m 13s.xml">
+      <configuration name="Unittests in TEST_hubro_backend_unit (1)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.23 at 22h 20m 51s.xml">
+      <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.23 at 22h 21m 11s.xml">
+      <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 22h 19m 09s.xml">
       <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 21h 42m 07s.xml">
+    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 22h 19m 55s.xml">
       <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 21h 42m 16s.xml">
+    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 22h 20m 07s.xml">
       <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 21h 42m 26s.xml">
+    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 22h 20m 14s.xml">
       <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 21h 42m 45s.xml">
+    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 22h 20m 36s.xml">
       <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 21h 43m 34s.xml">
+    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 22h 21m 08s.xml">
       <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 21h 44m 00s.xml">
-      <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 21h 44m 08s.xml">
-      <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 21h 44m 27s.xml">
-      <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 21h 44m 32s.xml">
-      <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
+    <history-entry file="Unittests_in_tests - 2017.03.23 at 22h 21m 04s.xml">
+      <configuration name="Unittests in tests" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -655,7 +732,7 @@
     <frame x="54" y="-8" width="1554" height="916" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15997322" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19210175" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -682,10 +759,15 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="SHOW_UNVERSIONED_FILES_WHILE_COMMIT" value="false" />
     <MESSAGE value="Still more merge fixes" />
     <MESSAGE value="Temp commit sheduler soon complete" />
     <MESSAGE value="Owlbrain ready for testing stage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Owlbrain ready for testing stage" />
+    <MESSAGE value="Tidy owlbrainV1&#10;First unit test of owlbrain" />
+    <MESSAGE value="Added TEST_owlbrainV1 to travis tests&#10;Renamed other unit tests for better naming convention" />
+    <MESSAGE value="fix in travis.yml" />
+    <MESSAGE value="added new version of unit test-file for owlbrain" />
+    <option name="LAST_COMMIT_MESSAGE" value="added new version of unit test-file for owlbrain" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -704,7 +786,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/hubro_backend_unit_tests.py">
+    <entry file="file://$PROJECT_DIR$/tests/TEST_hubro_backend_unit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1276">
           <caret line="58" column="49" lean-forward="false" selection-start-line="58" selection-start-column="49" selection-end-line="58" selection-end-column="49" />
@@ -717,7 +799,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -735,7 +817,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#0#36#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -758,7 +840,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/hubro_backend_unit_tests.py">
+    <entry file="file://$PROJECT_DIR$/tests/TEST_hubro_backend_unit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
@@ -771,7 +853,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#0#36#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -794,7 +876,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/hubro_backend_unit_tests.py">
+    <entry file="file://$PROJECT_DIR$/tests/TEST_hubro_backend_unit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -820,7 +902,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/hubro_backend_unit_tests.py">
+    <entry file="file://$PROJECT_DIR$/tests/TEST_hubro_backend_unit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -877,7 +959,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#0#36#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -895,12 +977,12 @@
         <state relative-caret-position="-792">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/hubro_backend_unit_tests.py">
+    <entry file="file://$PROJECT_DIR$/tests/TEST_hubro_backend_unit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="58" column="49" lean-forward="true" selection-start-line="58" selection-start-column="49" selection-end-line="58" selection-end-column="49" />
@@ -918,7 +1000,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/hubro_backend_unit_tests.py">
+    <entry file="file://$PROJECT_DIR$/tests/TEST_hubro_backend_unit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
@@ -931,7 +1013,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#0#36#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -954,7 +1036,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/hubro_backend_unit_tests.py">
+    <entry file="file://$PROJECT_DIR$/tests/TEST_hubro_backend_unit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -980,7 +1062,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/hubro_backend_unit_tests.py">
+    <entry file="file://$PROJECT_DIR$/tests/TEST_hubro_backend_unit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1019,7 +1101,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#0#36#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1037,23 +1119,23 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/hubro_backend_unit_tests.py">
+    <entry file="file://$PROJECT_DIR$/tests/TEST_hubro_backend_unit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="10" />
+        <state relative-caret-position="362">
+          <caret line="168" column="19" lean-forward="true" selection-start-line="168" selection-start-column="19" selection-end-line="168" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TEST_owlbrainV1.py">
+    <entry file="file://$PROJECT_DIR$/tests/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="15" lean-forward="true" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1061,10 +1143,34 @@
     <entry file="file://$PROJECT_DIR$/src/owlbrain/owlbrainV1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
-          <caret line="46" column="40" lean-forward="false" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
           <folding>
             <element signature="e#1#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/TEST_owlbrainScheduler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/TEST_owlbrainV1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="3" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" column="36" lean-forward="false" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>

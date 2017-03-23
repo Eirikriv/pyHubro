@@ -15,7 +15,7 @@ install:
 
 script:
   python TEST_hubro_backend_unit.py;
-  python TEST_owlbrainV1.py;
+  python TEST_owlbrainScheduler.py;
   
  #Her må vi liste opp alle unit tester og andre tester som vi vil at Travis skal kjøre ved build
  #Kan kanskje dette automatiseres? Altså at tester legges automatisk til her?
