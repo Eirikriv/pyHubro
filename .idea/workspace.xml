@@ -9,11 +9,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f498c979-048e-48e0-b43b-722beafdcfe5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/TEST_owlbrainScheduler.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/TEST_owlbrainV1.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="$PROJECT_DIR$/.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/owlbrain/owlbrainV1.py" afterPath="$PROJECT_DIR$/src/owlbrain/owlbrainV1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TEST_owlbrainV1.py" afterPath="$PROJECT_DIR$/tests/TEST_owlbrainV1.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,16 +69,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TEST_owlbrainV1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/TEST_owlbrainV1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="3" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TEST_hubro_backend_unit.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/TEST_hubro_backend_unit.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -94,8 +82,8 @@
       <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+            <state relative-caret-position="352">
+              <caret line="16" column="36" lean-forward="false" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -118,10 +106,10 @@
       <list>
         <option value="$PROJECT_DIR$/tests/hubro_backend_unit_tests.py" />
         <option value="$PROJECT_DIR$/tests/TEST_owlbrainSheduler.py" />
-        <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/src/owlbrain/owlbrainV1.py" />
         <option value="$PROJECT_DIR$/tests/TEST_owlbrainScheduler.py" />
         <option value="$PROJECT_DIR$/tests/TEST_owlbrainV1.py" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
   </component>
@@ -689,7 +677,14 @@
       <option name="project" value="LOCAL" />
       <updated>1490302877154</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added new version of unit test-file for owlbrain">
+      <created>1490304151133</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1490304151133</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -735,9 +730,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1554" height="916" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19210175" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19210175" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -764,13 +759,15 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="SHOW_UNVERSIONED_FILES_WHILE_COMMIT" value="false" />
     <MESSAGE value="Still more merge fixes" />
     <MESSAGE value="Temp commit sheduler soon complete" />
     <MESSAGE value="Owlbrain ready for testing stage" />
     <MESSAGE value="Tidy owlbrainV1&#10;First unit test of owlbrain" />
     <MESSAGE value="Added TEST_owlbrainV1 to travis tests&#10;Renamed other unit tests for better naming convention" />
     <MESSAGE value="fix in travis.yml" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix in travis.yml" />
+    <MESSAGE value="added new version of unit test-file for owlbrain" />
+    <option name="LAST_COMMIT_MESSAGE" value="added new version of unit test-file for owlbrain" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1171,8 +1168,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        <state relative-caret-position="352">
+          <caret line="16" column="36" lean-forward="false" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
           <folding />
         </state>
       </provider>
