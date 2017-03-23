@@ -61,18 +61,6 @@ class massageItslearningDataTester(unittest.TestCase):
     #     correctPass="12345"
     #     password = getUserPassword()
     #     self.assertEqual(password,correctPass)
-    def test_convertweekAndDayToDate_sample_dates_correct(self):
-        days = ["Mandag","Tirsdag","Onsdag","Torsdag","Fredag"]
-        weeks = ["01","20","51","50","24"]
-        year = ["2012","2016","2016","2017","2018"]
-        correctOutput = ["2012-01-02","2016-05-17", "2016-12-21","2017-12-14","2018-06-15"]
-        for n in range(len(days)):
-            self.assertEqual(convertweekAndDayToDate(days[n],weeks[n],year[n]), correctOutput[n])
-
-    def test_readCourseFileReturnAllLectureExersiseEvents_sample_scrapes_correct(self):
-        testInput=['Mandag 08:15 - 10:00 2-14,17 \xc3\x98ving BIT, MLREAL, MTDT, MTING, MTI\xc3\x98T, MTTK R1', 'Tirsdag 16:15 - 18:00 2-14,17 Forelesning BIT, MLREAL, MTDT, MTING, MTI\xc3\x98T, MTTK R1', 'Fredag 14:15 - 16:00 2-14,16 Forelesning BIT, MLREAL, MTDT, MTING, MTI\xc3\x98T, MTTK R1']
-        correctOutput = ['2017-01-09T08:15:00', '2017-01-09T10:00:00', '\xc3\x98ving', 'R1']
-        self.assertEqual(readCourseFileReturnAllLectureExersiseEvents(testInput,"2017"),correctOutput)
 
 #     #     correctUname="eirikriv"
 #     #     username = getUsername()
