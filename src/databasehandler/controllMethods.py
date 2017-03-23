@@ -14,7 +14,7 @@ def controllScannForLecturesandInsert(courseCode):
 	engine = create_engine(URI)
 	connection = engine.connect()
 	if(getValueFromCourseTable(engine, connection, courseCode)):
-		insertCourseIntoDatabase(courseCode, courseCode)
+		insertCourseIntoDatabase(engine, connection,courseCode, courseCode)
 	for types in lectureTimes:
 		for events in types:
 			try:
