@@ -78,7 +78,7 @@ def getDayEvents(date, time ,daysBack,http):
         listeMedEvents.append(appendString)
     return listeMedEvents
 
-def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,http):
+def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorId,http):
     http = http
     service = discovery.build('calendar', 'v3', http=http)
     if beskrivelse==None:
@@ -89,6 +89,7 @@ def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivels
       'summary': tittel,
       'location': sted,
       'description': beskrivelse,
+      'colorId' : colorId,
       'start': {
         'dateTime': startdato+"T"+starttid,
         'timeZone': 'Europe/Oslo',
@@ -102,8 +103,18 @@ def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivels
       },
     }
     event = service.events().insert(calendarId='primary', body=event).execute() #executes the current event
+#refreshToken = "1/I2bJkHp2xg0HHD176-8EdiJR4wQLZQp2D0EL7q1BNoo"
+#print(refreshToken)
+#credentials = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
+#print(getDayEvents("2017-03-17","23:59:00","2",credentials))
 
-refreshToken = getAllUserReffreshTokens()[0][1]
-print(refreshToken)
-credentials = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
-print(getDayEvents("2017-03-17","23:59:00","2",credentials))
+def insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted, colorID):
+  refreshToken = "1/I2bJkHp2xg0HHD176-8EdiJR4wQLZQp2D0EL7q1BNoo"
+  http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
+  createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorID,http)
+  return True
+
+def getEventsDaysBack(date, time ,daysBack):
+  refreshToken = "1/I2bJkHp2xg0HHD176-8EdiJR4wQLZQp2D0EL7q1BNoo"
+  http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
+  return getDayEvents(date,time,daysBack,http)

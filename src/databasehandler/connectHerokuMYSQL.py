@@ -84,7 +84,7 @@ def getEntryFromAssigmnentTable(engine, connection,stringAssignmentID):
 	connection = connection
 	metadata = MetaData()
 	assignmnent = Table('assignment', metadata, autoload=True , autoload_with=engine)
-	selectAssignmnent = select([assignmnent]).where(assignmnent.c.assignmentID == stringAssignmnentID)
+	selectAssignmnent = select([assignmnent]).where(assignmnent.c.assignmentID == stringAssignmentID)
 	for row in connection.execute(selectAssignmnent):
 		return row
 #print(getEntryFromAssignmnentTable("0001"))
@@ -136,9 +136,7 @@ def getEntriesFromLectureTable(engine, connection,stringLectureID):
 	lecture = Table('lecture', metadata, autoload=True , autoload_with=engine)
 	selectLecture = select([lecture]).where(lecture.c.lectureID == stringLectureID)
 	returnList=[]
-	for row in connection.execute(selectLecture):
-		returnList.append(row)
-	return returnList
+	return list(connection.execute(selectLecture))
 
 def insertLecture_courseIntoDatabase(engine, connection,stringLectureID,stringCourseID):
 	engine = engine
@@ -158,6 +156,14 @@ def getEntryFromLecture_courseTable(engine, connection,stringLectureID):
 	selectLecture = select([lecture_course]).where(lecture_course.c.lectureID == stringLectureID)
 	for row in connection.execute(selectLecture):
 		return row
+
+def getLectureIDsFromLecture_courseTable(engine, connection,stringCourseID):
+	engine = engine
+	connection = connection
+	metadata = MetaData()
+	lecture_course = Table('lecture_course', metadata, autoload=True , autoload_with=engine)
+	selectLecture = select([lecture_course]).where(lecture_course.c.courseID == stringCourseID)
+	return list(connection.execute(selectLecture))	
 
 def insertAssignment_courseIntoDatabase(engine, connection, stringAssignmentID,stringCourseID):
 	engine = engine
@@ -179,6 +185,22 @@ def getEntryFromAssignment_courseTable(engine, connection,stringAssignmentID):
 	for row in connection.execute(selectLecture_course):
 		return row
 #print(getEntryFromAssignment_courseTable("0001"))
+
+def getEntriesFromAssignment_courseTableReturnAssignments(engine, connection,stringCourseID):
+	engine = engine
+	connection = connection
+	metadata = MetaData()
+	assignment_course = Table('assignment_course', metadata, autoload=True , autoload_with=engine)
+	selectLecture_course = select([assignment_course]).where(assignment_course.c.courseID == stringCourseID)
+	return list(connection.execute(selectLecture_course))
+		
+def getEntriesFromAssignmentStudentAllAssforStud(engine, connection,stringStudentID):
+	engine = engine
+	connection = connection
+	metadata = MetaData()
+	assignment_course = Table('student_assignment', metadata, autoload=True , autoload_with=engine)
+	selectLecture_course = select([assignment_course]).where(assignment_course.c.studentID == stringStudentID)
+	return list(connection.execute(selectLecture_course))
 
 def getAllEntriesFromStudentTable(engine, connection):
 	engine = engine
