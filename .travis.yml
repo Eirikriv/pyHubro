@@ -16,6 +16,9 @@ script:
 
 # command to install dependencies
 
+notifications:
+  email: false
+
 before_install:
   - cd tests 
 install:
