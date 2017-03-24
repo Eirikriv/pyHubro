@@ -9,8 +9,10 @@ matrix:
       env: EXTRA_TESTS=true
     - python: '3.4'
       env: EXTRA_TESTS=true
+    - python: '2.7'
+      env: EXTRA_TESTS=true
 script:
-  env $EXTRA_TESTS ./tests/TEST_owlbrainScheduler.py $TEST_SUITE
+  env $EXTRA_TESTS ./tests/* $TEST_SUITE
 
 # command to install dependencies
 
