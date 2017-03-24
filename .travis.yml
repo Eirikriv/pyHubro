@@ -23,7 +23,7 @@ install:
   pip install selenium;
   pip install SQLAlchemy;
 
-script:
+#script:
   #python TEST_hubro_backend_unit.py;
   #python TEST_owlbrainScheduler.py;
 

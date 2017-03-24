@@ -12,7 +12,6 @@
     <list default="true" id="f498c979-048e-48e0-b43b-722beafdcfe5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="$PROJECT_DIR$/.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/owlbrain/owlbrainV1.py" afterPath="$PROJECT_DIR$/src/owlbrain/owlbrainV1.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,7 +25,7 @@
     <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_owlbrainSheduler.coverage" NAME="Unittests in TEST_owlbrainScheduler Coverage Results" MODIFIED="1490303939578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_owlbrainV1.coverage" NAME="Unittests in TEST_owlbrainV1 Coverage Results" MODIFIED="1490304068716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_hubro_backend_unit__1_.coverage" NAME="Unittests in TEST_hubro_backend_unit (1) Coverage Results" MODIFIED="1490304073117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_owlbrainScheduler__1_.coverage" NAME="Unittests in TEST_owlbrainScheduler (1) Coverage Results" MODIFIED="1490344489486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_owlbrainScheduler__1_.coverage" NAME="Unittests in TEST_owlbrainScheduler (1) Coverage Results" MODIFIED="1490344654536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_hubro_backend_unit_tests.coverage" NAME="Unittests in hubro_backend_unit_tests Coverage Results" MODIFIED="1490300808682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_tests.coverage" NAME="Unittests in tests Coverage Results" MODIFIED="1490304064406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_tests__1_.coverage" NAME="Unittests in tests (1) Coverage Results" MODIFIED="1490303516327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
@@ -83,8 +82,8 @@
       <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="27" column="3" lean-forward="false" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+            <state relative-caret-position="286">
+              <caret line="25" column="1" lean-forward="false" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -108,9 +107,9 @@
         <option value="$PROJECT_DIR$/tests/hubro_backend_unit_tests.py" />
         <option value="$PROJECT_DIR$/tests/TEST_owlbrainSheduler.py" />
         <option value="$PROJECT_DIR$/tests/TEST_owlbrainV1.py" />
-        <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/tests/TEST_owlbrainScheduler.py" />
         <option value="$PROJECT_DIR$/src/owlbrain/owlbrainV1.py" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
   </component>
@@ -720,13 +719,17 @@
       <option name="project" value="LOCAL" />
       <updated>1490344259422</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="handling no free slots in a day">
+      <created>1490344532494</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1490344532494</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.24 at 08h 58m 12s.xml">
-      <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.24 at 09h 01m 13s.xml">
       <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
     </history-entry>
@@ -752,6 +755,9 @@
       <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.24 at 09h 34m 49s.xml">
+      <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.24 at 09h 37m 35s.xml">
       <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
     </history-entry>
   </component>
@@ -807,7 +813,8 @@
     <MESSAGE value="Added buffer quarter before any imported event &#10;trying out changes in travis test script" />
     <MESSAGE value="trying out changes in travis test script 02" />
     <MESSAGE value="Assignment datetime wrapper on input" />
-    <option name="LAST_COMMIT_MESSAGE" value="Assignment datetime wrapper on input" />
+    <MESSAGE value="handling no free slots in a day" />
+    <option name="LAST_COMMIT_MESSAGE" value="handling no free slots in a day" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1208,8 +1215,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="27" column="3" lean-forward="false" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+        <state relative-caret-position="286">
+          <caret line="25" column="1" lean-forward="false" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
           <folding />
         </state>
       </provider>
