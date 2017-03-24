@@ -47,3 +47,18 @@ class TestOwlbrainScheduler(TestCase):
 
         correctOutput = [['10:15:00', '12:45:00', '2017-06-14'], ['14:30:00', '16:00:00', '2017-06-14']]
         self.assertEqual(OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents, daysPriorToDeadline), correctOutput)
+
+    def test_OwlbrainScheduler_double_posting_input02(self):
+        assignmentDeadline = '2017-06-16 13:00:00'
+        initialHoursSet = 4
+        calendarEvents = [u'2017-06-12T08:15:00EB2017-06-12T10:00:00', u'2017-06-12T10:15:00EB2017-06-12T12:00:00',
+                          u'2017-06-12T14:30:00EB2017-06-12T15:45:00', u'2017-06-12T17:15:00EB2017-06-12T19:00:00',
+                          u'2017-06-13T08:15:00EB2017-06-13T10:00:00', u'2017-06-13T10:30:00EB2017-06-13T13:00:00',
+                          u'2017-06-13T13:30:00EB2017-06-13T15:30:00', u'2017-06-13T16:15:00EB2017-06-13T18:00:00',
+                          u'2017-06-13T18:00:00EB2017-06-13T21:00:00', u'2017-06-14T08:30:00EB2017-06-14T10:15:00',
+                          u'2017-06-14T13:00:00EB2017-06-14T14:30:00', u'2017-06-15T12:15:00EB2017-06-15T15:00:00']
+        daysPriorToDeadline = 5
+
+        correctOutput = [['12:00:00', '14:15:00', '2017-06-12'], ['15:45:00', '17:00:00', '2017-06-12'],
+                         ['19:00:00', '19:30:00', '2017-06-12']]
+        self.assertEqual(OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents, daysPriorToDeadline), correctOutput)
