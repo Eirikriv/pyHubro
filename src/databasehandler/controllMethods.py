@@ -98,6 +98,7 @@ def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
 	engine = create_engine(URI)
 	connection = engine.connect()
 	eventColor = "4"
+	eventColorForWordSessions = "11"
 	assignmentDetailList = []
 	assignmentIDs = getEntriesFromAssignmentStudentAllAssforStud(engine, connection,stringStudentID)
 	for entries in assignmentIDs:
@@ -110,21 +111,26 @@ def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
   		starttid = assignmentDetails[2]
   		sluttid = str(assignmentDetails[2])[0:3] + "05:00"
   		beskrivelse = assignmentDetails[3]
-  		sted = "Studyplace"	
-  		#insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor)
+  		sted = " "	
+  		insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor)
   		time.sleep(2)
 
   	for dl in assignmentDetailList:
   		eventsPriorToDeadline = getEventsDaysBack(dl[1],dl[2],3)
   		studentInitialHours = int(getEntryFromAssignmentStudentInitialHoursForStudent(engine,connection,dl[0])[0][2])
   		deadline = dl[1] + " " + dl[2]
-  		print deadline
-  		print studentInitialHours
-  		print eventsPriorToDeadline
-  		plannedEvents = OwlbrainScheduler(deadline,studentInitialHours,eventsPriorToDeadline,3)
-  		print plannedEvents
+  		plannedEvents = OwlbrainScheduler(deadline,studentInitialHours,eventsPriorToDeadline,6)
+  		for suggestions in plannedEvents:
+			tittel = dl[3]
+  			startdato = suggestions[2]
+  			sluttdato = suggestions[2]
+  			starttid = suggestions[0]
+  			sluttid = suggestions[1]
+  			beskrivelse = dl[3]
+  			sted = "Your favorite studyplace"
+  			insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColorForWordSessions)
 def main(stringStudentID):
-	#getLecturesAndInsertIntoCalendar(stringStudentID,studentInitialHours)
+	getLecturesAndInsertIntoCalendar(stringStudentID)
 	getassignmentDeadLineAndInsertIntoDatabase(stringStudentID)
 main("000001")
 
