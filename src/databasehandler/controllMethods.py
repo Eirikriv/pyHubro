@@ -113,7 +113,7 @@ def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
   		beskrivelse = assignmentDetails[3]
   		sted = " "	
   		insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor)
-  		time.sleep(2)
+  		time.sleep(4)
 
   	for dl in assignmentDetailList:
   		eventsPriorToDeadline = getEventsDaysBack(dl[1],dl[2],3)
@@ -129,8 +129,10 @@ def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
   			beskrivelse = dl[3]
   			sted = "Your favorite studyplace"
   			insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColorForWordSessions)
+  		time.sleep(4)
 def main(stringStudentID):
 	getLecturesAndInsertIntoCalendar(stringStudentID)
+	time.sleep(4)
 	getassignmentDeadLineAndInsertIntoDatabase(stringStudentID)
 main("000001")
 
