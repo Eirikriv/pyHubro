@@ -134,10 +134,55 @@ def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
   			sted = "Your favorite studyplace"
   			insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColorForWordSessions)
   		time.sleep(4)
-def main(stringStudentID):
+
+def insertOnlyPlannedEvents(stringStudentID):
+	engine = create_engine(URI)
+	connection = engine.connect()
+	eventColor = "4"
+	eventColorForWordSessions = "6"
+	assignmentDetailList = []
+	assignmentIDs = getEntriesFromAssignmentStudentAllAssforStud(engine, connection,stringStudentID)
+	for entries in assignmentIDs:
+		tempList = []
+		assignmentDetails = getEntryFromAssigmnentTable(engine, connection,entries[1])
+		assignmentDetailList.append(assignmentDetails)
+		tittel = assignmentDetails[3]
+  		startdato = assignmentDetails[1]
+  		sluttdato = assignmentDetails[1]
+  		starttid = assignmentDetails[2]
+  		sluttid = str(assignmentDetails[2])[0:3] + "05:00"
+  		beskrivelse = assignmentDetails[3]
+  		sted = " "	
+  		#insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor)
+  		#time.sleep(4)
+
+  	for dl in assignmentDetailList:
+  		eventsPriorToDeadline = getEventsDaysBack(dl[1],dl[2],3)
+  		print eventsPriorToDeadline
+  		studentInitialHours = int(getEntryFromAssignmentStudentInitialHoursForStudent(engine,connection,dl[0])[0][2])
+  		deadline = dl[1] + " " + dl[2]
+  		print deadline
+  		print studentInitialHours
+  		plannedEvents = OwlbrainScheduler(deadline,studentInitialHours,eventsPriorToDeadline,5)
+  		print plannedEvents
+  		for suggestions in plannedEvents:
+			print suggestions
+			tittel = dl[3]
+  			startdato = suggestions[2]
+  			sluttdato = suggestions[2]
+  			starttid = suggestions[0]
+  			sluttid = suggestions[1]
+  			beskrivelse = dl[3]
+  			sted = "Your favorite studyplace"
+  			insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColorForWordSessions)
+  		time.sleep(4)
+
+def demo1(stringStudentID):
 	getLecturesAndInsertIntoCalendar(stringStudentID)
 	time.sleep(4)
 	getassignmentDeadLineAndInsertIntoDatabase(stringStudentID)
-main("000001")
+#demo1("000001")
 
-
+def demo2(stringStudentID):
+	insertOnlyPlannedEvents(stringStudentID)
+demo2("000001")
