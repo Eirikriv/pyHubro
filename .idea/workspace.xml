@@ -3,15 +3,17 @@
   <component name="AutoTestManager">
     <enabled-run-configurations>
       <run-configuration type="tests" name="Unittests in TEST_owlbrainV1" />
+      <run-configuration type="tests" name="Unittests in TEST_owlbrainScheduler (1)" />
       <run-configuration type="tests" name="Unittests in TEST_hubro_backend_unit (1)" />
       <run-configuration type="tests" name="Unittests in TEST_owlbrainScheduler" />
     </enabled-run-configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f498c979-048e-48e0-b43b-722beafdcfe5" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/TEST_owlbrainV1.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="$PROJECT_DIR$/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/owlbrain/owlbrainV1.py" afterPath="$PROJECT_DIR$/src/owlbrain/owlbrainV1.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TEST_owlbrainScheduler.py" afterPath="$PROJECT_DIR$/tests/TEST_owlbrainScheduler.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,7 +27,7 @@
     <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_owlbrainSheduler.coverage" NAME="Unittests in TEST_owlbrainScheduler Coverage Results" MODIFIED="1490303939578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_owlbrainV1.coverage" NAME="Unittests in TEST_owlbrainV1 Coverage Results" MODIFIED="1490304068716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_hubro_backend_unit__1_.coverage" NAME="Unittests in TEST_hubro_backend_unit (1) Coverage Results" MODIFIED="1490304073117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_owlbrainScheduler__1_.coverage" NAME="Unittests in TEST_owlbrainScheduler (1) Coverage Results" MODIFIED="1490304070882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_TEST_owlbrainScheduler__1_.coverage" NAME="Unittests in TEST_owlbrainScheduler (1) Coverage Results" MODIFIED="1490342491842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_hubro_backend_unit_tests.coverage" NAME="Unittests in hubro_backend_unit_tests Coverage Results" MODIFIED="1490300808682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_tests.coverage" NAME="Unittests in tests Coverage Results" MODIFIED="1490304064406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyHubro$Unittests_in_tests__1_.coverage" NAME="Unittests in tests (1) Coverage Results" MODIFIED="1490303516327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
@@ -47,11 +49,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="owlbrainV1.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="owlbrainV1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/owlbrain/owlbrainV1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+            <state relative-caret-position="154">
+              <caret line="7" column="61" lean-forward="false" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
               <folding>
                 <element signature="e#1#19#0" expanded="true" />
               </folding>
@@ -62,8 +64,8 @@
       <file leaf-file-name="TEST_owlbrainScheduler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/TEST_owlbrainScheduler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+            <state relative-caret-position="156">
+              <caret line="10" column="50" lean-forward="false" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -79,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="16" column="36" lean-forward="false" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+            <state relative-caret-position="594">
+              <caret line="27" column="3" lean-forward="false" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -106,10 +108,10 @@
       <list>
         <option value="$PROJECT_DIR$/tests/hubro_backend_unit_tests.py" />
         <option value="$PROJECT_DIR$/tests/TEST_owlbrainSheduler.py" />
-        <option value="$PROJECT_DIR$/src/owlbrain/owlbrainV1.py" />
-        <option value="$PROJECT_DIR$/tests/TEST_owlbrainScheduler.py" />
         <option value="$PROJECT_DIR$/tests/TEST_owlbrainV1.py" />
         <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/tests/TEST_owlbrainScheduler.py" />
+        <option value="$PROJECT_DIR$/src/owlbrain/owlbrainV1.py" />
       </list>
     </option>
   </component>
@@ -248,7 +250,7 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/tests" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in TEST_hubro_backend_unit (1)">
+  <component name="RunManager" selected="Python tests.Unittests in TEST_owlbrainScheduler (1)">
     <configuration default="false" name="Unittests in TEST_owlbrainV1" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -606,8 +608,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_hubro_backend_unit (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_owlbrainScheduler (1)" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_owlbrainScheduler (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_hubro_backend_unit (1)" />
         <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_owlbrainV1" />
         <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in tests" />
         <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in TEST_owlbrainScheduler" />
@@ -684,39 +686,60 @@
       <option name="project" value="LOCAL" />
       <updated>1490304151133</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="deleted the old owlbrain unit test, updated travis.yml">
+      <created>1490304425398</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1490304425398</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added buffer quarter before any imported event &#10;trying out changes in travis test script">
+      <created>1490337186810</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1490337186810</updated>
+    </task>
+    <task id="LOCAL-00011" summary="trying out changes in travis test script 02">
+      <created>1490337587119</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1490337587119</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_TEST_hubro_backend_unit_(1) - 2017.03.23 at 22h 21m 13s.xml">
-      <configuration name="Unittests in TEST_hubro_backend_unit (1)" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.23 at 22h 20m 51s.xml">
+    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.24 at 07h 31m 19s.xml">
       <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.23 at 22h 21m 11s.xml">
+    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.24 at 07h 31m 30s.xml">
       <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 22h 19m 09s.xml">
-      <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
+    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.24 at 07h 37m 17s.xml">
+      <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 22h 19m 55s.xml">
-      <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
+    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.24 at 07h 37m 31s.xml">
+      <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 22h 20m 07s.xml">
-      <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
+    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.24 at 08h 56m 59s.xml">
+      <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 22h 20m 14s.xml">
-      <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
+    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.24 at 08h 57m 17s.xml">
+      <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 22h 20m 36s.xml">
-      <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
+    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.24 at 08h 57m 50s.xml">
+      <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_TEST_owlbrainV1 - 2017.03.23 at 22h 21m 08s.xml">
-      <configuration name="Unittests in TEST_owlbrainV1" configurationId="tests" />
+    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.24 at 08h 58m 12s.xml">
+      <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_tests - 2017.03.23 at 22h 21m 04s.xml">
-      <configuration name="Unittests in tests" configurationId="tests" />
+    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.24 at 09h 01m 13s.xml">
+      <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_TEST_owlbrainScheduler_(1) - 2017.03.24 at 09h 01m 32s.xml">
+      <configuration name="Unittests in TEST_owlbrainScheduler (1)" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -730,16 +753,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1554" height="916" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19210175" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19210175" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29194188" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29194188" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -767,7 +790,10 @@
     <MESSAGE value="Added TEST_owlbrainV1 to travis tests&#10;Renamed other unit tests for better naming convention" />
     <MESSAGE value="fix in travis.yml" />
     <MESSAGE value="added new version of unit test-file for owlbrain" />
-    <option name="LAST_COMMIT_MESSAGE" value="added new version of unit test-file for owlbrain" />
+    <MESSAGE value="deleted the old owlbrain unit test, updated travis.yml" />
+    <MESSAGE value="Added buffer quarter before any imported event &#10;trying out changes in travis test script" />
+    <MESSAGE value="trying out changes in travis test script 02" />
+    <option name="LAST_COMMIT_MESSAGE" value="trying out changes in travis test script 02" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1140,24 +1166,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/owlbrain/owlbrainV1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-          <folding>
-            <element signature="e#1#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TEST_owlbrainScheduler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/TEST_owlbrainV1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
@@ -1168,9 +1176,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="36" lean-forward="false" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+        <state relative-caret-position="594">
+          <caret line="27" column="3" lean-forward="false" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/TEST_owlbrainScheduler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="10" column="50" lean-forward="false" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/owlbrain/owlbrainV1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="61" lean-forward="false" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
+          <folding>
+            <element signature="e#1#19#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

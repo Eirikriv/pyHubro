@@ -2,13 +2,15 @@
 import unicodedata
 from datetime import datetime, timedelta
 
+
 def OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents):
 
+    assignmentDeadline = datetime.strptime(assignmentDeadline, '%Y-%m-%d %H:%M:%S')
     remainingWorkLengthInQuarters = initialHoursSet * 4
     calendarEvents = [unicodedata.normalize('NFKD', x).encode('ascii', 'ignore') for x in calendarEvents]
     assignedWorkSlots = []
 
-    currentDayInSearch = 2         #antall dager for frist forst testet for ledig tid
+    currentDayInSearch = 2         # antall dager for frist forst testet for ledig tid
     currentDayInSearchCounter = 1
     currentDayInSearchInverter = 1
 
@@ -27,6 +29,7 @@ def OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents):
             eventLength = int(events[32:34])*4 + int(int(events[35:37])/15) - startQuarter
 
             quartersCurrentDayInSearch[startQuarter:startQuarter + eventLength] = [1] * eventLength
+            quartersCurrentDayInSearch[startQuarter-1] = 1
 
         freeSlotsInCurrentDayInSearch = FindFreeSlots(quartersCurrentDayInSearch)[:]
 
@@ -77,7 +80,7 @@ def FindFreeSlots(list):
 
 def newWorkSlot(currentDateInSearch, freeSlot, slotLength):
     startTime = datetime.strptime(("0" + str(int(freeSlot) / 4))[-2:] + ":" +
-                                  ("0" + str((int(freeSlot) % 4) * 15)[-2:]) + ":00", '%H:%M:%S')
+                                  ("0" + str((int(freeSlot) % 4) * 15))[-2:] + ":00", '%H:%M:%S')
     endTime = startTime + \
               timedelta(0, slotLength * 15 * 60)
     newWorkSlot = [startTime.strftime('%H:%M:%S'), endTime.strftime('%H:%M:%S'), currentDateInSearch]
