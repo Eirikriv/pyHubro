@@ -1,6 +1,18 @@
 language: python
 python:
-  - "2.7"
+  - '3.5'
+  - '3.4'
+  - '2.7'
+matrix:
+  include:
+    - python: '3.5'
+      env: EXTRA_TESTS=true
+    - python: '3.4'
+      env: EXTRA_TESTS=true
+    - python: '2.7'
+      env: EXTRA_TESTS=true
+script:
+  env $EXTRA_TESTS ./tests/* $TEST_SUITE
 
 # command to install dependencies
 
@@ -11,11 +23,9 @@ install:
   pip install selenium;
   pip install SQLAlchemy;
 
+script:
+  python TEST_hubro_backend_unit.py;
+  python TEST_owlbrainScheduler.py;
 
-
-script: python hubro_backend_unit_tests.py
-  
- #Her må vi liste opp alle unit tester og andre tester som vi vil at Travis skal kjøre ved build
- #Kan kanskje dette automatiseres? Altså at tester legges automatisk til her?
 
 
