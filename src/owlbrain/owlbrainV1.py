@@ -71,10 +71,13 @@ def FindFreeSlots(list):
             freeQuarters[freeQuarters.index(int(tempResult[0])):freeQuarters.index(tempResult[0]) + len(tempResult)] = tempResult[:]
     slotLengths = slotLengths[2:] + [len(freeQuarters)-slotLengths[-1]]
 
-    startFreeQuarters = [freeQuarters[0]]
+    if not freeQuarters:
+        return []+[]
+    else:
+        startFreeQuarters = [freeQuarters[0]]
 
-    for lengths in slotLengths[:-1]:
-        startFreeQuarters.append(freeQuarters[lengths])
+        for lengths in slotLengths[:-1]:
+            startFreeQuarters.append(freeQuarters[lengths])
 
     return [startFreeQuarters]+[slotLengths]
 
