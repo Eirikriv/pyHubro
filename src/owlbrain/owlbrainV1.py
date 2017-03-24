@@ -13,7 +13,7 @@ def OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents, daysP
        # antall dager for frist forst testet for ledig tid
 
     currentDayInSearchCounter = 1
-    currentDayInSearchInverter = 1
+    currentDayInSearchInverter = -1
 
     while currentDayInSearch != daysPriorToDeadline+1 and remainingWorkLengthInQuarters > 0:
 
