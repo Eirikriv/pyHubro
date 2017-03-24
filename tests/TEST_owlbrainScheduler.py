@@ -8,7 +8,7 @@ from datetime import datetime
 
 class TestOwlbrainScheduler(TestCase):
     def test_OwlbrainScheduler_easy_input01(self):
-        assignmentDeadline = datetime.strptime('2017-03-16 23:59:59', '%Y-%m-%d %H:%M:%S')
+        assignmentDeadline = '2017-03-16 23:59:59'
         initialHoursSet = 3
         calendarEvents = [u'2017-03-14T08:15:00EB2017-03-14T10:00:00', u'2017-03-14T10:00:00EB2017-03-14T14:00:00',
                           u'2017-03-14T12:15:00EB2017-03-14T15:00:00', u'2017-03-14T16:15:00EB2017-03-14T18:00:00',

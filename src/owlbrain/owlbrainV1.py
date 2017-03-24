@@ -2,13 +2,15 @@
 import unicodedata
 from datetime import datetime, timedelta
 
+
 def OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents):
 
+    assignmentDeadline = datetime.strptime(assignmentDeadline, '%Y-%m-%d %H:%M:%S')
     remainingWorkLengthInQuarters = initialHoursSet * 4
     calendarEvents = [unicodedata.normalize('NFKD', x).encode('ascii', 'ignore') for x in calendarEvents]
     assignedWorkSlots = []
 
-    currentDayInSearch = 2         #antall dager for frist forst testet for ledig tid
+    currentDayInSearch = 2         # antall dager for frist forst testet for ledig tid
     currentDayInSearchCounter = 1
     currentDayInSearchInverter = 1
 
