@@ -2,17 +2,17 @@
 import unicodedata
 from datetime import datetime, timedelta
 
-def OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents):
+def OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents, daysPriorToDeadline):
 
     remainingWorkLengthInQuarters = initialHoursSet * 4
     calendarEvents = [unicodedata.normalize('NFKD', x).encode('ascii', 'ignore') for x in calendarEvents]
     assignedWorkSlots = []
 
-    currentDayInSearch = 2         #antall dager for frist forst testet for ledig tid
+    currentDayInSearch = int(2*daysPriorToDeadline/3)           #antall dager for frist forst testet for ledig tid
     currentDayInSearchCounter = 1
     currentDayInSearchInverter = 1
 
-    while currentDayInSearch != 5 and remainingWorkLengthInQuarters > 0:
+    while currentDayInSearch != daysPriorToDeadline+1 and remainingWorkLengthInQuarters > 0:
 
         quartersCurrentDayInSearch = [0] * (24 * 4)
         quartersCurrentDayInSearch[:(8 * 4)] = [1] * (8 * 4)

@@ -1,6 +1,8 @@
 import sys
 sys.path.append("../scraper")
 sys.path.append("../scheduler")
+sys.path.append("../owlbrain")
+from owlbrainV1 import *
 from calendarMethods import *
 from insertionMethods import *
 from scrapeForCourseLectureTimes import *
@@ -98,11 +100,9 @@ def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
 	eventColor = "4"
 	assignmentDetailList = []
 	assignmentIDs = getEntriesFromAssignmentStudentAllAssforStud(engine, connection,stringStudentID)
-	print assignmentIDs
 	for entries in assignmentIDs:
 		tempList = []
 		assignmentDetails = getEntryFromAssigmnentTable(engine, connection,entries[1])
-		print assignmentDetails
 		assignmentDetailList.append(assignmentDetails)
 		tittel = assignmentDetails[3]
   		startdato = assignmentDetails[1]
@@ -111,15 +111,20 @@ def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
   		sluttid = str(assignmentDetails[2])[0:3] + "05:00"
   		beskrivelse = assignmentDetails[3]
   		sted = "Studyplace"	
-  		insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor)
+  		#insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor)
   		time.sleep(2)
-#getassignmentDeadLineAndInsertIntoDatabase("000001")
-  	#for dl in assignmentDetailList:
-  		#eventsPriorToDeadline = getEventsDaysBack(dl[1],dl[2],5)
-  		#run hubroSchedulerHere
-  		#declare vars and insert events
+
+  	for dl in assignmentDetailList:
+  		eventsPriorToDeadline = getEventsDaysBack(dl[1],dl[2],3)
+  		studentInitialHours = int(getEntryFromAssignmentStudentInitialHoursForStudent(engine,connection,dl[0])[0][2])
+  		deadline = dl[1] + " " + dl[2]
+  		print deadline
+  		print studentInitialHours
+  		print eventsPriorToDeadline
+  		plannedEvents = OwlbrainScheduler(deadline,studentInitialHours,eventsPriorToDeadline,3)
+  		print plannedEvents
 def main(stringStudentID):
-	getLecturesAndInsertIntoCalendar(stringStudentID)
+	#getLecturesAndInsertIntoCalendar(stringStudentID,studentInitialHours)
 	getassignmentDeadLineAndInsertIntoDatabase(stringStudentID)
 main("000001")
 

@@ -202,6 +202,14 @@ def getEntriesFromAssignmentStudentAllAssforStud(engine, connection,stringStuden
 	selectLecture_course = select([assignment_course]).where(assignment_course.c.studentID == stringStudentID)
 	return list(connection.execute(selectLecture_course))
 
+def getEntryFromAssignmentStudentInitialHoursForStudent(engine, connection,stringAssignmentID):
+	engine = engine
+	connection = connection
+	metadata = MetaData()
+	assignment_course = Table('student_assignment', metadata, autoload=True , autoload_with=engine)
+	selectLecture_course = select([assignment_course]).where(assignment_course.c.assignmentID == stringAssignmentID)
+	return list(connection.execute(selectLecture_course))
+
 def getAllEntriesFromStudentTable(engine, connection):
 	engine = engine
 	connection = connection
