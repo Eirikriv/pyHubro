@@ -34,7 +34,9 @@ def OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents, daysP
 
         freeSlotsInCurrentDayInSearch = FindFreeSlots(quartersCurrentDayInSearch)[:]
 
-        if len(freeSlotsInCurrentDayInSearch[0]) > 0:
+        if not freeSlotsInCurrentDayInSearch:
+            None
+        else:
             for freeSlot in freeSlotsInCurrentDayInSearch[0]:
                 slotLength = freeSlotsInCurrentDayInSearch[1][freeSlotsInCurrentDayInSearch[0].index(freeSlot)]
                 if remainingWorkLengthInQuarters >= slotLength:
