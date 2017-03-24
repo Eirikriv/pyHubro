@@ -98,7 +98,7 @@ def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
 	engine = create_engine(URI)
 	connection = engine.connect()
 	eventColor = "4"
-	eventColorForWordSessions = "11"
+	eventColorForWordSessions = "6"
 	assignmentDetailList = []
 	assignmentIDs = getEntriesFromAssignmentStudentAllAssforStud(engine, connection,stringStudentID)
 	for entries in assignmentIDs:
@@ -121,6 +121,7 @@ def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
   		deadline = dl[1] + " " + dl[2]
   		plannedEvents = OwlbrainScheduler(deadline,studentInitialHours,eventsPriorToDeadline,6)
   		for suggestions in plannedEvents:
+			print suggestions
 			tittel = dl[3]
   			startdato = suggestions[2]
   			sluttdato = suggestions[2]
