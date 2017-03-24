@@ -117,9 +117,12 @@ def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
 
   	for dl in assignmentDetailList:
   		eventsPriorToDeadline = getEventsDaysBack(dl[1],dl[2],3)
+  		print eventsPriorToDeadline
   		studentInitialHours = int(getEntryFromAssignmentStudentInitialHoursForStudent(engine,connection,dl[0])[0][2])
   		deadline = dl[1] + " " + dl[2]
-  		plannedEvents = OwlbrainScheduler(deadline,studentInitialHours,eventsPriorToDeadline,6)
+  		print deadline
+  		print studentInitialHours
+  		plannedEvents = OwlbrainScheduler(deadline,studentInitialHours,eventsPriorToDeadline,5)
   		for suggestions in plannedEvents:
 			print suggestions
 			tittel = dl[3]
