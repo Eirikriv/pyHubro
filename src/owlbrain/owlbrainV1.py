@@ -34,15 +34,16 @@ def OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents, daysP
 
         freeSlotsInCurrentDayInSearch = FindFreeSlots(quartersCurrentDayInSearch)[:]
 
-        for freeSlot in freeSlotsInCurrentDayInSearch[0]:
-            slotLength = freeSlotsInCurrentDayInSearch[1][freeSlotsInCurrentDayInSearch[0].index(freeSlot)]
-            if remainingWorkLengthInQuarters >= slotLength:
-                remainingWorkLengthInQuarters -= slotLength
-                assignedWorkSlots.append(newWorkSlot(currentDateInSearch, freeSlot, slotLength))
-            elif remainingWorkLengthInQuarters > 0:
-                slotLength = remainingWorkLengthInQuarters
-                remainingWorkLengthInQuarters = 0
-                assignedWorkSlots.append(newWorkSlot(currentDateInSearch, freeSlot, slotLength))
+        if len(freeSlotsInCurrentDayInSearch[0]) > 0:
+            for freeSlot in freeSlotsInCurrentDayInSearch[0]:
+                slotLength = freeSlotsInCurrentDayInSearch[1][freeSlotsInCurrentDayInSearch[0].index(freeSlot)]
+                if remainingWorkLengthInQuarters >= slotLength:
+                    remainingWorkLengthInQuarters -= slotLength
+                    assignedWorkSlots.append(newWorkSlot(currentDateInSearch, freeSlot, slotLength))
+                elif remainingWorkLengthInQuarters > 0:
+                    slotLength = remainingWorkLengthInQuarters
+                    remainingWorkLengthInQuarters = 0
+                    assignedWorkSlots.append(newWorkSlot(currentDateInSearch, freeSlot, slotLength))
         #TODO: pick the longest free slot in a day first
         #TODO: put a buffer of a quarter before next events
 
