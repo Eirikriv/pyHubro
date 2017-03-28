@@ -114,7 +114,7 @@ def getassignmentDeadLineAndInsertIntoDatabase(stringStudentID):
   		sted = " "	
   		insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor)
   		time.sleep(4)
-
+	time.sleep(6)
   	for dl in assignmentDetailList:
   		eventsPriorToDeadline = getEventsDaysBack(dl[1],dl[2],3)
   		print eventsPriorToDeadline
