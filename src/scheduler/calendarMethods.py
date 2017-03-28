@@ -115,6 +115,6 @@ def insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,ste
   return True
 
 def getEventsDaysBack(date, time ,daysBack):
-  refreshToken = "1/I2bJkHp2xg0HHD176-8EdiJR4wQLZQp2D0EL7q1BNoo"
+  refreshToken = ""
   http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
   return getDayEvents(date,time,daysBack,http)
