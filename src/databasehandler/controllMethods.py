@@ -181,8 +181,8 @@ def demo1(stringStudentID):
 	getLecturesAndInsertIntoCalendar(stringStudentID)
 	time.sleep(4)
 	getassignmentDeadLineAndInsertIntoDatabase(stringStudentID)
-#demo1("000001")
+
 
 def demo2(stringStudentID):
 	insertOnlyPlannedEvents(stringStudentID)
-demo2("000001")
+
