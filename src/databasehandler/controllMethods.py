@@ -177,12 +177,3 @@ def insertOnlyPlannedEvents(stringStudentID):
   			insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColorForWordSessions)
   		time.sleep(4)
 
-def demo1(stringStudentID):
-	getLecturesAndInsertIntoCalendar(stringStudentID)
-	time.sleep(4)
-	getassignmentDeadLineAndInsertIntoDatabase(stringStudentID)
-
-
-def demo2(stringStudentID):
-	insertOnlyPlannedEvents(stringStudentID)
-
