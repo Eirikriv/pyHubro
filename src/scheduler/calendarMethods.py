@@ -108,8 +108,18 @@ def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivels
 #credentials = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
 #print(getDayEvents("2017-03-17","23:59:00","2",credentials))
 
+def checkIfHubroCalExist(service):
+  page_token = None
+  while True:
+    calendar_list = service.calendarList().list(pageToken=page_token).execute()
+    for calendar_list_entry in calendar_list['items']:
+      print calendar_list_entry['summary']
+    page_token = calendar_list.get('nextPageToken')
+    if not page_token:
+      break
+
 def insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted, colorID):
-  refreshToken = #Get token from database here
+  refreshToken = "1/I2bJkHp2xg0HHD176-8EdiJR4wQLZQp2D0EL7q1BNoo"
   http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
   createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorID,http)
   return True
