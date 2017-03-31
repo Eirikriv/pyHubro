@@ -72,5 +72,20 @@ def insertAnAssignmentIntoDatabase(engine, connection ,stringAssignmnentID,strin
 		print traceback.print_exc()
 	return returnValue
 
+def getALectureFromLectureTable(engine, connection,stringLectureID):
+	returnValue = False
+	try:
+		getEntryFromLectureTable(engine, connection,stringLectureID)
+		returnValue = True
+	except:
+		print traceback.print_exc()
+	return returnValue
 
-
+def checkIfAssignmentIsInAssignmentTable(engine,connection,stringAssignmentID):
+	returnValue = False
+	try:
+		getEntryFromAssigmnentTable(engine, connection,stringAssignmentID)
+		returnValue = True
+	except:
+		print traceback.print_exc()
+	return returnValue	

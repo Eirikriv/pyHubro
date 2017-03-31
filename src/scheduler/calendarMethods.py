@@ -154,6 +154,6 @@ def getEventsDaysBack(date, time ,daysBack):
   http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
   return getDayEvents(date,time,daysBack,http)
 
-def test():
-  insertEventToCal("dra til tokyo","2017-03-30","2017-03-30","08:30:00","10:00:00","goin on a trip hubro says","Verneas","6")
-test()
+# def test():
+#   insertEventToCal("dra til tokyo","2017-03-30","2017-03-30","08:30:00","10:00:00","goin on a trip hubro says","Verneas","6")
+# test()

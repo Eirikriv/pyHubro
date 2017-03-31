@@ -8,16 +8,6 @@ password = passwordHeroku
 URI = 'mysql://'+str(username)+':'+str(password)+'@us-cdbr-iron-east-04.cleardb.net/heroku_f8b7f102c73b268'
 
 
-def insertStudentIntoDatabase(engine, connection,stringStudentID,stringStudentName):
-	engine = engine
-	connection = connection
-	metadata = MetaData()
-	student = Table('student', metadata, autoload=True , autoload_with=engine)
-	ins = student.insert()
-	new_student = ins.values(studentID=stringStudentID,studentName=stringStudentName)
-	connection.execute(new_student)	
-
-
 def getEntryFromStudentTable(engine, connection,stringStudentId):
 	engine = engine
 	connection = connection
@@ -26,17 +16,6 @@ def getEntryFromStudentTable(engine, connection,stringStudentId):
 	selectStudent = select([student]).where(student.c.studentID == stringStudentId)
 	for row in connection.execute(selectStudent):
 		return row
-
-def insertStudent_courseIntoDatabase(engine, connection,stringStudentID,stringCourseID):
-	engine = engine
-	connection = connection
-	metadata = MetaData()
-	studentCourse = Table('student_course', metadata, autoload=True , autoload_with=engine)
-	#print(metadata.tables.keys())
-	ins = studentCourse.insert()
-	new_studentCourse = ins.values(studentID=stringStudentID,courseID=stringCourseID)
-	connection.execute(new_studentCourse)
-#insertStudent_courseIntoDatabase("0001","0001")
 
 def getEntriesFromStudent_courseTable(engine, connection,stringStudentId):
 	engine = engine
@@ -57,6 +36,7 @@ def insertACourseIntoDatabase(engine, connection,stringCourseID,stringCourseName
 	ins = course.insert()
 	new_course = ins.values(courseID=stringCourseID,courseName=stringCourseName)
 	connection.execute(new_course)
+	return stringCourseID
 #insertCourseIntoDatabase("0001","TDT4140")
 
 def getEntriesFromCourseTable(engine, connection,stringCourseId):
@@ -89,26 +69,14 @@ def getEntryFromAssigmnentTable(engine, connection,stringAssignmentID):
 		return row
 #print(getEntryFromAssignmnentTable("0001"))
 
-def getLastEntryFromAssignmentTable(engine, connection):
-	engine = engine
-	connection = connection
-	metadata = MetaData()
-	assignmnent = Table('assignment', metadata, autoload=True , autoload_with=engine)
-	selectAssignment=select([assignmnent])
-	result = connection.execute(selectAssignment)
-	result =list(result)
-	return result[-1]
-
 def insertLecturesIntoDatabase(engine, connection, stringLectureID,stringLectureDate,stringLectureStartTime,stringLectureEndTime,stringLectureDescription,stringLectureLocation):
 	engine = engine
 	connection = connection
 	metadata = MetaData()
 	lecture = Table('lecture', metadata, autoload=True , autoload_with=engine)
-	#print(metadata.tables.keys())
 	ins = lecture.insert()
 	new_lecture = ins.values(lectureID=stringLectureID,lectureDate=stringLectureDate,lectureStartTime=stringLectureStartTime,lectureEndTime=stringLectureEndTime,lectureDescription=stringLectureDescription,lectureLocation=stringLectureLocation)
 	connection.execute(new_lecture)
-#insertLectureIntoDatabase("0001","2017-01-01","08:15:00","10:00:00","Two hour lecture in Databases","R1")
 
 def getEntryFromLectureTable(engine, connection,stringLectureID):
 	engine = engine
@@ -118,17 +86,7 @@ def getEntryFromLectureTable(engine, connection,stringLectureID):
 	selectLecture = select([lecture]).where(lecture.c.lectureID == stringLectureID)
 	for row in connection.execute(selectLecture):
 		return row
-
-def getLastEntryFromLectureTable(engine, connection):
-	engine = engine
-	connection = connection
-	metadata = MetaData()
-	lecture = Table('lecture', metadata, autoload=True , autoload_with=engine)
-	selectLecture=select([lecture])
-	result = connection.execute(selectLecture)
-	result =list(result)
-	return result[-1]
-
+#got here in testing databaseclases
 def getEntriesFromLectureTable(engine, connection,stringLectureID):
 	engine = engine
 	connection = connection
