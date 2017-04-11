@@ -4,6 +4,7 @@ sys.path.append("../src/databasehandler")
 from
 
 import unittest    
+
 class massageItslearningDataTester(unittest.TestCase):
 
     def test_insertUserIntoDatabase_correctInsert(self):
