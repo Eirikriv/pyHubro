@@ -121,7 +121,6 @@ def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivels
 def checkIfHubroCalExist(service):
   page_token = None
   returnValue = None
-  #calID = ""
   while returnValue==None:
     calendar_list = service.calendarList().list(pageToken=page_token).execute()
     for calendar_list_entry in calendar_list['items']:
@@ -129,7 +128,6 @@ def checkIfHubroCalExist(service):
       if(calendar_list_entry['summary']=='hubro'):
         returnValue = calendar_list_entry['id']
         break
-        #calID = calendar_list_entry['id']
     page_token = calendar_list.get('nextPageToken')
     if not page_token:
       break
@@ -143,14 +141,14 @@ def createHubroCalendar(service):
   created_calendar = service.calendars().insert(body=calendar).execute()
   return created_calendar['id']
 
-def insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted, colorID):
-  refreshToken = "1/I2bJkHp2xg0HHD176-8EdiJR4wQLZQp2D0EL7q1BNoo"
+def insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted, colorID,refreshToken):
+  refreshToken = refreshToken #"1/I2bJkHp2xg0HHD176-8EdiJR4wQLZQp2D0EL7q1BNoo"
   http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
-  createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorID,http)
+  createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorID,http,refreshToken)
   return True
 
-def getEventsDaysBack(date, time ,daysBack):
-  refreshToken = ""
+def getEventsDaysBack(date, time ,daysBack,refreshToken):
+  refreshToken = refreshToken
   http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
   return getDayEvents(date,time,daysBack,http)
 

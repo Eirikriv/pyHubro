@@ -16,6 +16,7 @@ import time
 def getLecturesAndInsertIntoCalendar(stringStudentId):
 	engine = create_engine(URI)
 	connection = engine.connect()
+  refreshToken = getUserReffreshToken(engine, connection, stringStudentID)
   eventColor = "3"
   success = False
   try:
@@ -52,53 +53,23 @@ def getLecturesAndInsertIntoCalendar(stringStudentId):
   			    description = lectureDetails[0][2]
   			    location = lectureDetails[0][3]
             try:
-              insertEventToCal(title,startdate,endDate,startTime,endTime,description,location,eventColor)
+              insertEventToCal(title,startdate,endDate,startTime,endTime,description,location,eventColor,refreshToken)
               success = True
             except:
               None
     return success
 #getLecturesAndInsertIntoCalendar("000001")
 
-def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
-	engine = create_engine(URI)
-	connection = engine.connect()
-	eventColor = "4"
-	assignmentDetailList = []
-  success = False
-  try:
-    assignmentIDs = getEntriesFromAssignmentStudentAllAssforStud(engine, connection,stringStudentID)
-  except:
-    assignmentIDs=None
-  if(assignmentIDs==None):
-    return success
-  else:
-    for entries in assignmentIDs:
-      tempList = []
-      assignmentDetails = getEntryFromAssigmnentTable(engine, connection,entries[1])
-		  assignmentDetailList.append(assignmentDetails)
-		  tittel = assignmentDetails[3]
-  		startdato = assignmentDetails[1]
-  		sluttdato = assignmentDetails[1]
-  		starttid = assignmentDetails[2]
-  		sluttid = str(assignmentDetails[2])[0:5] + ":59"
-  		beskrivelse = assignmentDetails[3]
-  		sted = " "	
-  		try:
-        insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor)
-        success = True
-      except:
-        None
-    useHubroToFindTimeSlotsForAssignments(assignmentDetails)
-    return success 
-
-
-def useHubroToFindTimeSlotsForAssignments(assignmentDetails,daysBack):
+def useHubroToFindTimeSlotsForAssignments(assignmentDetails,daysBack,refreshToken):
+  engine = create_engine(URI)
+  connection = engine.connect()
   eventColorForWordSessions = "6"
   success = False
+  refreshToken = 
   for dl in assignmentDetailList:
     try:
-      eventsPriorToDeadline = getEventsDaysBack(dl[1],dl[2],daysBack)
-  	  studentInitialHours = int(getEntryFromAssignmentStudentInitialHoursForStudent(engine,connection,dl[0])[0][2])
+      eventsPriorToDeadline = getEventsDaysBack(dl[1],dl[2],daysBack,refreshToken)
+      studentInitialHours = int(getEntryFromAssignmentStudentInitialHoursForStudent(engine,connection,dl[0])[0][2])
     except:
       eventsPriorToDeadline = None
       studentInitialHours = None
@@ -115,48 +86,41 @@ def useHubroToFindTimeSlotsForAssignments(assignmentDetails,daysBack):
         endTime = suggestions[1]
         description = dl[3]
         location = "Your favorite workplace"
-  		  insertEventToCal(title,startDate,endDate,startTime,endTime,description,location,eventColorForWordSessions)
+        insertEventToCal(title,startDate,endDate,startTime,endTime,description,location,eventColorForWordSessions,refreshToken)
         success = True
       return success
-      
-def insertOnlyPlannedEvents(stringStudentID):
+
+def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
 	engine = create_engine(URI)
 	connection = engine.connect()
+  refreshToken = getUserReffreshToken(engine, connection,stringStudentID)
 	eventColor = "4"
-	eventColorForWordSessions = "6"
 	assignmentDetailList = []
-	assignmentIDs = getEntriesFromAssignmentStudentAllAssforStud(engine, connection,stringStudentID)
-	for entries in assignmentIDs:
-		tempList = []
-		assignmentDetails = getEntryFromAssigmnentTable(engine, connection,entries[1])
-		assignmentDetailList.append(assignmentDetails)
-		tittel = assignmentDetails[3]
+  success = False
+  try:
+    assignmentIDs = getEntriesFromAssignmentStudentAllAssforStud(engine,connection,stringStudentID)
+  except:
+    assignmentIDs=None
+  if(assignmentIDs==None):
+    return success
+  else:
+    for entries in assignmentIDs:
+      tempList = []
+      assignmentDetails = getEntryFromAssigmnentTable(engine,connection,entries[1])
+		  assignmentDetailList.append(assignmentDetails)
+		  tittel = assignmentDetails[3]
   		startdato = assignmentDetails[1]
   		sluttdato = assignmentDetails[1]
   		starttid = assignmentDetails[2]
-  		sluttid = str(assignmentDetails[2])[0:3] + "05:00"
+  		sluttid = str(assignmentDetails[2])[0:5] + ":59"
   		beskrivelse = assignmentDetails[3]
   		sted = " "	
-  		#insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor)
-  		#time.sleep(4)
+  		try:
+        insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor,refreshToken)
+        success = True
+      except:
+        None
+    useHubroToFindTimeSlotsForAssignments(assignmentDetails,refreshToken)
+    return success 
 
-  	for dl in assignmentDetailList:
-  		eventsPriorToDeadline = getEventsDaysBack(dl[1],dl[2],3)
-  		print eventsPriorToDeadline
-  		studentInitialHours = int(getEntryFromAssignmentStudentInitialHoursForStudent(engine,connection,dl[0])[0][2])
-  		deadline = dl[1] + " " + dl[2]
-  		print deadline
-  		print studentInitialHours
-  		plannedEvents = OwlbrainScheduler(deadline,studentInitialHours,eventsPriorToDeadline,5)
-  		print plannedEvents
-  		for suggestions in plannedEvents:
-			print suggestions
-			tittel = dl[3]
-  			startdato = suggestions[2]
-  			sluttdato = suggestions[2]
-  			starttid = suggestions[0]
-  			sluttid = suggestions[1]
-  			beskrivelse = dl[3]
-  			sted = "Your favorite studyplace"
-  			insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColorForWordSessions)
-  		time.sleep(4)
+
