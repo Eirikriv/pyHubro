@@ -86,7 +86,7 @@ def getEntryFromLectureTable(engine, connection,stringLectureID):
 	selectLecture = select([lecture]).where(lecture.c.lectureID == stringLectureID)
 	for row in connection.execute(selectLecture):
 		return row
-#got here in testing databaseclases
+
 def getEntriesFromLectureTable(engine, connection,stringLectureID):
 	engine = engine
 	connection = connection
@@ -178,3 +178,10 @@ def getAllEntriesFromStudentTable(engine, connection):
 	student = Table('student', metadata, autoload=True , autoload_with=engine)
 	return list(Session.query(student).all())
 
+def getEntryFromStudentSetting(engine, connection,stringStudentID):
+	engine = engine
+	connection = connection
+	metadata = MetaData()
+	student_settings = Table('student_settings', metadata, autoload=True , autoload_with=engine)
+	select_student_settings = select([student_settings]).where(student_settings.c.studentID == stringStudentID)
+	return list(connection.execute(select_student_settings))

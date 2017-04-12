@@ -123,4 +123,15 @@ def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
     useHubroToFindTimeSlotsForAssignments(assignmentDetails,refreshToken)
     return success 
 
+def checkStudentSettingsAndInsertLecAndOrAssignments(stringStudentID):
+  engine = create_engine(URI)
+  connection = engine.connect()
+  studentEntry = getStudentFromStudentTable(stringStudentID)
+  if(studentEntry[2]=="1"):
+    getassignmentDeadLineAndInsertIntoCalendar(stringStudentID)
+  elif(studentEntry[3]=="1"):
+    useHubroToFindTimeSlotsForAssignments(stringStudentID)
+  else:
+    print "User does not want hubro to update schedual for assignments and lectures"
+
 
