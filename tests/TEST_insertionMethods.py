@@ -5,14 +5,16 @@ from
 
 import unittest    
 
-class massageItslearningDataTester(unittest.TestCase):
+class insertionMethodTester(unittest.TestCase):
 
     def test_insertUserIntoDatabase_correctInsert(self):
         userName="Eirik Rivedal"
         userID= "1400"
         insertUserIntoDatabase(userID,userName)
         self.assertEqual(getEntryFromUserTable(userID),(userID, userName))
+    
     def test_insertLectureIntoDatabase_correctInsert(self):
+        
         lectureID="0008"
         lectureDate= "2017-12-20"
         lectureStartTime= "08:15:00"
@@ -51,5 +53,9 @@ class massageItslearningDataTester(unittest.TestCase):
         correctReturnValue= False
         stringCourseID = "TDT4140"
         self.assertEqual(getValueFromCourseTable(engine,connection,stringCourseID),correctReturnValue)     
-  
+    
+    def test_getStudentFromStudentTable(self):
+        correctReturnValue= False
+        stringStudentID = "TDT4140"
+        self.assertEqual(getStudentFromStudentTable(engine,connection,stringCourseID),correctReturnValue)     
  

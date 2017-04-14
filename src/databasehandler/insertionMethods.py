@@ -2,26 +2,17 @@ from sqlalchemy import create_engine, MetaData, Table, select
 from connectHerokuMYSQL import *
 import traceback
 
-def removeAtgmailcomFromString(gmail):
-	if(gmail.find("@")):
-		return gmail.split("@")[0]
-	else:
-		return gmail
-
-def insertNewStudentIntoDatabase(stringUniqueGmail,stringStudentName):
-	returnValue =False
-	gmailWithoutLastPart = removeAtgmailcomFromString(stringUniqueGmail)
-	try:
-		insertStudentIntoDatabase(gmailWithoutLastPart,stringStudentName)
-		returnValue = True
-	except:
-		print traceback.print_exc()
-	return returnValue
 
 def insertCourseIntoDatabase(engine, connection,stringCourseID,stringCourseName):
 	returnValue =False
 	try:
-		insertACourseIntoDatabase(engine, connection, stringCourseID,stringCourseName)
+		engine = engine
+		connection = connection
+		metadata = MetaData()
+		course = Table('course', metadata, autoload=True , autoload_with=engine)
+		ins = course.insert()
+		new_course = ins.values(courseID=stringCourseID,courseName=stringCourseName)
+		connection.execute(new_course)
 		returnValue = True
 	except:
 		print traceback.print_exc()
@@ -30,25 +21,28 @@ def insertCourseIntoDatabase(engine, connection,stringCourseID,stringCourseName)
 def insertLectureIntoDatabase(engine, connection, stringLectureID,stringLectureDate,stringLectureStartTime,stringLectureEndTime,stringDescription,stringWhere):
 	returnValue = False
 	try:
-		insertLecturesIntoDatabase(engine, connection, stringLectureID,stringLectureDate,stringLectureStartTime,stringLectureEndTime,stringDescription,stringWhere)
-		returnValue=True
+		engine = engine
+		connection = connection
+		metadata = MetaData()
+		lecture = Table('lecture', metadata, autoload=True , autoload_with=engine)
+		ins = lecture.insert()
+		new_lecture = ins.values(lectureID=stringLectureID,lectureDate=stringLectureDate,lectureStartTime=stringLectureStartTime,lectureEndTime=stringLectureEndTime,lectureDescription=stringLectureDescription,lectureLocation=stringLectureLocation)
+		connection.execute(new_lecture)
 	except:	
 		print traceback.print_exc()
 	return returnValue
 
-def insertStudentCourseIntoDatabase(stringUniqueGmail,course): #Requires a pure list of courses atm
-	returnValue = False
-	try:
-		insertStudent_courseIntoDatabase(stringUniqueGmail,course)
-		returnValue=True
-	except:
-		print traceback.print_exc()
-	return returnValue
 		
 def insertLectureCourseIntoDatabase(engine, connection, stringLectureID,stringCourseID):
 	returnValue =False
 	try:
-		insertLecture_courseIntoDatabase(engine,connection,stringLectureID,stringCourseID)
+		engine = engine
+		connection = connection
+		metadata = MetaData()
+		lecture_course = Table('lecture_course', metadata, autoload=True , autoload_with=engine)
+		ins = lecture_course.insert()
+		new_lecture_course = ins.values(lectureID=stringLectureID,courseID=stringCourseID)
+		connection.execute(new_lecture_course)
 		returnValue = True
 	except:
 		print traceback.print_exc()
@@ -57,8 +51,12 @@ def insertLectureCourseIntoDatabase(engine, connection, stringLectureID,stringCo
 def getValueFromCourseTable(engine, connection, stringCourseID):
 	returnValue = False
 	try:
-		getEntriesFromCourseTable(engine, connection, stringCourseID)
-		returnValue = True
+		engine = engine
+		connection = connection
+		metadata = MetaData()
+		course = Table('course', metadata, autoload=True , autoload_with=engine)
+		selectCourse = select([course]).where(course.c.courseID == stringCourseId)
+	    returnValue = list(connection.execute(selectCourse))
 	except:
 		print traceback.print_exc()
 	return returnValue
@@ -66,7 +64,13 @@ def getValueFromCourseTable(engine, connection, stringCourseID):
 def insertAnAssignmentIntoDatabase(engine, connection ,stringAssignmnentID,stringAssignmentDate,stringAssignmentTime,stringAssignmentDescription):
 	returnValue = False
 	try:
-		insertAssignmentIntoDatabase(engine, connection, stringAssignmnentID,stringAssignmentDate,stringAssignmentTime,stringAssignmentDescription)
+		engine = engine
+		connection = connection
+		metadata = MetaData()
+		assignmnent = Table('assignment', metadata, autoload=True , autoload_with=engine)
+		ins = assignmnent.insert()
+		new_assignmnent = ins.values(assignmentID=stringAssigmentID,assignmnentDate=stringAssignmentDate,assignmnentTime=stringAssignmentTime,assignmentDescription=stringAssignmentDescription)
+		connection.execute(new_assignmnent)
 		returnValue = True
 	except:
 		print traceback.print_exc()
@@ -89,3 +93,21 @@ def checkIfAssignmentIsInAssignmentTable(engine,connection,stringAssignmentID):
 	except:
 		print traceback.print_exc()
 	return returnValue	
+
+def getStudentFromStudentTable(engine, connection, stringCourseID):
+	returnValue = False
+	try:
+		getEntryFromStudentTable(engine, connection, stringCourseID)
+		returnValue = True
+	except:
+		print traceback.print_exc()
+	return returnValue
+
+def getStudent_settingFromStudentTable(engine, connection, stringStudentID):
+	returnValue = False
+	try:
+		getEntryFromStudentSetting(engine, connection, stringStudentID)
+		returnValue = True
+	except:
+		print traceback.print_exc()
+	return returnValue
