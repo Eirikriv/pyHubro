@@ -97,6 +97,7 @@ def scrapeBlackBoard(sleepTimer):
         display.stop()
         traceback.print_exc()
         return allDeliveriesList
+
 def isNumber(s):
     try:
         float(s)

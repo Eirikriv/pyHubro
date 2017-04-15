@@ -2,6 +2,10 @@ import sys
 import unittest
 
 sys.path.append("../src/controller")
+sys.path.append("../src/scraper")
+sys.path.append("../src/scheduler")
+sys.path.append("../src/owlbrain")
+sys.path.append("../src/databasehandler")
 from scrapeController import *
 
 class calendarControllerTester(unittest.TestCase):
@@ -10,22 +14,14 @@ class calendarControllerTester(unittest.TestCase):
     	inputToTest = ["","012","!=V!FG","E",None]
     	correctOutput = None
     	for entry in inputToTest:
-    		self.assertEqual(getLecturesAndInsertIntoCalendar(entry)[2],correctOutput)
-    def test_scanForLecturesInCourseAndInsert__Correct_Input(self):
-    	inputToTest = []#Insert correct coursecode, year and spring here 
-    	correctOutput = 0
-    	for entry in inputToTest:
-    		self.assertEqual(getLecturesAndInsertIntoCalendar(entry)[1],correctOutput)
+    		self.assertEqual(scanForLecturesInCourseAndInsert(entry,"2017","0")[2],correctOutput)
     
     #Testing the secound function in scrapeController
     def test_scanForAssignmentInACourseAndInsert_Wrong_Input(self):
         inputToTest = ["","012","!=V!FG","E",None]
-        correctOutput = 0
+        correctOutput = None
         for entry in inputToTest:
-            self.assertEqual(getLecturesAndInsertIntoCalendar(entry)[0],correctOutput)
+            self.assertEqual(scanForAssignmentInACourseAndInsert(entry),correctOutput)
     
-    def test_scanForAssignmentInACourseAndInsert__Correct_Input(self):
-        inputToTest = []#Insert correct coursecode, year and spring here 
-        correctOutput = 0 
-        for entry in inputToTest:
-            self.assertEqual(getLecturesAndInsertIntoCalendar(entry)[1],correctOutput)
+if __name__ == '__main__':
+    unittest.main()

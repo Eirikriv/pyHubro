@@ -85,6 +85,11 @@ class massageItslearningDataTester(unittest.TestCase):
         for entry in inputToTest:
             self.assertEqual(getAllEntriesFromStudentTable(engine,connection,inputToTest[0]),["TDT4140001","TDT4140"])
 
+    def test_getEntryFromStudentSetting_Correct_Input(self):
+        inputToTest = ""#Find correct studentIDs to test
+        correctOutput = #list studentSettings
+        self.assertEqual(getEntryFromStudentSetting(engine,connection,inputToTest[0]),["TDT4140001","TDT4140"])
+    
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, MetaData, Table, select
-from connectHerokuMYSQL import *
+from databaseUtils import *
 import traceback
 
 
@@ -28,6 +28,7 @@ def insertLectureIntoDatabase(engine, connection, stringLectureID,stringLectureD
 		ins = lecture.insert()
 		new_lecture = ins.values(lectureID=stringLectureID,lectureDate=stringLectureDate,lectureStartTime=stringLectureStartTime,lectureEndTime=stringLectureEndTime,lectureDescription=stringLectureDescription,lectureLocation=stringLectureLocation)
 		connection.execute(new_lecture)
+		returnValue = True
 	except:	
 		print traceback.print_exc()
 	return returnValue
@@ -56,7 +57,7 @@ def getValueFromCourseTable(engine, connection, stringCourseID):
 		metadata = MetaData()
 		course = Table('course', metadata, autoload=True , autoload_with=engine)
 		selectCourse = select([course]).where(course.c.courseID == stringCourseId)
-	    returnValue = list(connection.execute(selectCourse))
+		returnValue = list(connection.execute(selectCourse))
 	except:
 		print traceback.print_exc()
 	return returnValue
@@ -79,7 +80,12 @@ def insertAnAssignmentIntoDatabase(engine, connection ,stringAssignmnentID,strin
 def getALectureFromLectureTable(engine, connection,stringLectureID):
 	returnValue = False
 	try:
-		getEntryFromLectureTable(engine, connection,stringLectureID)
+		engine = engine
+		connection = connection
+		metadata = MetaData()
+		lecture = Table('lecture', metadata, autoload=True , autoload_with=engine)
+		selectLecture = select([lecture]).where(lecture.c.lectureID == stringLectureID)
+		returnValue = connection.execute(selectLecture)
 		returnValue = True
 	except:
 		print traceback.print_exc()
@@ -88,8 +94,12 @@ def getALectureFromLectureTable(engine, connection,stringLectureID):
 def checkIfAssignmentIsInAssignmentTable(engine,connection,stringAssignmentID):
 	returnValue = False
 	try:
-		getEntryFromAssigmnentTable(engine, connection,stringAssignmentID)
-		returnValue = True
+		engine = engine
+		connection = connection
+		metadata = MetaData()
+		assignmnent = Table('assignment', metadata, autoload=True , autoload_with=engine)
+		selectAssignmnent = select([assignmnent]).where(assignmnent.c.assignmentID == stringAssignmentID)
+		returnValue =  list(connection.execute(selectAssignmnent))
 	except:
 		print traceback.print_exc()
 	return returnValue	
@@ -97,8 +107,12 @@ def checkIfAssignmentIsInAssignmentTable(engine,connection,stringAssignmentID):
 def getStudentFromStudentTable(engine, connection, stringCourseID):
 	returnValue = False
 	try:
-		getEntryFromStudentTable(engine, connection, stringCourseID)
-		returnValue = True
+		engine = engine
+		connection = connection
+		metadata = MetaData()
+		student = Table('student', metadata, autoload=True , autoload_with=engine)
+		selectStudent = select([student]).where(student.c.studentID == stringStudentId)
+		returnValue = list(connection.execute(selectStudent))
 	except:
 		print traceback.print_exc()
 	return returnValue
@@ -106,8 +120,12 @@ def getStudentFromStudentTable(engine, connection, stringCourseID):
 def getStudent_settingFromStudentTable(engine, connection, stringStudentID):
 	returnValue = False
 	try:
-		getEntryFromStudentSetting(engine, connection, stringStudentID)
-		returnValue = True
+		engine = engine
+		connection = connection
+		metadata = MetaData()
+		student_settings = Table('student_settings', metadata, autoload=True , autoload_with=engine)
+		select_student_settings = select([student_settings]).where(student_settings.c.studentID == stringStudentID)
+		returnValue = list(connection.execute(select_student_settings))
 	except:
 		print traceback.print_exc()
 	return returnValue

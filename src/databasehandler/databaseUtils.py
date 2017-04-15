@@ -14,8 +14,7 @@ def getEntryFromStudentTable(engine, connection,stringStudentId):
 	metadata = MetaData()
 	student = Table('student', metadata, autoload=True , autoload_with=engine)
 	selectStudent = select([student]).where(student.c.studentID == stringStudentId)
-	for row in connection.execute(selectStudent):
-		return row
+	return list(connection.execute(selectStudent))
 
 def getEntriesFromStudent_courseTable(engine, connection,stringStudentId):
 	engine = engine
@@ -36,7 +35,7 @@ def insertACourseIntoDatabase(engine, connection,stringCourseID,stringCourseName
 	ins = course.insert()
 	new_course = ins.values(courseID=stringCourseID,courseName=stringCourseName)
 	connection.execute(new_course)
-	return stringCourseID
+	
 #insertCourseIntoDatabase("0001","TDT4140")
 
 def getEntriesFromCourseTable(engine, connection,stringCourseId):
@@ -65,8 +64,7 @@ def getEntryFromAssigmnentTable(engine, connection,stringAssignmentID):
 	metadata = MetaData()
 	assignmnent = Table('assignment', metadata, autoload=True , autoload_with=engine)
 	selectAssignmnent = select([assignmnent]).where(assignmnent.c.assignmentID == stringAssignmentID)
-	for row in connection.execute(selectAssignmnent):
-		return row
+	return list(connection.execute(selectAssignmnent))
 #print(getEntryFromAssignmnentTable("0001"))
 
 def insertLecturesIntoDatabase(engine, connection, stringLectureID,stringLectureDate,stringLectureStartTime,stringLectureEndTime,stringLectureDescription,stringLectureLocation):
@@ -84,8 +82,7 @@ def getEntryFromLectureTable(engine, connection,stringLectureID):
 	metadata = MetaData()
 	lecture = Table('lecture', metadata, autoload=True , autoload_with=engine)
 	selectLecture = select([lecture]).where(lecture.c.lectureID == stringLectureID)
-	for row in connection.execute(selectLecture):
-		return row
+	return connection.execute(selectLecture)
 
 def getEntriesFromLectureTable(engine, connection,stringLectureID):
 	engine = engine

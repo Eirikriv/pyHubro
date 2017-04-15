@@ -15,17 +15,25 @@ import time
 def scanForLecturesInCourseAndInsert(courseCode, year, if_spring_set_0_if_fall_set_1_str):
 	counter = 0
 	errorCounter = 0
-	engine = create_engine(URI)
-	connection = engine.connect()
+	try:
+		engine = create_engine(URI)
+		connection = engine.connect()
+	except:
+		engine = None
+		connection = None
 	try:
 		lectures , courseCode = scrapeNtnuCourseWebsites(courseCode)
 		lectureTimes = readCourseReturnAllLectureExersiseEvents(lectures, courseCode, year)
 	except:
-		Lectures = None
-	uniqueLectureString = courseCode+year+if_spring_set_0_if_fall_set_1_str+"000"
+		lectures = None
+		lectureTimes = None
+	if(courseCode!=None):
+		uniqueLectureString = courseCode+year+if_spring_set_0_if_fall_set_1_str+"000"
+	else:
+		uniqueLectureString = None
 	if(getALectureFromLectureTable(engine, connection,uniqueLectureString)):
 		print("Lectures for that course is already in database")
-	else:
+	elif(lectures and lectureTimes != None):
 		if(not getValueFromCourseTable(engine, connection, courseCode)):
 			insertCourseIntoDatabase(engine, connection,courseCode, courseCode)
 		for types in lectureTimes:
@@ -54,13 +62,15 @@ def scanForLecturesInCourseAndInsert(courseCode, year, if_spring_set_0_if_fall_s
 					insertLectureCourseIntoDatabase(engine,connection,lectureID,courseCode)
 				else:
 					errorCounter += 1 
-		return counter, errorCounter , Lectures
+	return (counter, errorCounter, lectures)
 #scanForLecturesInCourseAndInsert("TDT4140", "2017" , "0")
-
 def scanForAssignmentInACourseAndInsert(courseCodeToScanFor):
-	formScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
-	engine = create_engine(URI)
-	connection = engine.connect()
+	try:
+		formScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
+		engine = create_engine(URI)
+		connection = engine.connect()
+	except:
+		return None
 	counter = 0
 	errorCounter = 0
 	for assigment in fromScrape:

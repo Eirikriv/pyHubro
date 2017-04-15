@@ -1,34 +1,34 @@
 import sys
 sys.path.append("../src/databasehandler")
-
-from
-
+from insertionMethods import *
 import unittest    
 
 class insertionMethodTester(unittest.TestCase):
-
-    def test_insertUserIntoDatabase_correctInsert(self):
-        userName="Eirik Rivedal"
-        userID= "1400"
-        insertUserIntoDatabase(userID,userName)
-        self.assertEqual(getEntryFromUserTable(userID),(userID, userName))
     
+    engine = None
+    connection = None
+    try:
+        engine = create_engine(URI)
+        connection = engine.connect()
+    except:
+        None
+
+
     def test_insertLectureIntoDatabase_correctInsert(self):
-        
+        correctReturnValue= False
         lectureID="0008"
         lectureDate= "2017-12-20"
         lectureStartTime= "08:15:00"
         lectureEndTime ="10:00:00"
         lectureDescription="Lecture in TDT 4140"
         lectureLocation="R1"
-        insertLectureIntoDatabase(lectureID,lectureDate,lectureStartTime,lectureEndTime,lectureDescription,lectureLocation)
-        self.assertEqual(getEntryFromLectureTable(lectureID),(lectureID, lectureDate, lectureDescription, lectureLocation, lectureStartTime,lectureEndTime))
+        self.assertEqual(insertLectureIntoDatabase(insertionMethodTester.engine,insertionMethodTester.connection,lectureID,lectureDate,lectureStartTime,lectureEndTime,lectureDescription,lectureLocation),correctReturnValue)
 
     def test_insertCourseIntoDatabase_correctInput(self):
         correctReturnValue= False
         stringCourseID = "TDT4140"
         stringCourseName = "TDT4140"
-        self.assertEqual(insertCourseIntoDatabase(stringCourseID, stringCourseName),correctReturnValue)
+        self.assertEqual(insertCourseIntoDatabase(insertionMethodTester.engine,insertionMethodTester.connection,stringCourseID, stringCourseName),correctReturnValue)
     
     def test_insertAnAssignmentIntoDatabase_correctInput(self):
         correctReturnValue= False
@@ -36,26 +36,38 @@ class insertionMethodTester(unittest.TestCase):
         stringAssignmnentDate = "2017-03-22"
         stringAssignmnentTime = "23:59:00" 
         stringAssignmentDescription = "Sprint Delivery 3 PU"
-        self.assertEqual(insertAnAssignmentIntoDatabase(engine,connection,stringAssignmnentID, stringAssignmnentDate,stringAssignmnentTime,stringAssignmentDescription),correctReturnValue)        
-
-    def test_insertLectureIntoDatabase_correctInput(self):
-        correctReturnValue= False
-        stringLectureID = "TDT4140"
-        stringLectureDate = "2017-03-22"
-        stringLectureStartTime = "08:15:00" 
-        stringLectureEndTime = "10:00:00"
-        stringDescription ="PU lecture"
-        stringWhere  = "R1"
-        self.assertEqual(insertLectureIntoDatabase(engine,connection,stringLectureID, stringLectureDate,stringLectureStartTime,stringLectureEndTime,stringDescription,stringWhere),correctReturnValue)        
+        self.assertEqual(insertAnAssignmentIntoDatabase(insertionMethodTester.engine,insertionMethodTester.connection,stringAssignmnentID, stringAssignmnentDate,stringAssignmnentTime,stringAssignmentDescription),correctReturnValue)        
     
+    def test_insertLectureCourseIntoDatabase_correctInsert(self):
+        correctReturnValue= False
+        lectureID = "0008"
+        courseID = "TDT4100" 
+        self.assertEqual(insertLectureCourseIntoDatabase(insertionMethodTester.engine,insertionMethodTester.connection,lectureID,courseID),correctReturnValue)
 
     def test_getValueFromCourseTable_correctInput(self):
         correctReturnValue= False
         stringCourseID = "TDT4140"
-        self.assertEqual(getValueFromCourseTable(engine,connection,stringCourseID),correctReturnValue)     
+        self.assertEqual(getValueFromCourseTable(insertionMethodTester.engine,insertionMethodTester.connection,stringCourseID),correctReturnValue)     
     
-    def test_getStudentFromStudentTable(self):
+    def test_getALectureFromLectureTable_correctInput(self):
         correctReturnValue= False
-        stringStudentID = "TDT4140"
-        self.assertEqual(getStudentFromStudentTable(engine,connection,stringCourseID),correctReturnValue)     
- 
+        stringLectureID = "TDT4140001"
+        self.assertEqual(getALectureFromLectureTable(insertionMethodTester.engine,insertionMethodTester.connection,stringLectureID),correctReturnValue)     
+
+    def test_getValueFromCourseTable_correctInput(self):
+        correctReturnValue= False
+        stringCourseID = "TDT4140"
+        self.assertEqual(getValueFromCourseTable(insertionMethodTester.engine,insertionMethodTester.connection,stringCourseID),correctReturnValue)     
+    
+    def test_getStudentFromStudentTable_correctInput(self):
+        correctReturnValue= False
+        stringStudentID = "0129124"
+        self.assertEqual(getStudentFromStudentTable(insertionMethodTester.engine,insertionMethodTester.connection,stringStudentID),correctReturnValue)     
+
+    def test_getStudent_settingFromStudentTable_correctInput(self):
+        correctReturnValue= False
+        stringStudentID = "0129124"
+        self.assertEqual(getStudent_settingFromStudentTable(insertionMethodTester.engine,insertionMethodTester.connection,stringStudentID),correctReturnValue)     
+
+if __name__ == '__main__':
+    unittest.main()  

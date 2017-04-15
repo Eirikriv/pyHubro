@@ -22,20 +22,9 @@ try:
 except ImportError:
     flags = None
 sys.path.append("../databasehandler")
-from connectHerokuMYSQL import getAllEntriesFromStudentTable
+from databaseUtils import getAllEntriesFromStudentTable
 from clientID_clientSecret import CLIENT_ID , CLIENT_SECRET
 
-#returns a List of lists [[userid,refreshToken]]
-def getAllUserReffreshTokens():
-	returnList =[]
-
-	studententries = getAllEntriesFromStudentTable()
-	for students in studententries:
-		tempList=[]
-		tempList.append(students[0])
-		tempList.append(students[4])
-		returnList.append(tempList)
-	return returnList
 
 def ofsetDateByANumberOfDays(dateYYYYMMDD, daysoffset): #"-" between YYYY-DD, negative day brings you backvards in time
   offsetDate = ""
@@ -57,6 +46,8 @@ def authorise(clientID,clientSecret,refreshToken):
 	return http
 
 def getDayEvents(date, time ,daysBack,http):
+  listeMedEvents=False
+  try:
     daysBack = int(daysBack)
     daysBack =  -daysBack-1
     service = discovery.build('calendar', 'v3', http=http)
@@ -77,42 +68,48 @@ def getDayEvents(date, time ,daysBack,http):
         end = event['end'].get('dateTime', event['end'].get('date'))
         appendString = start[0:19] +'EB' + end[0:19]
         listeMedEvents.append(appendString)
-    return listeMedEvents
-
+  except:
+    None
+  return listeMedEvents
 def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorId,http):
-    http = http
-    service = discovery.build('calendar', 'v3', http=http)
-    calId=""
-    if beskrivelse==None:
-    	beskrivelse=""
-    if sted==None:
-      sted=""
-    event = {
-      'summary': tittel,
-      'location': sted,
-      'description': beskrivelse,
-      'colorId' : colorId,
-      'start': {
-        'dateTime': startdato+"T"+starttid,
-        'timeZone': 'Europe/Oslo',
-      },
-      'end': {
-        'dateTime': sluttdato+"T"+sluttid,
-        'timeZone': 'Europe/Oslo',
-      },
-      'reminders': {
-        'useDefault': True,#Reminder not implemented yet
-      },
-    }
-    calId = checkIfHubroCalExist(service)
-    if(calId!=None):
+    returnValue = False
+    try:
+      http = http
+      service = discovery.build('calendar', 'v3', http=http)
+      calId=""
+      if beskrivelse==None:
+      	beskrivelse=""
+      if sted==None:
+        sted=""
+      event = {
+        'summary': tittel,
+        'location': sted,
+        'description': beskrivelse,
+        'colorId' : colorId,
+        'start': {
+          'dateTime': startdato+"T"+starttid,
+          'timeZone': 'Europe/Oslo',
+        },
+        'end': {
+          'dateTime': sluttdato+"T"+sluttid,
+          'timeZone': 'Europe/Oslo',
+        },
+        'reminders': {
+          'useDefault': True,#Reminder not implemented yet
+        },
+      }
+      calId = checkIfHubroCalExist(service)
+      if(calId!=None):
+        None
+      else:
+        calId = createHubroCalendar(service)
+        print(calId)
+      time.sleep(2)
+      event = service.events().insert(calendarId=calId, body=event).execute() #executes the current event
+      returnValue = True
+    except:
       None
-    else:
-      calId = createHubroCalendar(service)
-      print(calId)
-    time.sleep(2)
-    event = service.events().insert(calendarId=calId, body=event).execute() #executes the current event
-
+    return returnValue
 #refreshToken = "1/I2bJkHp2xg0HHD176-8EdiJR4wQLZQp2D0EL7q1BNoo"
 #print(refreshToken)
 #credentials = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
