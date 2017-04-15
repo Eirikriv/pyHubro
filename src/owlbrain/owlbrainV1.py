@@ -2,6 +2,10 @@
 import unicodedata
 from datetime import datetime, timedelta
 
+#TODO daysPriorToDeadline
+#Lag en funksjon som finner dagen i dag (daytime.current) og sett antall dagertil
+#saa mange dager det er mellom current og deadline
+
 def OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents, daysPriorToDeadline):
 
     assignmentDeadline = datetime.strptime(assignmentDeadline, '%Y-%m-%d %H:%M:%S')

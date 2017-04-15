@@ -15,26 +15,16 @@ from googleapiclient.discovery import build
 from oauth2client.client import GoogleCredentials
 from oauth2client.client import AccessTokenCredentials
 from oauth2client import client, GOOGLE_TOKEN_URI, GOOGLE_REVOKE_URI
+import time
 try:
     import argparse
     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
 except ImportError:
     flags = None
 sys.path.append("../databasehandler")
-from connectHerokuMYSQL import getAllEntriesFromStudentTable
+from databaseUtils import getAllEntriesFromStudentTable
 from clientID_clientSecret import CLIENT_ID , CLIENT_SECRET
 
-#returns a List of lists [[userid,refreshToken]]
-def getAllUserReffreshTokens():
-	returnList =[]
-
-	studententries = getAllEntriesFromStudentTable()
-	for students in studententries:
-		tempList=[]
-		tempList.append(students[0])
-		tempList.append(students[4])
-		returnList.append(tempList)
-	return returnList
 
 def ofsetDateByANumberOfDays(dateYYYYMMDD, daysoffset): #"-" between YYYY-DD, negative day brings you backvards in time
   offsetDate = ""
@@ -56,6 +46,8 @@ def authorise(clientID,clientSecret,refreshToken):
 	return http
 
 def getDayEvents(date, time ,daysBack,http):
+  listeMedEvents=False
+  try:
     daysBack = int(daysBack)
     daysBack =  -daysBack-1
     service = discovery.build('calendar', 'v3', http=http)
@@ -76,45 +68,87 @@ def getDayEvents(date, time ,daysBack,http):
         end = event['end'].get('dateTime', event['end'].get('date'))
         appendString = start[0:19] +'EB' + end[0:19]
         listeMedEvents.append(appendString)
-    return listeMedEvents
-
+  except:
+    None
+  return listeMedEvents
 def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorId,http):
-    http = http
-    service = discovery.build('calendar', 'v3', http=http)
-    if beskrivelse==None:
-    	beskrivelse=""
-    if sted==None:
-      sted=""
-    event = {
-      'summary': tittel,
-      'location': sted,
-      'description': beskrivelse,
-      'colorId' : colorId,
-      'start': {
-        'dateTime': startdato+"T"+starttid,
-        'timeZone': 'Europe/Oslo',
-      },
-      'end': {
-        'dateTime': sluttdato+"T"+sluttid,
-        'timeZone': 'Europe/Oslo',
-      },
-      'reminders': {
-        'useDefault': True,#Reminder not implemented yet
-      },
-    }
-    event = service.events().insert(calendarId='primary', body=event).execute() #executes the current event
+    returnValue = False
+    try:
+      http = http
+      service = discovery.build('calendar', 'v3', http=http)
+      calId=""
+      if beskrivelse==None:
+      	beskrivelse=""
+      if sted==None:
+        sted=""
+      event = {
+        'summary': tittel,
+        'location': sted,
+        'description': beskrivelse,
+        'colorId' : colorId,
+        'start': {
+          'dateTime': startdato+"T"+starttid,
+          'timeZone': 'Europe/Oslo',
+        },
+        'end': {
+          'dateTime': sluttdato+"T"+sluttid,
+          'timeZone': 'Europe/Oslo',
+        },
+        'reminders': {
+          'useDefault': True,#Reminder not implemented yet
+        },
+      }
+      calId = checkIfHubroCalExist(service)
+      if(calId!=None):
+        None
+      else:
+        calId = createHubroCalendar(service)
+        print(calId)
+      time.sleep(2)
+      event = service.events().insert(calendarId=calId, body=event).execute() #executes the current event
+      returnValue = True
+    except:
+      None
+    return returnValue
 #refreshToken = "1/I2bJkHp2xg0HHD176-8EdiJR4wQLZQp2D0EL7q1BNoo"
 #print(refreshToken)
 #credentials = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
 #print(getDayEvents("2017-03-17","23:59:00","2",credentials))
 
-def insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted, colorID):
-  refreshToken = #Get token from database here
+def checkIfHubroCalExist(service):
+  page_token = None
+  returnValue = None
+  while returnValue==None:
+    calendar_list = service.calendarList().list(pageToken=page_token).execute()
+    for calendar_list_entry in calendar_list['items']:
+      print(calendar_list_entry['summary'])
+      if(calendar_list_entry['summary']=='hubro'):
+        returnValue = calendar_list_entry['id']
+        break
+    page_token = calendar_list.get('nextPageToken')
+    if not page_token:
+      break
+  return returnValue
+
+def createHubroCalendar(service):
+  calendar = {
+    'summary': 'hubro',
+    'timeZone': 'Europe/Oslo'
+}
+  created_calendar = service.calendars().insert(body=calendar).execute()
+  return created_calendar['id']
+
+def insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted, colorID,refreshToken):
+  refreshToken = refreshToken #"1/I2bJkHp2xg0HHD176-8EdiJR4wQLZQp2D0EL7q1BNoo"
   http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
-  createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorID,http)
+  createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorID,http,refreshToken)
   return True
 
-def getEventsDaysBack(date, time ,daysBack):
-  refreshToken = ""
+def getEventsDaysBack(date, time ,daysBack,refreshToken):
+  refreshToken = refreshToken
   http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
   return getDayEvents(date,time,daysBack,http)
+
+# def test():
+#   insertEventToCal("dra til tokyo","2017-03-30","2017-03-30","08:30:00","10:00:00","goin on a trip hubro says","Verneas","6")
+# test()

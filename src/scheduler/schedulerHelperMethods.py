@@ -1,6 +1,6 @@
 import sys
 sys.path.append("../databasehandler")
-from connectHerokuMYSQL import getAllEntriesFromStudentTable
+from databaseUtils import getAllEntriesFromStudentTable
 
 #returns a List of lists [[userid,refreshToken]]
 def getAllUserReffreshTokens(engine,connection):
@@ -40,9 +40,9 @@ def getAllLecturesForStudent(engine,connection,courseID):
 		returnList.append(entries)
 	return returnList
 
-def getAllAssignmentsForStudent(engine,connection,stringCourseID):
+def getUserReffreshToken(engine,connection,stringStudentId):
 	returnList = []
-	assignments = getEntriesFromAssignment_courseTableReturnAssignments(engine,connection,stringCourseID)
+	assignments = getEntryFromStudentTable(engine,connection,stringStudentId)
 	for entries in assignments:
 		returnList.append(entries)
-	return returnList
+	return returnList[3]
