@@ -3,8 +3,7 @@ sys.path.append("../scraper")
 sys.path.append("../scheduler")
 sys.path.append("../owlbrain")
 sys.path.append("../databasehandler")
-
-from owlbrainV1 import *
+from owlbrain import *
 from calendarMethods import *
 from insertionMethods import *
 from scrapeForCourseLectureTimes import *
@@ -50,15 +49,15 @@ def getLecturesAndInsertIntoCalendar(stringStudentId):
                         endDate = lectureDetails[0][1]
                         startTime = lectureDetails[0][4]
                         endTime = lectureDetails[0][5]
-                          description = lectureDetails[0][2]
-                          location = lectureDetails[0][3]
+                        description = lectureDetails[0][2]
+                        location = lectureDetails[0][3]
                         try:
                             insertEventToCal(title,startdate,endDate,startTime,endTime,description,location,eventColor,refreshToken)
                             success = True
                         except:
                             None
     return success
-#getLecturesAndInsertIntoCalendar("000001")
+getLecturesAndInsertIntoCalendar("100867243925223857971")
 
 def useHubroToFindTimeSlotsForAssignments(assignmentDetails,daysBack,refreshToken):
     engine = create_engine(URI)
@@ -108,15 +107,15 @@ def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
             tempList = []
             assignmentDetails = getEntryFromAssigmnentTable(engine,connection,entries[1])
             assignmentDetailList.append(assignmentDetails)
-            tittel = assignmentDetails[3]
-              startdato = assignmentDetails[1]
-              sluttdato = assignmentDetails[1]
-              starttid = assignmentDetails[2]
-              sluttid = str(assignmentDetails[2])[0:5] + ":59"
-              beskrivelse = assignmentDetails[3]
-              sted = " "    
-              try:
-                insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,eventColor,refreshToken)
+            title = assignmentDetails[3]
+            startDate = assignmentDetails[1]
+            endDate = assignmentDetails[1]
+            startTime = assignmentDetails[2]
+            endTime = str(assignmentDetails[2])[0:5] + ":59"
+            description = assignmentDetails[3]
+            location = " "    
+            try:
+                insertEventToCal(title,startDate,endDate,startTime,endTime,description,location,eventColor,refreshToken)
                 useHubroToFindTimeSlotsForAssignments(assignmentDetails,refreshToken)
                 success = True
             except:
@@ -133,4 +132,5 @@ def checkStudentSettingsAndInsertLecAndOrAssignments(stringStudentID):
         useHubroToFindTimeSlotsForAssignments(stringStudentID)
     else:
         print "User does not want hubro to update schedual for assignments and lectures"
+
 
