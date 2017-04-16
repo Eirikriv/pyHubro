@@ -114,6 +114,10 @@ def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
             endTime = str(assignmentDetails[2])[0:5] + ":59"
             description = assignmentDetails[3]
             location = " "    
+      	    startTime = assignmentDetails[2]
+      	    endTime = str(assignmentDetails[2])[0:5] + ":59"
+      	    description = assignmentDetails[3]
+      	    location = " "
             try:
                 insertEventToCal(title,startDate,endDate,startTime,endTime,description,location,eventColor,refreshToken)
                 useHubroToFindTimeSlotsForAssignments(assignmentDetails,refreshToken)
