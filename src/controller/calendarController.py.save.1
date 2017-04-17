@@ -6,8 +6,10 @@ sys.path.append("../databasehandler")
 from owlbrain import *
 from calendarMethods import *
 from insertionMethods import *
+from scrapeForCourseLectureTimes import *
 import traceback
 from databaseConnectDetails import *
+from scrapeItslearningForAssignements import *
 from schedulerHelperMethods import *
 import time
 
@@ -58,38 +60,36 @@ def getLecturesAndInsertIntoCalendar(stringStudentId):
     return success
 #getLecturesAndInsertIntoCalendar("100867243925223857971")
 
-def useHubroToFindTimeSlotsForAssignments(assignmentDetails,studentID,refreshToken):
+def useHubroToFindTimeSlotsForAssignments(assignmentDetails,refreshToken):
     engine = create_engine(URI)
     connection = engine.connect()
     eventColorForWordSessions = "6"
     success = False
-    daysBack = 7
+    daysBack = 4
     refreshToken = refreshToken
-    dl = assignmentDetails
-    if(True):
-	courseID = getEntryFromAssignment_courseTable(engine,connection,dl[0])[1]
+    print assignmentDetails
+    for dl in assignmentDetails:
         eventsPriorToDeadline = getEventsDaysBack(dl[1],dl[2],daysBack,refreshToken)
-        studentInitialHours = int(str(getAvgHoursForStudentInCourse(engine, connection,studentID,courseID).hour))
- 	print studentInitialHours
-        print eventsPriorToDeadline
+        courseID = getEntryFromAssignment_courseTable(engine,connection,dl[0])
+        studentInitialHours = getAvgHoursForStudentInCourse(engine, connection,stringStudentID,stringCourseID)
+ 
            # eventsPriorToDeadline = None
            # studentInitialHours = None
-        if(eventsPriorToDeadline and studentInitialHours == None):
+        if(eventsPriorToDeadline or studentInitialHours == None):
             return success
         else:
             deadline = dl[1] + " " + dl[2]
             plannedEvents = OwlbrainScheduler(deadline,studentInitialHours,eventsPriorToDeadline,daysBack+2)
-            print plannedEvents
-            for suggestions in plannedEvents:
-                title = dl[3]
-                startDate = suggestions[2]
-                endDate = suggestions[2]
-                startTime = suggestions[0]
-                endTime = suggestions[1]
-                description = dl[3]
-                location = "Your favorite workplace"
-                insertEventToCal(title,startDate,endDate,startTime,endTime,description,location,eventColorForWordSessions,refreshToken)
-                success = True
+        for suggestions in plannedEvents:
+            title = dl[3]
+            startDate = suggestions[2]
+            endDate = suggestions[2]
+            startTime = suggestions[0]
+            endTime = suggestions[1]
+            description = dl[3]
+            location = "Your favorite workplace"
+            insertEventToCal(title,startDate,endDate,startTime,endTime,description,location,eventColorForWordSessions,refreshToken)
+            success = True
     return success
 
 def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
@@ -118,10 +118,10 @@ def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
             description = assignmentDetails[3]
             location = " "    
             insertEventToCal(title,startDate,endDate,startTime,endTime,description,location,eventColor,refreshToken)
-            useHubroToFindTimeSlotsForAssignments(assignmentDetails,stringStudentID,refreshToken)
+            useHubroToFindTimeSlotsForAssignments(assignmentDetails,refreshToken)
             success = True
     return success 
-#getassignmentDeadLineAndInsertIntoCalendar("100867243925223857971")
+getassignmentDeadLineAndInsertIntoCalendar("100867243925223857971")
 #test for studentID = 100867243925223857971
 def checkStudentSettingsAndInsertLecAndOrAssignments(stringStudentID):
     engine = create_engine(URI)

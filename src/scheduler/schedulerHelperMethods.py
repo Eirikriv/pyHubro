@@ -1,11 +1,10 @@
 import sys
 sys.path.append("../databasehandler")
-from databaseUtils import getAllEntriesFromStudentTable
+from databaseUtils import *
 
 #returns a List of lists [[userid,refreshToken]]
 def getAllUserReffreshTokens(engine,connection):
 	returnList =[]
-
 	studententries = getAllEntriesFromStudentTable(engine, connection)
 	for students in studententries:
 		tempList=[]
@@ -42,7 +41,6 @@ def getAllLecturesForStudent(engine,connection,courseID):
 
 def getUserReffreshToken(engine,connection,stringStudentId):
 	returnList = []
-	assignments = getEntryFromStudentTable(engine,connection,stringStudentId)
-	for entries in assignments:
-		returnList.append(entries)
-	return returnList[3]
+	student = getEntryFromStudentTable(engine,connection,stringStudentId)
+	refreshtoken = student[0][4]
+	return refreshtoken

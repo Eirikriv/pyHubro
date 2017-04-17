@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, MetaData,Table, select
 import os
 from databaseConnectDetails import *
 from sqlalchemy.orm import sessionmaker
-
+from sqlalchemy import and_
 username = unameHeroku
 password = passwordHeroku
 URI = 'mysql://'+str(username)+':'+str(password)+'@us-cdbr-iron-east-04.cleardb.net/heroku_f8b7f102c73b268'
@@ -183,10 +183,10 @@ def getEntryFromStudentSetting(engine, connection,stringStudentID):
 	select_student_settings = select([student_settings]).where(student_settings.c.studentID == stringStudentID)
 	return list(connection.execute(select_student_settings))
 #Continue here
-def getAvgHoursForStudentInCourse(engine, connection,stringStudentID):
-	engine = engine
-	connection = connection
-	metadata = MetaData()
-	student_settings = Table('student_settings', metadata, autoload=True , autoload_with=engine)
-	select_student_settings = select([student_settings]).where(student_settings.c.studentID == stringStudentID)
-	return list(connection.execute(select_student_settings))
+def getAvgHoursForStudentInCourse(engine, connection,stringStudentID,stringCourseID):
+    engine = engine
+    connection = connection
+    metadata = MetaData()
+    student_course = Table('student_course', metadata, autoload=True , autoload_with=engine)
+    select_student_course = select([student_course]).where(and_(student_course.c.studentID == stringStudentID, student_course.c.courseID == stringCourseID))
+    return list(connection.execute(select_student_course))[0][2]

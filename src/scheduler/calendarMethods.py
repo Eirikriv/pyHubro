@@ -139,9 +139,8 @@ def createHubroCalendar(service):
   return created_calendar['id']
 
 def insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted, colorID,refreshToken):
-  refreshToken = refreshToken #"1/I2bJkHp2xg0HHD176-8EdiJR4wQLZQp2D0EL7q1BNoo"
   http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
-  createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorID,http,refreshToken)
+  createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorID,http)
   return True
 
 def getEventsDaysBack(date, time ,daysBack,refreshToken):

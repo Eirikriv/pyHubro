@@ -80,7 +80,7 @@ def scrapeNtnuCourseWebsites(courseCode): #eks TIO4110, gives a long string of c
     del returnList[0]
     display.stop()
     return returnList , courseCode
-
+scrapeNtnuCourseWebsites("TDT4140")
     # except:
     #     print "wrong coursecode or webpage is down"
     #     traceback.print_exc()
