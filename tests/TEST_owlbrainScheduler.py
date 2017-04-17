@@ -1,6 +1,6 @@
 import sys
 sys.path.append("../src/owlbrain")
-from owlbrainV1 import *
+from owlbrain import *
 
 from unittest import TestCase
 
