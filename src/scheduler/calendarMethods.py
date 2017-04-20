@@ -24,6 +24,7 @@ except ImportError:
 sys.path.append("../databasehandler")
 from databaseUtils import *
 from clientID_clientSecret import CLIENT_ID , CLIENT_SECRET
+import datetime as dt
 
 def findDaysBetweenDates(date):
     current = dt.date.today()
