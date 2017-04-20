@@ -82,7 +82,7 @@ def useHubroToFindTimeSlotsForAssignments(assignmentDetails,studentID,refreshTok
     connection = engine.connect()
     eventColorForWordSessions = "6"
     success = False
-    daysBack = findDaysBetweenDates()
+    daysBack = findDaysBetweenDates(assignmentDetails[1])
     refreshToken = refreshToken
     dl = assignmentDetails
     if(True):
