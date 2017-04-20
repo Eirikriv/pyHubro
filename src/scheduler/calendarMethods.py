@@ -74,7 +74,10 @@ def getDayEvents(date, time ,daysBack,http):
         start = event['start'].get('dateTime', event['start'].get('date')) #Automaticly adds a space in between the fields
         end = event['end'].get('dateTime', event['end'].get('date'))
         appendString = start[0:19] +'EB' + end[0:19]
-        listWithEvents.append(appendString)
+        if(len(appendString)!=40):
+          None
+        else:
+          listWithEvents.append(appendString)
   return listWithEvents
 def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorId,http):
     returnValue = False
