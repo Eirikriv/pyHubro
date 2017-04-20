@@ -83,6 +83,7 @@ def useHubroToFindTimeSlotsForAssignments(assignmentDetails,studentID,refreshTok
     eventColorForWordSessions = "6"
     success = False
     daysBack = findDaysBetweenDates(assignmentDetails[1])
+    print daysBack
     refreshToken = refreshToken
     dl = assignmentDetails
     if(True):
@@ -93,6 +94,7 @@ def useHubroToFindTimeSlotsForAssignments(assignmentDetails,studentID,refreshTok
             return success
         else:
             deadline = dl[1] + " " + dl[2]
+            print eventsPriorToDeadline
             plannedEvents = OwlbrainScheduler(deadline,studentInitialHours,eventsPriorToDeadline,daysBack+2)
             for suggestions in plannedEvents:
                 title = dl[3]
@@ -138,10 +140,10 @@ def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
             useHubroToFindTimeSlotsForAssignments(assignmentDetails,stringStudentID,refreshToken)
             success = True
     if(success):
-        updateDBWithCurrentCalUpdate(engine,connection,stringStudentId)
+        updateDBWithCurrentCalUpdate(engine,connection,stringStudentID)
 
     return success 
-#getassignmentDeadLineAndInsertIntoCalendar("100867243925223857971")
+getassignmentDeadLineAndInsertIntoCalendar("100867243925223857971")
 #test for studentID = 100867243925223857971
 
 def checkStudentSettingsAndInsertLecAndOrAssignments(stringStudentID):
