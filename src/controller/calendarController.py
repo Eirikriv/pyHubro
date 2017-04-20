@@ -144,7 +144,7 @@ def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
     if(success):
         updateDBWithCurrentCalUpdate(engine,connection,stringStudentID)
     return success 
-getassignmentDeadLineAndInsertIntoCalendar("100867243925223857971")
+#getassignmentDeadLineAndInsertIntoCalendar("100867243925223857971")
 #test for studentID = 100867243925223857971
 
 def checkStudentSettingsAndInsertLecAndOrAssignments(stringStudentID):
