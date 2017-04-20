@@ -117,6 +117,7 @@ def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
     success = False
     try:
         updateStudentAssignments(stringStudentID)
+        assignmentIDs = getEntriesFromAssignmentStudentAllAssforStud(engine,connection,stringStudentID)
     except:
         assignmentIDs=None
     if(assignmentIDs==None):
