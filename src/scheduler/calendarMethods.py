@@ -53,7 +53,6 @@ def authorise(clientID,clientSecret,refreshToken):
 
 def getDayEvents(date, time ,daysBack,http):
   listeMedEvents=False
-
   daysBack = int(daysBack)
   daysBack =  -daysBack-1
   service = discovery.build('calendar', 'v3', http=http)
@@ -62,64 +61,77 @@ def getDayEvents(date, time ,daysBack,http):
   dateEnd = ofsetDateByANumberOfDays(date,-1)
   dateEnd = dateEnd + "T" + time +"Z"
   print(dateStart,dateEnd)
-  eventsResult = service.events().list(
-      calendarId='primary', timeMin=dateStart, timeMax=dateEnd,maxResults=300, singleEvents=True,
+  calIDs = findCalendarIDs(service)
+  listWithEvents = []
+  for calID in calIDs:
+    eventsResult = service.events().list(
+      calendarId=calID, timeMin=dateStart, timeMax=dateEnd,maxResults=300, singleEvents=True,
       orderBy='startTime').execute()
-  events = eventsResult.get('items', [])
-  if not events:
-      print('No upcoming events found.')
-  listeMedEvents=[]
-  for event in events:
-      start = event['start'].get('dateTime', event['start'].get('date')) #Automaticly adds a space in between the fields
-      end = event['end'].get('dateTime', event['end'].get('date'))
-      appendString = start[0:19] +'EB' + end[0:19]
-      listeMedEvents.append(appendString)
-
-  return listeMedEvents
+    events = eventsResult.get('items', [])
+    if not events:
+      continue
+    for event in events:
+        start = event['start'].get('dateTime', event['start'].get('date')) #Automaticly adds a space in between the fields
+        end = event['end'].get('dateTime', event['end'].get('date'))
+        appendString = start[0:19] +'EB' + end[0:19]
+        listWithEvents.append(appendString)
+  print listWithEvents
+  return listWithEvents
 def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorId,http):
     returnValue = False
-    try:
-      http = http
-      service = discovery.build('calendar', 'v3', http=http)
-      calId=""
-      if beskrivelse==None:
-      	beskrivelse=""
-      if sted==None:
-        sted=""
-      event = {
-        'id': "some", 
-        'summary': tittel,
-        'location': sted,
-        'description': beskrivelse,
-        'colorId' : colorId,
-        'start': {
-          'dateTime': startdato+"T"+starttid,
-          'timeZone': 'Europe/Oslo',
-        },
-        'end': {
-          'dateTime': sluttdato+"T"+sluttid,
-          'timeZone': 'Europe/Oslo',
-        },
-        'reminders': {
-          'useDefault': True,#Reminder not implemented yet
-        },
-      }
-      calId = checkIfHubroCalExist(service)
-      if(calId!=None):
-        None
-      else:
-        calId = createHubroCalendar(service)
-        print(calId)
-      time.sleep(2)
-      event = service.events().insert(calendarId=calId, body=event).execute() #executes the current event
-      returnValue = True
-    except:
+    http = http
+    service = discovery.build('calendar', 'v3', http=http)
+    #calId="01"
+    if beskrivelse==None:
+    	beskrivelse=""
+    if sted==None:
+      sted=""
+    event = {
+      #'id': calId, 
+      'summary': tittel,
+      'location': sted,
+      'description': beskrivelse,
+      'colorId' : colorId,
+      'start': {
+        'dateTime': startdato+"T"+starttid,
+        'timeZone': 'Europe/Oslo',
+      },
+      'end': {
+        'dateTime': sluttdato+"T"+sluttid,
+        'timeZone': 'Europe/Oslo',
+      },
+      'reminders': {
+        'useDefault': True,#Reminder not implemented yet
+      },
+    }
+    calId = checkIfHubroCalExist(service)
+    if(calId!=None):
       None
+    else:
+      calId = createHubroCalendar(service)
+      print(calId)
+    time.sleep(2)
+    event = service.events().insert(calendarId=calId, body=event).execute() #executes the current event
+    returnValue = True
     return returnValue
 #refreshToken = "1/I2bJkHp2xg0HHD176-8EdiJR4wQLZQp2D0EL7q1BNoo"
 #print(refreshToken)
 #credentials = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
 #print(getDayEvents("2017-03-17","23:59:00","2",credentials))
+
+def findCalendarIDs(service):
+  page_token = None
+  returnValue = None
+  returnList = []
+  page_token = None
+  while True:
+    calendar_list = service.calendarList().list(pageToken=page_token).execute()
+    for calendar_list_entry in calendar_list['items']:
+      returnList.append(calendar_list_entry['id'])
+    page_token = calendar_list.get('nextPageToken')
+    if not page_token:
+      break
+  return returnList
 
 def checkIfHubroCalExist(service):
   page_token = None
@@ -154,6 +166,6 @@ def getEventsDaysBack(date, time ,daysBack,refreshToken):
   http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
   return getDayEvents(date,time,daysBack,http)
 
-# def test():
-#   insertEventToCal("dra til tokyo","2017-03-30","2017-03-30","08:30:00","10:00:00","goin on a trip hubro says","Verneas","6")
-# test()
+#def test():
+#  insertEventToCal("dra til tokyo","2017-03-30","2017-03-30","08:30:00","10:00:00","goin on a trip hubro says","Verneas","6")
+#test()

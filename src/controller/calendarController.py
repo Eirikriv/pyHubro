@@ -96,15 +96,16 @@ def useHubroToFindTimeSlotsForAssignments(assignmentDetails,studentID,refreshTok
             deadline = dl[1] + " " + dl[2]
             print eventsPriorToDeadline
             plannedEvents = OwlbrainScheduler(deadline,studentInitialHours,eventsPriorToDeadline,daysBack+2)
+            print plannedEvents
             for suggestions in plannedEvents:
                 title = dl[3]
                 startDate = suggestions[2]
                 endDate = suggestions[2]
                 startTime = suggestions[0]
                 endTime = suggestions[1]
-                description = dl[3]
+                description = "Work on assignment"
                 location = "Your favorite workplace"
-                insertEventToCal(title,startDate,endDate,startTime,endTime,description,location,eventColorForWordSessions,refreshToken)
+                insertEventToCal(title,startDate,endDate,startTime,endTime,description,location,eventColorForWordSessions,refreshToken) 
                 success = True
     return success
 
@@ -126,6 +127,7 @@ def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
         return success
     else:
         for entries in assignmentIDs:
+            print entries
             tempList = []
             assignmentDetails = getEntryFromAssigmnentTable(engine,connection,entries[1])[0]
             assignmentDetailList.append(assignmentDetails)
@@ -139,6 +141,7 @@ def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
             insertEventToCal(title,startDate,endDate,startTime,endTime,description,location,eventColor,refreshToken)
             useHubroToFindTimeSlotsForAssignments(assignmentDetails,stringStudentID,refreshToken)
             success = True
+            time.sleep(4)
     if(success):
         updateDBWithCurrentCalUpdate(engine,connection,stringStudentID)
 
