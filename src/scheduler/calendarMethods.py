@@ -75,7 +75,6 @@ def getDayEvents(date, time ,daysBack,http):
         end = event['end'].get('dateTime', event['end'].get('date'))
         appendString = start[0:19] +'EB' + end[0:19]
         listWithEvents.append(appendString)
-  print listWithEvents
   return listWithEvents
 def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorId,http):
     returnValue = False
