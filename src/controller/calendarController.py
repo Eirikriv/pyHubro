@@ -9,7 +9,25 @@ from insertionMethods import *
 import traceback
 from databaseConnectDetails import *
 from schedulerHelperMethods import *
+from datetime import datetime
+from datetime import date
+import datetime as dt
 import time
+
+def updateStudentAssignments(stringStudentID):
+    engine = create_engine(URI)
+    connection = engine.connect()
+    temp = getEntriesFromStudent_courseTable(engine, connection,stringStudentID)
+    for n in temp:
+        ass_course = getEntriesFromAssignment_courseTableReturnAssignments(engine,connection,n[1])
+        if(ass_course!=[]):
+            for assignmentID in ass_course:
+                assignmentID = assignmentID[0]
+                try:
+                    insertStudent_Assignment(engine,connection,stringStudentID,assignmentID)
+                except: 
+                    None
+
 
 def getLecturesAndInsertIntoCalendar(stringStudentId):
     engine = create_engine(URI)
@@ -32,7 +50,6 @@ def getLecturesAndInsertIntoCalendar(stringStudentId):
                 lectureID=None
             if(lectureID==None):
                 print("No lectures found for this course")
-                return success
             else:
                 for lec in lectureID:
                     try:
@@ -55,6 +72,8 @@ def getLecturesAndInsertIntoCalendar(stringStudentId):
                             success = True
                         except:
                             None
+    if(success):
+        updateDBWithCurrentCalUpdate(engine,connection,stringStudentId)
     return success
 #getLecturesAndInsertIntoCalendar("100867243925223857971")
 
@@ -63,23 +82,18 @@ def useHubroToFindTimeSlotsForAssignments(assignmentDetails,studentID,refreshTok
     connection = engine.connect()
     eventColorForWordSessions = "6"
     success = False
-    daysBack = 7
+    daysBack = findDaysBetweenDates()
     refreshToken = refreshToken
     dl = assignmentDetails
     if(True):
-	courseID = getEntryFromAssignment_courseTable(engine,connection,dl[0])[1]
+        courseID = getEntryFromAssignment_courseTable(engine,connection,dl[0])[1]
         eventsPriorToDeadline = getEventsDaysBack(dl[1],dl[2],daysBack,refreshToken)
         studentInitialHours = int(str(getAvgHoursForStudentInCourse(engine, connection,studentID,courseID).hour))
- 	print studentInitialHours
-        print eventsPriorToDeadline
-           # eventsPriorToDeadline = None
-           # studentInitialHours = None
         if(eventsPriorToDeadline and studentInitialHours == None):
             return success
         else:
             deadline = dl[1] + " " + dl[2]
             plannedEvents = OwlbrainScheduler(deadline,studentInitialHours,eventsPriorToDeadline,daysBack+2)
-            print plannedEvents
             for suggestions in plannedEvents:
                 title = dl[3]
                 startDate = suggestions[2]
@@ -92,6 +106,8 @@ def useHubroToFindTimeSlotsForAssignments(assignmentDetails,studentID,refreshTok
                 success = True
     return success
 
+
+
 def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
     engine = create_engine(URI)
     connection = engine.connect()
@@ -100,7 +116,7 @@ def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
     assignmentDetailList = []
     success = False
     try:
-        assignmentIDs = getEntriesFromAssignmentStudentAllAssforStud(engine,connection,stringStudentID)
+        updateStudentAssignments(stringStudentID)
     except:
         assignmentIDs=None
     if(assignmentIDs==None):
@@ -120,9 +136,13 @@ def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
             insertEventToCal(title,startDate,endDate,startTime,endTime,description,location,eventColor,refreshToken)
             useHubroToFindTimeSlotsForAssignments(assignmentDetails,stringStudentID,refreshToken)
             success = True
+    if(success):
+        updateDBWithCurrentCalUpdate(engine,connection,stringStudentId)
+
     return success 
 #getassignmentDeadLineAndInsertIntoCalendar("100867243925223857971")
 #test for studentID = 100867243925223857971
+
 def checkStudentSettingsAndInsertLecAndOrAssignments(stringStudentID):
     engine = create_engine(URI)
     connection = engine.connect()
@@ -130,7 +150,7 @@ def checkStudentSettingsAndInsertLecAndOrAssignments(stringStudentID):
     if(studentEntry[2]=="1"):
         getassignmentDeadLineAndInsertIntoCalendar(stringStudentID)
     elif(studentEntry[3]=="1"):
-        useHubroToFindTimeSlotsForAssignments(stringStudentID)
+        getLecturesAndInsertIntoCalendar(stringStudentID)
     else:
         print "User does not want hubro to update schedual for assignments and lectures"
 

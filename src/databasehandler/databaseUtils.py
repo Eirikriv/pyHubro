@@ -3,10 +3,19 @@ import os
 from databaseConnectDetails import *
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import and_
+from sqlalchemy import update
+from datetime import datetime
 username = unameHeroku
 password = passwordHeroku
 URI = 'mysql://'+str(username)+':'+str(password)+'@us-cdbr-iron-east-04.cleardb.net/heroku_f8b7f102c73b268'
 
+def updateCalendarForStudent(engine, connection,stringStudentId,dtDateToUpload):
+	engine = engine
+	connection = connection
+	metadata = MetaData()
+	student = Table('student', metadata, autoload=True , autoload_with=engine)
+	update = student.update(student).where(student.c.studentID==stringStudentId).values(updatedCalendars=dtDateToUpload)
+	connection.execute(update)
 
 def getEntryFromStudentTable(engine, connection,stringStudentId):
 	engine = engine
@@ -37,6 +46,15 @@ def insertACourseIntoDatabase(engine, connection,stringCourseID,stringCourseName
 	connection.execute(new_course)
 	
 #insertCourseIntoDatabase("0001","TDT4140")
+def insertStudent_Assignment(engine, connection,stringStudentID,stringAssignmentID):
+	engine = engine
+	connection = connection
+	metadata = MetaData()
+	course = Table('student_assignment', metadata, autoload=True , autoload_with=engine)
+	#print(metadata.tables.keys())
+	ins = course.insert()
+	new_course = ins.values(studentID=stringStudentID,assignmentID=stringAssignmentID)
+	connection.execute(new_course)
 
 def getEntriesFromCourseTable(engine, connection,stringCourseId):
 	engine = engine
@@ -190,3 +208,11 @@ def getAvgHoursForStudentInCourse(engine, connection,stringStudentID,stringCours
     student_course = Table('student_course', metadata, autoload=True , autoload_with=engine)
     select_student_course = select([student_course]).where(and_(student_course.c.studentID == stringStudentID, student_course.c.courseID == stringCourseID))
     return list(connection.execute(select_student_course))[0][2]
+
+def getEntryFromStudent_assignment(engine, connection,stringStudentID):
+	engine = engine
+	connection = connection
+	metadata = MetaData()
+	student_settings = Table('student_assignment', metadata, autoload=True , autoload_with=engine)
+	select_student_settings = select([student_settings]).where(student_settings.c.studentID == stringStudentID)
+	return list(connection.execute(select_student_settings))

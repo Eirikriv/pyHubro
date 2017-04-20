@@ -22,13 +22,18 @@ try:
 except ImportError:
     flags = None
 sys.path.append("../databasehandler")
-from databaseUtils import getAllEntriesFromStudentTable
+from databaseUtils import *
 from clientID_clientSecret import CLIENT_ID , CLIENT_SECRET
 
+def findDaysBetweenDates(date):
+    current = dt.date.today()
+    future = dt.date(int(date[0:4]), int(date[5:7]) , int(date[8:10]))
+    delta = future - current
+    return delta.days
 
-def ofsetDateByANumberOfDays(dateYYYYMMDD, daysoffset): #"-" between YYYY-DD, negative day brings you backvards in time
+def ofsetDateByANumberOfDays(dateYYYYdashMMdashDD, daysoffset): #"-" between YYYY-DD, negative day brings you backvards in time
   offsetDate = ""
-  date = datetime.datetime(int(dateYYYYMMDD[0:4]), int(dateYYYYMMDD[5:7]) , int(dateYYYYMMDD[8:10]), 18, 00)
+  date = datetime.datetime(int(dateYYYYdashMMdashDD[0:4]), int(dateYYYYdashMMdashDD[5:7]) , int(dateYYYYdashMMdashDD[8:10]), 18, 00)
   DD = datetime.timedelta(days=daysoffset)
   offsetDate = date + DD
   offsetDate = offsetDate.isoformat()
@@ -82,6 +87,7 @@ def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivels
       if sted==None:
         sted=""
       event = {
+        'id': "some", 
         'summary': tittel,
         'location': sted,
         'description': beskrivelse,

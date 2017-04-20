@@ -2,6 +2,20 @@ from sqlalchemy import create_engine, MetaData, Table, select
 from databaseUtils import *
 import traceback
 
+def updateDBWithCurrentCalUpdate(engine, connection,stringStudentId):
+	returnValue =False
+	try:
+		dtDateToUpload = datetime.now().strftime('%Y/%m/%d %H:%M:%S')
+		engine = engine
+		connection = connection
+		metadata = MetaData()
+		student = Table('student', metadata, autoload=True , autoload_with=engine)
+		update = student.update(student).where(student.c.studentID==stringStudentId).values(updatedCalendars=dtDateToUpload)
+		connection.execute(update)
+		returnValue = True
+	except:
+		print traceback.print_exc()
+	return returnValue
 
 def insertCourseIntoDatabase(engine, connection,stringCourseID,stringCourseName):
 	returnValue =False
