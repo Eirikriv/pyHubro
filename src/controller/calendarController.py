@@ -141,12 +141,9 @@ def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
             insertEventToCal(title,startDate,endDate,startTime,endTime,description,location,eventColor,refreshToken)
             useHubroToFindTimeSlotsForAssignments(assignmentDetails,stringStudentID,refreshToken)
             success = True
-            time.sleep(4)
     if(success):
         updateDBWithCurrentCalUpdate(engine,connection,stringStudentID)
-
     return success 
-getassignmentDeadLineAndInsertIntoCalendar("100867243925223857971")
 #test for studentID = 100867243925223857971
 
 def checkStudentSettingsAndInsertLecAndOrAssignments(stringStudentID):
