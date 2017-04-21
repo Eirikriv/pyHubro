@@ -63,7 +63,7 @@ def scanForLecturesInCourseAndInsert(courseCode, year, if_spring_set_0_if_fall_s
 				else:
 					errorCounter += 1 
 	return (counter, errorCounter, lectures)
-#scanForLecturesInCourseAndInsert("TDT4140", "2017" , "0")
+scanForLecturesInCourseAndInsert("TDT4140", "2017" , "0")
 def scanForAssignmentInACourseAndInsert(courseCodeToScanFor):
 	try:
 		formScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
