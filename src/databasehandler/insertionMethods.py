@@ -76,7 +76,7 @@ def getValueFromCourseTable(engine, connection, stringCourseID):
 		print traceback.print_exc()
 	return returnValue
 
-def insertAnAssignmentIntoDatabase(engine, connection ,stringAssignmnentID,stringAssignmentDate,stringAssignmentTime,stringAssignmentDescription):
+def insertAnAssignmentIntoDatabase(engine, connection ,stringAssigmentID,stringAssignmentDate,stringAssignmentTime,stringAssignmentDescription):
 	returnValue = False
 	try:
 		engine = engine
