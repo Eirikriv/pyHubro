@@ -11,12 +11,15 @@ from databaseConnectDetails import *
 from scrapeItslearningForAssignements import *
 from databaseUtils import *
 import time
+import datetime
 
 def scanForLecturesInCourseAndInsert(courseCode):
 	counter = 0
 	errorCounter = 0
 	engine = create_engine(URI)
 	connection = engine.connect()
+	now = datetime.datetime.now()
+	year = now.year
 	lectures , courseCode = scrapeNtnuCourseWebsites(courseCode)
 	lectureTimes = readCourseReturnAllLectureExersiseEvents(lectures, courseCode, year)
 	print lectureTimes
@@ -35,11 +38,11 @@ def scanForLecturesInCourseAndInsert(courseCode):
 					None
 				else:
 					try:
-						insertLectureIntoDatabase(engine,connection,lectureID,date,start,end,description,where):
+						insertLectureIntoDatabase(engine,connection,lectureID,date,start,end,description,where)
 						insertLectureCourseIntoDatabase(engine,connection,lectureID,courseCode)
 					except:
 						None
-scanForLecturesInCourseAndInsert("TDT4140")
+scanForLecturesInCourseAndInsert("TDT4140","2017")
 
 def scanForAssignmentInACourseAndInsert(courseCodeToScanFor):
 	try:
