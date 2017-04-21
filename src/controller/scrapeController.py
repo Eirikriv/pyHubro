@@ -42,9 +42,11 @@ def scanForLecturesInCourseAndInsert(courseCode):
 #scanForLecturesInCourseAndInsert("TDT4140")
 
 def scanForAssignmentInACourseAndInsert():
-	fromScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(3))
+	#fromScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(3))
+	fromSrape = [[u' Assignment 5', u' TDT4300 DATAVAREH/DATAGRUVED', u'2017-04-21', u'23:55:00'], [u' Assignment 2.2', u' TI\xd84317 EMPIRISK FINANS', u'2017-04-21', u'23:59:00'], [u' Step 7:', u' TDT4140 PROGRAMVAREUTVIKL', u'2017-04-27', u'12:00:00'], [u' Assignment 10', u' TI\xd84140 PROSJEKTFINANS', u'2017-05-01', u'23:59:00'], [u' Assignment 2.3', u' TI\xd84317 EMPIRISK FINANS', u'2017-05-05', u'23:59:00']]
 	engine = create_engine(URI)
 	connection = engine.connect()
+	print fromScrape
 	for assigment in fromScrape:
 		courseCode = assigment[1].split()[0]
 		assignmentID = courseCode+assigment[2]+assigment[3]
@@ -57,11 +59,8 @@ def scanForAssignmentInACourseAndInsert():
 			infoString = assigment[1].split()
 			for n in range(1,len(infoString)):
 				stringAssignmentDescription = stringAssignmentDescription + " " + infoString[n]
-			try:
-				if(insertAnAssignmentIntoDatabase(engine, connection ,assigmentID,stringAssignmentDate,stringAssignmentTime,stringAssignmentDescription)):
-					insertAssignment_courseIntoDatabase(engine, connection, assigmentID, courseCode)
-			except:
-				None
+			if(insertAnAssignmentIntoDatabase(engine, connection ,assigmentID,stringAssignmentDate,stringAssignmentTime,stringAssignmentDescription)):
+				insertAssignment_courseIntoDatabase(engine, connection, assigmentID, courseCode)
 scanForAssignmentInACourseAndInsert()
 
 def automaticScrape():
