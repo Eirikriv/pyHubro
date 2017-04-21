@@ -19,7 +19,7 @@ def scanForLecturesInCourseAndInsert(courseCode):
 	engine = create_engine(URI)
 	connection = engine.connect()
 	now = datetime.datetime.now()
-	year = now.year
+	year = str(now.year)
 	lectures , courseCode = scrapeNtnuCourseWebsites(courseCode)
 	lectureTimes = readCourseReturnAllLectureExersiseEvents(lectures, courseCode, year)
 	print lectureTimes
@@ -42,7 +42,7 @@ def scanForLecturesInCourseAndInsert(courseCode):
 						insertLectureCourseIntoDatabase(engine,connection,lectureID,courseCode)
 					except:
 						None
-scanForLecturesInCourseAndInsert("TDT4140","2017")
+scanForLecturesInCourseAndInsert("TDT4140")
 
 def scanForAssignmentInACourseAndInsert(courseCodeToScanFor):
 	try:
