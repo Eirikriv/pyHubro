@@ -15,18 +15,13 @@ import time
 def scanForLecturesInCourseAndInsert(courseCode, year, if_spring_set_0_if_fall_set_1_str):
 	counter = 0
 	errorCounter = 0
-	try:
-		engine = create_engine(URI)
-		connection = engine.connect()
-	except:
-		engine = None
-		connection = None
-	try:
-		lectures , courseCode = scrapeNtnuCourseWebsites(courseCode)
-		lectureTimes = readCourseReturnAllLectureExersiseEvents(lectures, courseCode, year)
-	except:
-		lectures = None
-		lectureTimes = None
+	engine = create_engine(URI)
+	connection = engine.connect()
+	lectures , courseCode = scrapeNtnuCourseWebsites(courseCode)
+	lectureTimes = readCourseReturnAllLectureExersiseEvents(lectures, courseCode, year)
+	print lectureTimes
+	print lectures
+	print courseCode
 	if(courseCode!=None):
 		uniqueLectureString = courseCode+year+if_spring_set_0_if_fall_set_1_str+"000"
 	else:
@@ -64,6 +59,7 @@ def scanForLecturesInCourseAndInsert(courseCode, year, if_spring_set_0_if_fall_s
 					errorCounter += 1 
 	return (counter, errorCounter, lectures)
 scanForLecturesInCourseAndInsert("TDT4140", "2017" , "0")
+
 def scanForAssignmentInACourseAndInsert(courseCodeToScanFor):
 	try:
 		formScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
