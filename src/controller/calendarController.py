@@ -67,11 +67,14 @@ def getLecturesAndInsertIntoCalendar(stringStudentId):
                         endTime = lectureDetails[0][5]
                         description = lectureDetails[0][2]
                         location = lectureDetails[0][3]
-                        try:
-                            insertEventToCal(title,startdate,endDate,startTime,endTime,description,location,eventColor,refreshToken)
-                            success = True
-                        except:
+                        if(findDaysBetweenDates(startdate)==0):
                             None
+                        else:
+                            try:
+                                insertEventToCal(title,startdate,endDate,startTime,endTime,description,location,eventColor,refreshToken)
+                                success = True
+                            except:
+                                None
     if(success):
         updateDBWithCurrentCalUpdate(engine,connection,stringStudentId)
     return success
