@@ -141,7 +141,6 @@ def checkIfHubroCalExist(service):
   while returnValue==None:
     calendar_list = service.calendarList().list(pageToken=page_token).execute()
     for calendar_list_entry in calendar_list['items']:
-      print(calendar_list_entry['summary'])
       if(calendar_list_entry['summary']=='hubro'):
         returnValue = calendar_list_entry['id']
         break
