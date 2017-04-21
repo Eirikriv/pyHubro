@@ -34,38 +34,33 @@ def scanForLecturesInCourseAndInsert(courseCode):
 				description = events[3]
 				where=events[4]
 				lectureID = courseCode+date+"T"+start
-				if(findDaysBetweenDates(date)!=0):
+				try:
+					if(insertLectureIntoDatabase(engine,connection,lectureID,date,start,end,description,where)):
+						insertLectureCourseIntoDatabase(engine,connection,lectureID,courseCode)
+				except:
 					None
-				else:
-					try:
-						if(insertLectureIntoDatabase(engine,connection,lectureID,date,start,end,description,where)):
-							insertLectureCourseIntoDatabase(engine,connection,lectureID,courseCode)
-					except:
-						None
 #scanForLecturesInCourseAndInsert("TDT4140")
 
 def scanForAssignmentInACourseAndInsert(courseCodeToScanFor):
-	formScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
+	fromScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
 	engine = create_engine(URI)
 	connection = engine.connect()
-	print formScrape
 	for assigment in fromScrape:
 		courseCode = assigment[1].split()[0]
-		if(courseCode==courseCodeToScanFor):
-			assignmentID = assigment[1].split()[0]+assigment[2]+assigment[3]
-			if(checkIfAssignmentIsInAssignmentTable(engine,connection,assignmentID)):
-				print "Assignment already in table"
-			else:
-				stringAssignmentDate = assigment[2]
-				stringAssignmentTime = assigment[3]
-				stringAssignmentDescription = assigment[0]
-				infoString = assigment[1].split()
-				for n in range(1,len(infoString)):
-					stringAssignmentDescription = stringAssignmentDescription + " " + infoString[n]
+		assignmentID = courseCode+assigment[2]+assigment[3]
+		if(checkIfAssignmentIsInAssignmentTable(engine,connection,assignmentID)):
+			print "Assignment already in table"
+		else:
+			stringAssignmentDate = assigment[2]
+			stringAssignmentTime = assigment[3]
+			stringAssignmentDescription = assigment[0] + "in" + assigment[1]
+			infoString = assigment[1].split()
+			for n in range(1,len(infoString)):
+				stringAssignmentDescription = stringAssignmentDescription + " " + infoString[n]
+			try:
 				if(insertAnAssignmentIntoDatabase(engine, connection ,assigmentID,stringAssignmentDate,stringAssignmentTime,stringAssignmentDescription)):
 					insertAssignment_courseIntoDatabase(engine, connection, assigmentID, courseCode)
-					counter += 1
-				else:
-					errorCounter += 1 
+			except:
+				None
 scanForAssignmentInACourseAndInsert("TDT4140")
 
