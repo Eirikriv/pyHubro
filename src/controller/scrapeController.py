@@ -45,10 +45,9 @@ def scanForAssignmentInACourseAndInsert():
 	fromScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
 	engine = create_engine(URI)
 	connection = engine.connect()
-	print fromScrape
 	for assigment in fromScrape:
 		courseCode = assigment[1].split()[0]
-		assignmentID = courseCode+assigment[2]+assigment[3]
+		assignmentID = courseCode+"-"+assigment[2]+assigment[3]
 		if(checkIfAssignmentIsInAssignmentTable(engine,connection,assignmentID)):
 			print "Assignment already in table"
 		else:
@@ -63,7 +62,7 @@ def scanForAssignmentInACourseAndInsert():
 					insertAssignment_courseIntoDatabase(engine, connection, assignmentID, courseCode)
 			except:
 				None
-scanForAssignmentInACourseAndInsert()
+#scanForAssignmentInACourseAndInsert()
 def automaticScrape():
 	engine = create_engine(URI)
 	connection = engine.connect()
@@ -71,4 +70,6 @@ def automaticScrape():
 	for courseCode in courseCodes:
 		scanForLecturesInCourseAndInsert(courseCode)
 	scanForAssignmentInACourseAndInsert()
-#automaticScrape()
+automaticScrape()
+
+
