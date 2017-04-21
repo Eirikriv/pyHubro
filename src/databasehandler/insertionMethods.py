@@ -78,17 +78,15 @@ def getValueFromCourseTable(engine, connection, stringCourseID):
 
 def insertAnAssignmentIntoDatabase(engine, connection ,stringAssigmentID,stringAssignmentDate,stringAssignmentTime,stringAssignmentDescription):
 	returnValue = False
-	try:
-		engine = engine
-		connection = connection
-		metadata = MetaData()
-		assignmnent = Table('assignment', metadata, autoload=True , autoload_with=engine)
-		ins = assignmnent.insert()
-		new_assignmnent = ins.values(assignmentID=stringAssigmentID,assignmnentDate=stringAssignmentDate,assignmnentTime=stringAssignmentTime,assignmentDescription=stringAssignmentDescription)
-		connection.execute(new_assignmnent)
-		returnValue = True
-	except:
-		print traceback.print_exc()
+	engine = engine
+	connection = connection
+	metadata = MetaData()
+	assignmnent = Table('assignment', metadata, autoload=True , autoload_with=engine)
+	ins = assignmnent.insert()
+	new_assignmnent = ins.values(assignmentID=stringAssigmentID,assignmnentDate=stringAssignmentDate,assignmnentTime=stringAssignmentTime,assignmentDescription=stringAssignmentDescription)
+	connection.execute(new_assignmnent)
+	returnValue = True
+	print traceback.print_exc()
 	return returnValue
 
 def getALectureFromLectureTable(engine, connection,stringLectureID):

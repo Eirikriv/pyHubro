@@ -41,8 +41,8 @@ def scanForLecturesInCourseAndInsert(courseCode):
 					None
 #scanForLecturesInCourseAndInsert("TDT4140")
 
-def scanForAssignmentInACourseAndInsert(courseCodeToScanFor):
-	fromScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
+def scanForAssignmentInACourseAndInsert():
+	fromScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(3))
 	engine = create_engine(URI)
 	connection = engine.connect()
 	for assigment in fromScrape:
@@ -62,10 +62,12 @@ def scanForAssignmentInACourseAndInsert(courseCodeToScanFor):
 					insertAssignment_courseIntoDatabase(engine, connection, assigmentID, courseCode)
 			except:
 				None
-scanForAssignmentInACourseAndInsert("TDT4140")
+scanForAssignmentInACourseAndInsert()
 
 def automaticScrape():
 	engine = create_engine(URI)
 	connection = engine.connect()
 	courseCodes = getAllCourseCodes(engine,connection)
-	
+	for courseCode in courseCodes:
+		scanForLecturesInCourseAndInsert(courseCode)
+	scanForAssignmentInACourseAndInsert()
