@@ -143,3 +143,18 @@ def getStudent_settingFromStudentTable(engine, connection, stringStudentID):
 	except:
 		print traceback.print_exc()
 	return returnValue
+
+def updateStudent_assignment(engine, connection, stringStudentID,stringAssignmentID):
+	returnValue = False
+	try:
+		engine = engine
+		connection = connection
+		metadata = MetaData()
+		student_assignment = Table('student_assignment', metadata, autoload=True , autoload_with=engine)
+		update = student_assignment.update(student_assignment).where(student_assignment.c.studentID==stringStudentId).values()
+		student_settings = Table('student_assignment', metadata, autoload=True , autoload_with=engine)
+		select_student_settings = select([student_settings]).where(student_settings.c.studentID == stringStudentID)
+		returnValue = list(connection.execute(select_student_settings))
+	except:
+		print traceback.print_exc()
+	return returnValue
