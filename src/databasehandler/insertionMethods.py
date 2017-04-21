@@ -40,7 +40,7 @@ def insertLectureIntoDatabase(engine, connection, stringLectureID,stringLectureD
 		metadata = MetaData()
 		lecture = Table('lecture', metadata, autoload=True , autoload_with=engine)
 		ins = lecture.insert()
-		new_lecture = ins.values(lectureID=stringLectureID,lectureDate=stringLectureDate,lectureStartTime=stringLectureStartTime,lectureEndTime=stringLectureEndTime,lectureDescription=stringLectureDescription,lectureLocation=stringLectureLocation)
+		new_lecture = ins.values(lectureID=stringLectureID,lectureDate=stringLectureDate,lectureStartTime=stringLectureStartTime,lectureEndTime=stringLectureEndTime,lectureDescription=stringDescription,lectureLocation=stringWhere)
 		connection.execute(new_lecture)
 		returnValue = True
 	except:	
