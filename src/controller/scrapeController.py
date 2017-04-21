@@ -34,7 +34,7 @@ def scanForLecturesInCourseAndInsert(courseCode):
 				description = events[3]
 				where=events[4]
 				lectureID = courseCode+date+"T"+start
-				if(findDaysBetweenDates(date)==0):
+				if(findDaysBetweenDates(date)!=0):
 					None
 				else:
 					try:
