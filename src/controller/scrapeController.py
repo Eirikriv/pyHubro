@@ -38,8 +38,8 @@ def scanForLecturesInCourseAndInsert(courseCode):
 					None
 				else:
 					try:
-						insertLectureIntoDatabase(engine,connection,lectureID,date,start,end,description,where)
-						insertLectureCourseIntoDatabase(engine,connection,lectureID,courseCode)
+						if(insertLectureIntoDatabase(engine,connection,lectureID,date,start,end,description,where)):
+							insertLectureCourseIntoDatabase(engine,connection,lectureID,courseCode)
 					except:
 						None
 scanForLecturesInCourseAndInsert("TDT4140")
