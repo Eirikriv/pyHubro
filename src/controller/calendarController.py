@@ -154,9 +154,10 @@ def checkStudentSettingsAndInsertLecAndOrAssignments(stringStudentID):
     engine = create_engine(URI)
     connection = engine.connect()
     studentEntry = getStudent_settingFromStudentTable(engine, connection,stringStudentID)
-    if(studentEntry[2]=="1"):
+    print studentEntry
+    if(studentEntry[0][2]=="1"):
         getassignmentDeadLineAndInsertIntoCalendar(stringStudentID)
-    elif(studentEntry[3]=="1"):
+    elif(studentEntry[0][3]=="1"):
         getLecturesAndInsertIntoCalendar(stringStudentID)
     else:
         print "User does not want hubro to update schedual for assignments and lectures"
