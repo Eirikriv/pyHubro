@@ -42,7 +42,7 @@ def scanForLecturesInCourseAndInsert(courseCode):
 #scanForLecturesInCourseAndInsert("TDT4140")
 
 def scanForAssignmentInACourseAndInsert():
-	fromScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(3))
+	fromScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
 	engine = create_engine(URI)
 	connection = engine.connect()
 	print fromScrape
@@ -64,7 +64,6 @@ def scanForAssignmentInACourseAndInsert():
 			except:
 				None
 scanForAssignmentInACourseAndInsert()
-
 def automaticScrape():
 	engine = create_engine(URI)
 	connection = engine.connect()
@@ -72,3 +71,4 @@ def automaticScrape():
 	for courseCode in courseCodes:
 		scanForLecturesInCourseAndInsert(courseCode)
 	scanForAssignmentInACourseAndInsert()
+#automaticScrape()
