@@ -43,7 +43,7 @@ def scanForLecturesInCourseAndInsert(courseCode):
 
 def scanForAssignmentInACourseAndInsert():
 	#fromScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(3))
-	fromSrape = [[u' Assignment 5', u' TDT4300 DATAVAREH/DATAGRUVED', u'2017-04-21', u'23:55:00'], [u' Assignment 2.2', u' TI\xd84317 EMPIRISK FINANS', u'2017-04-21', u'23:59:00'], [u' Step 7:', u' TDT4140 PROGRAMVAREUTVIKL', u'2017-04-27', u'12:00:00'], [u' Assignment 10', u' TI\xd84140 PROSJEKTFINANS', u'2017-05-01', u'23:59:00'], [u' Assignment 2.3', u' TI\xd84317 EMPIRISK FINANS', u'2017-05-05', u'23:59:00']]
+	fromScrape = [[u' Assignment 5', u' TDT4300 DATAVAREH/DATAGRUVED', u'2017-04-21', u'23:55:00'], [u' Assignment 2.2', u' TI\xd84317 EMPIRISK FINANS', u'2017-04-21', u'23:59:00'], [u' Step 7:', u' TDT4140 PROGRAMVAREUTVIKL', u'2017-04-27', u'12:00:00'], [u' Assignment 10', u' TI\xd84140 PROSJEKTFINANS', u'2017-05-01', u'23:59:00'], [u' Assignment 2.3', u' TI\xd84317 EMPIRISK FINANS', u'2017-05-05', u'23:59:00']]
 	engine = create_engine(URI)
 	connection = engine.connect()
 	print fromScrape
