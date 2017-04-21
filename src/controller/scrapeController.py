@@ -46,22 +46,26 @@ def scanForAssignmentInACourseAndInsert():
 	engine = create_engine(URI)
 	connection = engine.connect()
 	for assigment in fromScrape:
+		awaliableCourses = getAllCourseCodes(engine,connection)
 		courseCode = assigment[1].split()[0]
-		assignmentID = courseCode+"-"+assigment[2]+assigment[3]
-		if(checkIfAssignmentIsInAssignmentTable(engine,connection,assignmentID)):
-			print "Assignment already in table"
+		if courseCode not in awaliableCourses:
+			None
 		else:
-			stringAssignmentDate = assigment[2]
-			stringAssignmentTime = assigment[3]
-			stringAssignmentDescription = assigment[0] + " in" + assigment[1]
-			infoString = assigment[1].split()
-			for n in range(1,len(infoString)):
-				stringAssignmentDescription = stringAssignmentDescription + " " + infoString[n]
-			try:
-				if(insertAnAssignmentIntoDatabase(engine, connection ,assignmentID,stringAssignmentDate,stringAssignmentTime,stringAssignmentDescription)):
-					insertAssignment_courseIntoDatabase(engine, connection, assignmentID, courseCode)
-			except:
-				None
+			assignmentID = courseCode+"-"+assigment[2]+assigment[3]
+			if(checkIfAssignmentIsInAssignmentTable(engine,connection,assignmentID)):
+				print "Assignment already in table"
+			else:
+				stringAssignmentDate = assigment[2]
+				stringAssignmentTime = assigment[3]
+				stringAssignmentDescription = assigment[0] + " in" + assigment[1]
+				infoString = assigment[1].split()
+				for n in range(1,len(infoString)):
+					stringAssignmentDescription = stringAssignmentDescription + " " + infoString[n]
+				try:
+					if(insertAnAssignmentIntoDatabase(engine, connection ,assignmentID,stringAssignmentDate,stringAssignmentTime,stringAssignmentDescription)):
+						insertAssignment_courseIntoDatabase(engine, connection, assignmentID, courseCode)
+				except:
+					None
 #scanForAssignmentInACourseAndInsert()
 def automaticScrape():
 	engine = create_engine(URI)
