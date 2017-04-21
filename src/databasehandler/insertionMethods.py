@@ -83,7 +83,7 @@ def insertAnAssignmentIntoDatabase(engine, connection ,stringAssigmentID,stringA
 	metadata = MetaData()
 	assignmnent = Table('assignment', metadata, autoload=True , autoload_with=engine)
 	ins = assignmnent.insert()
-	new_assignmnent = ins.values(assignmentID=stringAssigmentID,assignmnentDate=stringAssignmentDate,assignmnentTime=stringAssignmentTime,assignmentDescription=stringAssignmentDescription)
+	new_assignmnent = ins.values(assignmentID=stringAssigmentID,assignmentDate=stringAssignmentDate,assignmentTime=stringAssignmentTime,assignmentDescription=stringAssignmentDescription)
 	connection.execute(new_assignmnent)
 	returnValue = True
 	print traceback.print_exc()
