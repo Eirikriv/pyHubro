@@ -44,7 +44,7 @@ def insertLectureIntoDatabase(engine, connection, stringLectureID,stringLectureD
 		connection.execute(new_lecture)
 		returnValue = True
 	except:	
-		print traceback.print_exc()
+		None
 	return returnValue
 
 		
