@@ -42,17 +42,13 @@ def scanForLecturesInCourseAndInsert(courseCode):
 							insertLectureCourseIntoDatabase(engine,connection,lectureID,courseCode)
 					except:
 						None
-scanForLecturesInCourseAndInsert("TDT4140")
+#scanForLecturesInCourseAndInsert("TDT4140")
 
 def scanForAssignmentInACourseAndInsert(courseCodeToScanFor):
-	try:
-		formScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
-		engine = create_engine(URI)
-		connection = engine.connect()
-	except:
-		return None
-	counter = 0
-	errorCounter = 0
+	formScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
+	engine = create_engine(URI)
+	connection = engine.connect()
+	print formScrape
 	for assigment in fromScrape:
 		courseCode = assigment[1].split()[0]
 		if(courseCode==courseCodeToScanFor):
@@ -71,7 +67,5 @@ def scanForAssignmentInACourseAndInsert(courseCodeToScanFor):
 					counter += 1
 				else:
 					errorCounter += 1 
-	return counter, errorCounter
-
-#scanForAssignmentInACourseAndInsert
+scanForAssignmentInACourseAndInsert("TDT4140")
 
