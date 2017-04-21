@@ -208,3 +208,17 @@ def getAvgHoursForStudentInCourse(engine, connection,stringStudentID,stringCours
     student_course = Table('student_course', metadata, autoload=True , autoload_with=engine)
     select_student_course = select([student_course]).where(and_(student_course.c.studentID == stringStudentID, student_course.c.courseID == stringCourseID))
     return list(connection.execute(select_student_course))[0][2]
+
+def getAllCourseCodes(engine,connection):
+	engine = engine
+	connection = connection
+	returnList = []
+	metadata = MetaData()
+	course = Table('course', metadata, autoload=True , autoload_with=engine)
+	selectAssignment=select([course])
+	result = connection.execute(selectAssignment)
+	result =list(result)
+	for entries in result:
+		returnList.append(entries[0])
+	print returnList
+	return returnList

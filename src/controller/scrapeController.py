@@ -64,3 +64,8 @@ def scanForAssignmentInACourseAndInsert(courseCodeToScanFor):
 				None
 scanForAssignmentInACourseAndInsert("TDT4140")
 
+def automaticScrape:
+	engine = create_engine(URI)
+	connection = engine.connect()
+	courseCodes = getAllCourseCodes(engine,connection)
+	
