@@ -59,8 +59,8 @@ def scanForAssignmentInACourseAndInsert():
 			infoString = assigment[1].split()
 			for n in range(1,len(infoString)):
 				stringAssignmentDescription = stringAssignmentDescription + " " + infoString[n]
-			if(insertAnAssignmentIntoDatabase(engine, connection ,assigmentID,stringAssignmentDate,stringAssignmentTime,stringAssignmentDescription)):
-				insertAssignment_courseIntoDatabase(engine, connection, assigmentID, courseCode)
+			if(insertAnAssignmentIntoDatabase(engine, connection ,assignmentID,stringAssignmentDate,stringAssignmentTime,stringAssignmentDescription)):
+				insertAssignment_courseIntoDatabase(engine, connection, assignmentID, courseCode)
 scanForAssignmentInACourseAndInsert()
 
 def automaticScrape():
