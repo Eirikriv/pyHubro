@@ -29,9 +29,9 @@ def updateStudentAssignments(stringStudentID):
                     None
 
 
-def getLecturesAndInsertIntoCalendar(stringStudentId):
-    engine = create_engine(URI)
-    connection = engine.connect()
+def getLecturesAndInsertIntoCalendar(engine, connection, stringStudentId):
+    engine = engine
+    connection = connection
     refreshToken = getUserReffreshToken(engine, connection, stringStudentId)
     eventColor = "3"
     success = False
@@ -114,9 +114,9 @@ def useHubroToFindTimeSlotsForAssignments(assignmentDetails,studentID,refreshTok
 
 
 
-def getassignmentDeadLineAndInsertIntoCalendar(stringStudentID):
-    engine = create_engine(URI)
-    connection = engine.connect()
+def getassignmentDeadLineAndInsertIntoCalendar(engine, connection, stringStudentID):
+    engine = engine
+    connection = connection
     refreshToken = getUserReffreshToken(engine, connection,stringStudentID)
     eventColor = "4"
     assignmentDetailList = []
@@ -155,9 +155,9 @@ def checkStudentSettingsAndInsertLecAndOrAssignments(stringStudentID):
     connection = engine.connect()
     studentEntry = getStudent_settingFromStudentTable(engine, connection,stringStudentID)
     if(str(studentEntry[0][2])=="1"):
-        getassignmentDeadLineAndInsertIntoCalendar(stringStudentID)
+        getassignmentDeadLineAndInsertIntoCalendar(engine, connection, stringStudentID)
     elif(str(studentEntry[0][3])=="1"):
-        getLecturesAndInsertIntoCalendar(stringStudentID)
+        getLecturesAndInsertIntoCalendar(engine, connection, stringStudentID)
     else:
         print "User does not want hubro to update schedual for assignments and lectures"
 
