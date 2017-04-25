@@ -118,7 +118,7 @@ def getassignmentDeadLineAndInsertIntoCalendar(engine, connection, stringStudent
     eventColor = "4"
     assignmentDetailList = []
     success = False
-    updateStudentAssignments(stringStudentID)  
+    updateStudentAssignments(engine, connection,stringStudentID)  
     assignmentIDs = getEntriesFromAssignmentStudentAllAssforStud(engine,connection,stringStudentID)
     for entries in assignmentIDs:
         print entries
