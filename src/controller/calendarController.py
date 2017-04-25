@@ -150,8 +150,13 @@ def getassignmentDeadLineAndInsertIntoCalendar(engine, connection, stringStudent
 def checkStudentSettingsAndInsertLecAndOrAssignments(stringStudentID):
     engine = create_engine(URI)
     connection = engine.connect()
-    updateStudentAssignments(engine, connection, stringStudentID)
+    try:
+        updateStudentAssignments(engine, connection, stringStudentID)
+    except:
+        print("already updated assignments")
+    
     studentEntry = getStudent_settingFromStudentTable(engine, connection,stringStudentID)
+    print(studentEntry)
     if(str(studentEntry[0][2])=="1"):
         getassignmentDeadLineAndInsertIntoCalendar(engine, connection, stringStudentID)
     elif(str(studentEntry[0][3])=="1"):
