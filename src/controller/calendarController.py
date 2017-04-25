@@ -14,9 +14,9 @@ from datetime import date
 import datetime as dt
 import time
 
-def updateStudentAssignments(stringStudentID):
-    engine = create_engine(URI)
-    connection = engine.connect()
+def updateStudentAssignments(engine, connection, stringStudentID):
+    engine = engine
+    connection = connection
     temp = getEntriesFromStudent_courseTable(engine, connection,stringStudentID)
     for n in temp:
         ass_course = getEntriesFromAssignment_courseTableReturnAssignments(engine,connection,n[1])
@@ -153,6 +153,7 @@ def getassignmentDeadLineAndInsertIntoCalendar(engine, connection, stringStudent
 def checkStudentSettingsAndInsertLecAndOrAssignments(stringStudentID):
     engine = create_engine(URI)
     connection = engine.connect()
+    updateStudentAssignments(engine, connection, stringStudentID)
     studentEntry = getStudent_settingFromStudentTable(engine, connection,stringStudentID)
     if(str(studentEntry[0][2])=="1"):
         getassignmentDeadLineAndInsertIntoCalendar(engine, connection, stringStudentID)
