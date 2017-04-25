@@ -55,7 +55,7 @@ def getDayEvents(date, time ,daysBack,http):
   listeMedEvents=False
   daysBack = int(daysBack)
   daysBack =  -daysBack-1
-  service = discovery.build('calendar', 'v3', http=http)
+  service = discovery.build('calendar', 'v3', http=http,cache_discovery=False)
   dateStart = ofsetDateByANumberOfDays(date,(daysBack))
   dateStart = dateStart + "T" + "00:00:00Z"
   dateEnd = ofsetDateByANumberOfDays(date,-1)
