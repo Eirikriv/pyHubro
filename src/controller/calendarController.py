@@ -23,10 +23,7 @@ def updateStudentAssignments(engine, connection, stringStudentID):
         if(ass_course!=[]):
             for assignmentID in ass_course:
                 assignmentID = assignmentID[0]
-                try:
-                    insertStudent_Assignment(engine,connection,stringStudentID,assignmentID)
-                except: 
-                    None
+                insertStudent_Assignment(engine,connection,stringStudentID,assignmentID)
 
 
 def getLecturesAndInsertIntoCalendar(engine, connection, stringStudentId):
