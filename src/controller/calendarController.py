@@ -119,28 +119,25 @@ def getassignmentDeadLineAndInsertIntoCalendar(engine, connection, stringStudent
     assignmentDetailList = []
     success = False
     try:
-        updateStudentAssignments(stringStudentID)
-        assignmentIDs = getEntriesFromAssignmentStudentAllAssforStud(engine,connection,stringStudentID)
+        updateStudentAssignments(stringStudentID)  
     except:
-        assignmentIDs=None
-    if(assignmentIDs==None):
-        return success
-    else:
-        for entries in assignmentIDs:
-            print entries
-            tempList = []
-            assignmentDetails = getEntryFromAssigmnentTable(engine,connection,entries[1])[0]
-            assignmentDetailList.append(assignmentDetails)
-            title = assignmentDetails[3]
-            startDate = assignmentDetails[1]
-            endDate = assignmentDetails[1]
-            startTime = assignmentDetails[2]
-            endTime = str(assignmentDetails[2])[0:5] + ":59"
-            description = assignmentDetails[3]
-            location = " "    
-            insertEventToCal(title,startDate,endDate,startTime,endTime,description,location,eventColor,refreshToken)
-            useHubroToFindTimeSlotsForAssignments(assignmentDetails,stringStudentID,refreshToken)
-            success = True
+        None
+    assignmentIDs = getEntriesFromAssignmentStudentAllAssforStud(engine,connection,stringStudentID)
+    for entries in assignmentIDs:
+        print entries
+        tempList = []
+        assignmentDetails = getEntryFromAssigmnentTable(engine,connection,entries[1])[0]
+        assignmentDetailList.append(assignmentDetails)
+        title = assignmentDetails[3]
+        startDate = assignmentDetails[1]
+        endDate = assignmentDetails[1]
+        startTime = assignmentDetails[2]
+        endTime = str(assignmentDetails[2])[0:5] + ":59"
+        description = assignmentDetails[3]
+        location = " "    
+        insertEventToCal(title,startDate,endDate,startTime,endTime,description,location,eventColor,refreshToken)
+        useHubroToFindTimeSlotsForAssignments(assignmentDetails,stringStudentID,refreshToken)
+        success = True
     if(success):
         updateDBWithCurrentCalUpdate(engine,connection,stringStudentID)
     return success 
