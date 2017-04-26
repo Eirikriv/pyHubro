@@ -16,10 +16,10 @@ def sleep(sleepTimer): #sleep selenium so pages can load before next action is t
     time.sleep(sleepTimer)
     return 
 
-def scrapeBlackBoard(sleepTimer):
+def scrapeBlackBoard(sleepTimer): #Scrapes bb for deliveries
     allDeliveriesList=[]
     try:
-        display = Display(visible=0, size=(1200, 1000))
+        display = Display(visible=0, size=(1200, 1000)) #Create a fake display, server dont have screen
         display.start()
         u_username=getUsername()
         u_password=getUserPassword()
@@ -69,19 +69,6 @@ def scrapeBlackBoard(sleepTimer):
 	    driver.find_element_by_xpath('//*[@title="\xc3\x98vinger"]').click()
 	    driver.find_element_by_id("courseMenu_link").click
             sleep(sleepTimer)
-	    #driver.find_element_by_xpath('//*[@title="\xc3\x98vinger"]').click()
-	    #driver.find_element_by_class_name("clickpuller")
-           # sleep(sleepTimer)
-	   # menuItem=driver.find_element_by_id("courseMenuPalette_contents")
-	   # print menuItem.text
-	   # ovingItem = menuItem.find_elements_by_tag_name("li")
-	  #  for n in range(len(ovingItem)):
-	 #       if(n==7):
-	#	    print(ovingItem[n].text)
-	#	    ovingItem[n].click()
-            #driver.find_element_by_xpath('//*[@title="\xc3\x98vinger"]').click()
-	   
-            #time.sleep(10)
             excersises = driver.find_element_by_class_name("courseListing")
             singleExercises = excersises.find_elements_by_tag_name("li")
             for n in range(len(singleExercises)):
@@ -98,14 +85,14 @@ def scrapeBlackBoard(sleepTimer):
         traceback.print_exc()
         return allDeliveriesList
 
-def isNumber(s):
+def isNumber(s): #Helpermethod
     try:
         float(s)
         return True
     except ValueError:
         return False
 
-def getDateOnRightFormat(day): 
+def getDateOnRightFormat(day): #Helpermethod, makes dates that google calendar can read
     
     try: 
         len(day)
@@ -126,7 +113,7 @@ def getDateOnRightFormat(day):
         returnVar="00"
     return returnVar
 
-def parceFromBlackBoardToDatabase(doubleScrapeListFromBB):
+def parceFromBlackBoardToDatabase(doubleScrapeListFromBB): #parces from raw blackboard scrape to databasefriendly fields
     returnList = []
     for deliveries in doubleScrapeListFromBB:
         deliveries = deliveries[0]
@@ -138,8 +125,8 @@ def parceFromBlackBoardToDatabase(doubleScrapeListFromBB):
             continue
     return returnList
 
-#in ['TDT4145 Datamodellering og databasesystemer (2017 V\xc5R)| 26. Jan 23.59.',
-def monthConverter(monthAsString):
+
+def monthConverter(monthAsString): #Helpermethods, converts str(months) to numeric month
     months=["Jan","Feb","Mar","Apr","Mai","Jun","Jul","Aug","Sept","Okt","Nov","Des"]
     returnVar = 0
     for n in range(len(months)):
@@ -150,14 +137,14 @@ def monthConverter(monthAsString):
         returnVar = "00" 
     return str(returnVar)
 
-def convertTimeToRightFormate(timeString):
+def convertTimeToRightFormate(timeString): #Converts time to a gcal readable format
     temp=""
     for n in timeString:
         if(isNumber(n)):
             temp=temp+n
     return temp[0:2]+":"+temp[2:4]+":"+"00"
 
-def inScrapeOutListWithCourseAndDeliveryDate(scrape):
+def inScrapeOutListWithCourseAndDeliveryDate(scrape): #Main parcer
     trimmedScrape = parceFromBlackBoardToDatabase(scrape)
     returnList=[]
     counter = 1
@@ -183,4 +170,4 @@ def inScrapeOutListWithCourseAndDeliveryDate(scrape):
 def scrapeAndGetRawReadyForDatabase():
     scrape=scrapeBlackBoard(6)
     return inScrapeOutListWithCourseAndDeliveryDate(scrape)
-print(scrapeAndGetRawReadyForDatabase())
+
