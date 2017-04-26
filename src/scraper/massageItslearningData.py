@@ -1,5 +1,7 @@
 import time
-#Converts to the form: [AssimentDetails, CourseName, deadline date, deadline time]
+
+
+#Parcer for itslearning data, mostly helpermethods
 
 def monthConverter(monthAsString):
     months=["januar","februar","mars","april","mai","juni","juli","august","september","oktober","november","desember"]
