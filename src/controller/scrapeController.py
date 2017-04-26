@@ -13,14 +13,14 @@ from databaseUtils import *
 import time
 import datetime
 
-def scanForLecturesInCourseAndInsert(courseCode):
-	counter = 0
+def scanForLecturesInCourseAndInsert(courseCode): #helpermethod, scans for lectures in a given coursecode by scraping
+	counter = 0				  #relevant course sites
 	errorCounter = 0
 	engine = create_engine(URI)
 	connection = engine.connect()
 	now = datetime.datetime.now()
 	year = str(now.year)
-	lectures , courseCode = scrapeNtnuCourseWebsites(courseCode)
+	lectures , courseCode = scrapeNtnuCourseWebsites(courseCode) #The actual scraping function
 	lectureTimes = readCourseReturnAllLectureExersiseEvents(lectures, courseCode, year)
 	print lectureTimes
 	print lectures
@@ -39,9 +39,9 @@ def scanForLecturesInCourseAndInsert(courseCode):
 						insertLectureCourseIntoDatabase(engine,connection,lectureID,courseCode)
 				except:
 					None
-#scanForLecturesInCourseAndInsert("TDT4140")
 
-def scanForAssignmentInACourseAndInsert():
+
+def scanForAssignmentInACourseAndInsert():    #Scans for assignments, using Itslearning and BB
 	fromScrape = prepAllDeiveriesForDatabase(loginAndGetAllCurrentAssignements(6))
 	engine = create_engine(URI)
 	connection = engine.connect()
@@ -66,8 +66,8 @@ def scanForAssignmentInACourseAndInsert():
 						insertAssignment_courseIntoDatabase(engine, connection, assignmentID, courseCode)
 				except:
 					None
-#scanForAssignmentInACourseAndInsert()
-def automaticScrape():
+
+def automaticScrape():   #main scraper, this runs from server every 24hrs automaticly
 	engine = create_engine(URI)
 	connection = engine.connect()
 	courseCodes = getAllCourseCodes(engine,connection)
