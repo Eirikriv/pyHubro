@@ -1,8 +1,7 @@
 import sys
 sys.path.append("../databasehandler")
 from databaseUtils import *
-
-#returns a List of lists [[userid,refreshToken]]
+#Mostly helpermethods for hubrobrain, mosly retriverquerries for database
 def getAllUserReffreshTokens(engine,connection):
 	returnList =[]
 	studententries = getAllEntriesFromStudentTable(engine, connection)
@@ -13,7 +12,6 @@ def getAllUserReffreshTokens(engine,connection):
 		returnList.append(tempList)
 	return returnList
 	
-#getAllUserReffreshTokens()
 
 def getAllUsers(engine,connection):
 	returnList =[]
