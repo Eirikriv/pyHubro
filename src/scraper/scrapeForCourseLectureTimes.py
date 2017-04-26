@@ -24,8 +24,8 @@ def convertweekAndDayToDate(dayAsString,weekNrAsString,yearAsString):
     r= str(r)
     return r[0:10]
 
-#TODO, add a courseID field to the returnlist, make it l[0]
-def readCourseReturnAllLectureExersiseEvents(scrapeFromCourseSite, coursecode, year): #input: [Mandag 08:15 - 10:00 2-14,17 \xc3\x98ving BIT, MLREAL, MTDT, MTING, MTI\xc3\x98T, MTTK R1',..]
+#Takes in a scrape and converts it to databasefriendly fields, NOT DUBPLICATE, this is for coursescraping, the other on in scraper/loginAndScrapeBlackBoard.py is for BlackBoard scrapes
+def readCourseReturnAllLectureExersiseEvents(scrapeFromCourseSite, coursecode, year):
     courseScrape=scrapeFromCourseSite
     courseSemesterTimeTable=[]
     for elements in courseScrape: 
@@ -54,11 +54,10 @@ def readCourseReturnAllLectureExersiseEvents(scrapeFromCourseSite, coursecode, y
             weeklyevents.append(tempListTwo)
         courseSemesterTimeTable.append(weeklyevents)
     return courseSemesterTimeTable
-#Returns [courseCode, startdate,enddate,description,where] inside a list of [lecture1, lecture2, oving1, oving2 etc]
 
 
-def scrapeNtnuCourseWebsites(courseCode): #eks TIO4110, gives a long string of courses and times, needs to be modified
-    #try:
+
+def scrapeNtnuCourseWebsites(courseCode): #Scrapes for courses lectures 
     returnList=""
     display = Display(visible=0, size=(800, 600))
     display.start()
@@ -80,11 +79,8 @@ def scrapeNtnuCourseWebsites(courseCode): #eks TIO4110, gives a long string of c
     del returnList[0]
     display.stop()
     return returnList , courseCode
-scrapeNtnuCourseWebsites("TDT4140")
-    # except:
-    #     print "wrong coursecode or webpage is down"
-    #     traceback.print_exc()
-    #     return None , None
+
+
 
 
 
