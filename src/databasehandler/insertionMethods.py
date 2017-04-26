@@ -2,7 +2,9 @@ from sqlalchemy import create_engine, MetaData, Table, select
 from databaseUtils import *
 import traceback
 
-def updateDBWithCurrentCalUpdate(engine, connection,stringStudentId):
+#Database helper methods 
+
+def updateDBWithCurrentCalUpdate(engine, connection,stringStudentId): # Updates the calupdated field in the database
 	returnValue =False
 	try:
 		dtDateToUpload = datetime.now().strftime('%Y/%m/%d %H:%M:%S')
