@@ -16,7 +16,7 @@ def getUserPassword(): #get NTNU Feide password from user
 def sleep(sleepTimer): #sleep selenium so pages can load before next action is taken
     time.sleep(sleepTimer)
     return 
-
+#Scrapes itslearning for assignments
 def loginAndGetAllCurrentAssignements(sleepTimer):
     display = Display(visible=0, size=(1200, 1000))
     display.start()
