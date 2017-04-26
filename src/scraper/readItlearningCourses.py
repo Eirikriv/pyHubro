@@ -1,7 +1,5 @@
-# Start up an Xvfb display that has 0 window size
+
 from pyvirtualdisplay import Display
-#display.sendstop() #use this to close display after running 
-# Load a Firefox selenium webdriver session
 from selenium import webdriver
 from scrapingSiteCredentials import *
 import time
@@ -23,6 +21,7 @@ def sleep(sleepTimer): #sleep selenium so pages can load before next action is t
 
 #Asks for username and password in console, then scrapes the itslearning page for the given username
 #Returns the last course in the "Active" courselist
+#Restrives courses that the user have on itslearning
 def scrapeItslearning(sleepTimer):
     try:  
         display = Display(visible=0, size=(800, 600))
