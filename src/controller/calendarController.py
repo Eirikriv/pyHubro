@@ -14,8 +14,8 @@ from datetime import date
 import datetime as dt
 import time
 
-def updateStudentAssignments(engine, connection, stringStudentID):
-    engine = engine
+def updateStudentAssignments(engine, connection, stringStudentID): #Helperfunction, updates the table "studentAssignment" 
+    engine = engine                                                #Nessessary for the system to link a student to an assignment
     connection = connection
     temp = getEntriesFromStudent_courseTable(engine, connection,stringStudentID)
     for n in temp:
@@ -26,8 +26,8 @@ def updateStudentAssignments(engine, connection, stringStudentID):
                 insertStudent_Assignment(engine,connection,stringStudentID,assignmentID)
 
 
-def getLecturesAndInsertIntoCalendar(engine, connection, stringStudentId):
-    engine = engine
+def getLecturesAndInsertIntoCalendar(engine, connection, stringStudentId): #Updates the google calendar for a student
+    engine = engine                                                        # with lectures he or she registered for
     connection = connection
     refreshToken = getUserReffreshToken(engine, connection, stringStudentId)
     eventColor = "3"
@@ -75,11 +75,10 @@ def getLecturesAndInsertIntoCalendar(engine, connection, stringStudentId):
     if(success):
         updateDBWithCurrentCalUpdate(engine,connection,stringStudentId)
     return success
-#getLecturesAndInsertIntoCalendar("100867243925223857971")
 
-def useHubroToFindTimeSlotsForAssignments(assignmentDetails,studentID,refreshToken):
-    engine = create_engine(URI)
-    connection = engine.connect()
+def useHubroToFindTimeSlotsForAssignments(assignmentDetails,studentID,refreshToken): #Helperfunction, the alorithm used
+    engine = create_engine(URI)                                                      #to find awalible spots in a students
+    connection = engine.connect()                                                    #calendar
     eventColorForWordSessions = "6"
     success = False
     daysBack = findDaysBetweenDates(assignmentDetails[1])
@@ -111,8 +110,8 @@ def useHubroToFindTimeSlotsForAssignments(assignmentDetails,studentID,refreshTok
 
 
 
-def getassignmentDeadLineAndInsertIntoCalendar(engine, connection, stringStudentID):
-    engine = engine
+def getassignmentDeadLineAndInsertIntoCalendar(engine, connection, stringStudentID): #Updates the students calendar with 
+    engine = engine                                                                  #assignments he or she registered for
     connection = connection
     refreshToken = getUserReffreshToken(engine, connection,stringStudentID)
     eventColor = "4"
@@ -141,13 +140,12 @@ def getassignmentDeadLineAndInsertIntoCalendar(engine, connection, stringStudent
     if(success):
         updateDBWithCurrentCalUpdate(engine,connection,stringStudentID)
     return success 
-#getassignmentDeadLineAndInsertIntoCalendar("100867243925223857971")
-#test for studentID = 100867243925223857971
 
-def checkStudentSettingsAndInsertLecAndOrAssignments(stringStudentID):
-    engine = create_engine(URI)
-    connection = engine.connect()
-    studentEntry = getStudent_settingFromStudentTable(engine, connection,stringStudentID)
+
+def checkStudentSettingsAndInsertLecAndOrAssignments(stringStudentID):  #Main method, when a certain URL request is sent to
+    engine = create_engine(URI)                                         #www.eirikriv.pythonanywhere.com, this function runs
+    connection = engine.connect()                                       #Either updates calendar with lectures, assignments or 
+    studentEntry = getStudent_settingFromStudentTable(engine, connection,stringStudentID) # none
     print(studentEntry)
     if(str(studentEntry[0][2])=="1"):
         getassignmentDeadLineAndInsertIntoCalendar(engine, connection, stringStudentID)
