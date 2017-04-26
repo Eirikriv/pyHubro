@@ -26,13 +26,15 @@ from databaseUtils import *
 from clientID_clientSecret import CLIENT_ID , CLIENT_SECRET
 import datetime as dt
 
-def findDaysBetweenDates(date):
-    current = dt.date.today()
+#Lots of helpermethods and also methods that access a students google calendar
+
+def findDaysBetweenDates(date): #Finds how many days are between now and an assignment deadline, used to let hubro know 
+    current = dt.date.today()   #how many days it has to plan with
     future = dt.date(int(date[0:4]), int(date[5:7]) , int(date[8:10]))
     delta = future - current
     return delta.days
 
-def ofsetDateByANumberOfDays(dateYYYYdashMMdashDD, daysoffset): #"-" between YYYY-DD, negative day brings you backvards in time
+def ofsetDateByANumberOfDays(dateYYYYdashMMdashDD, daysoffset): #Takes a date and offsets it by a number
   offsetDate = ""
   date = dt.datetime(int(dateYYYYdashMMdashDD[0:4]), int(dateYYYYdashMMdashDD[5:7]) , int(dateYYYYdashMMdashDD[8:10]), 18, 00)
   DD = dt.timedelta(days=daysoffset)
@@ -40,7 +42,7 @@ def ofsetDateByANumberOfDays(dateYYYYdashMMdashDD, daysoffset): #"-" between YYY
   offsetDate = offsetDate.isoformat()
   return offsetDate[0:10]	
 
-def authorise(clientID,clientSecret,refreshToken):
+def authorise(clientID,clientSecret,refreshToken): #Authorise hubro to access the students google calendar 
 	CLIENT_ID = clientID
 	CLIENT_SECRET = clientSecret
 	REFRESH_TOKEN = refreshToken
@@ -51,7 +53,7 @@ def authorise(clientID,clientSecret,refreshToken):
 	credentials.refresh(http)
 	return http
 
-def getDayEvents(date, time ,daysBack,http):
+def getDayEvents(date, time ,daysBack,http): #Extracts events from google calendar
   listeMedEvents=False
   daysBack = int(daysBack)
   daysBack =  -daysBack-1
@@ -79,7 +81,8 @@ def getDayEvents(date, time ,daysBack,http):
         else:
           listWithEvents.append(appendString)
   return listWithEvents
-def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorId,http):
+
+def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorId,http): #Creates events in the calendar
     returnValue = False
     http = http
     service = discovery.build('calendar', 'v3', http=http)
@@ -113,15 +116,12 @@ def createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivels
       calId = createHubroCalendar(service)
       print(calId)
     time.sleep(2)
-    event = service.events().insert(calendarId=calId, body=event).execute() #executes the current event
+    event = service.events().insert(calendarId=calId, body=event).execute()
     returnValue = True
     return returnValue
-#refreshToken = "1/I2bJkHp2xg0HHD176-8EdiJR4wQLZQp2D0EL7q1BNoo"
-#print(refreshToken)
-#credentials = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
-#print(getDayEvents("2017-03-17","23:59:00","2",credentials))
 
-def findCalendarIDs(service):
+
+def findCalendarIDs(service): # searches the students calendars for multiple calendars (not just the "primary" calendar
   page_token = None
   returnValue = None
   returnList = []
@@ -135,7 +135,7 @@ def findCalendarIDs(service):
       break
   return returnList
 
-def checkIfHubroCalExist(service):
+def checkIfHubroCalExist(service): #Finds an existing hubrocalendar if one exisits
   page_token = None
   returnValue = None
   while returnValue==None:
@@ -149,7 +149,7 @@ def checkIfHubroCalExist(service):
       break
   return returnValue
 
-def createHubroCalendar(service):
+def createHubroCalendar(service): #Creates a new hubro calendar if none exist
   calendar = {
     'summary': 'hubro',
     'timeZone': 'Europe/Oslo'
@@ -157,16 +157,14 @@ def createHubroCalendar(service):
   created_calendar = service.calendars().insert(body=calendar).execute()
   return created_calendar['id']
 
-def insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted, colorID,refreshToken):
-  http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
-  createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorID,http)
+def insertEventToCal(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted, colorID,refreshToken): #"main" method in the file, 
+  http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)						  # checks if hubrocal exist, inserts
+  createAndExecuteEvent(tittel,startdato,sluttdato,starttid,sluttid,beskrivelse,sted,colorID,http)	  # a hubrocal if not and creates events
   return True
 
-def getEventsDaysBack(date, time ,daysBack,refreshToken):
+def getEventsDaysBack(date, time ,daysBack,refreshToken): #Gets events a number of days back
   refreshToken = refreshToken
   http = authorise(CLIENT_ID,CLIENT_SECRET,refreshToken)
   return getDayEvents(date,time,daysBack,http)
 
-#def test():
-#  insertEventToCal("dra til tokyo","2017-03-30","2017-03-30","08:30:00","10:00:00","goin on a trip hubro says","Verneas","6")
-#test()
+
