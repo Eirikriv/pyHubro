@@ -1,10 +1,7 @@
 import unicodedata
 from datetime import datetime, timedelta
 
-#TODO daysPriorToDeadline
-#Lag en funksjon som finner dagen i dag (daytime.current) og sett antall dagertil
-#saa mange dager det er mellom current og deadline
-
+#Algoritmh that finds avalible timeslots in a google calendar
 def OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents, daysPriorToDeadline):
 
     assignmentDeadline = datetime.strptime(assignmentDeadline, '%Y-%m-%d %H:%M:%S')
@@ -57,7 +54,7 @@ def OwlbrainScheduler(assignmentDeadline, initialHoursSet, calendarEvents, daysP
         currentDayInSearchInverter *= -1
 
     return assignedWorkSlots
-
+#Helpermethod for finding free timeslots
 def FindFreeSlots(list):
     freeQuarters = []
     tempResult = []
@@ -89,7 +86,7 @@ def FindFreeSlots(list):
             startFreeQuarters.append(freeQuarters[accumulatedLength])
 
     return [startFreeQuarters]+[slotLengths]
-
+#Helpermethod
 def newWorkSlot(currentDateInSearch, freeSlot, slotLength):
     startTime = datetime.strptime(("0" + str(int(freeSlot) / 4))[-2:] + ":" +
                                   ("0" + str((int(freeSlot) % 4) * 15))[-2:] + ":00", '%H:%M:%S')
